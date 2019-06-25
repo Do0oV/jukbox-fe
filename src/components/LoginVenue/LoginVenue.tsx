@@ -4,7 +4,7 @@ import './LoginVenue.css';
 const LoginVenue: React.FC = () => {
   return (
     <div className="LoginVenue">
-
+      Loginvenue
     </div>
   );
 }

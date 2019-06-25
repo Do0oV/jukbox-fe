@@ -4,7 +4,7 @@ import './Player.css';
 const Player: React.FC = () => {
   return (
     <div className="Player">
-
+      Player
     </div>
   );
 }

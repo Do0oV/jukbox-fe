@@ -4,7 +4,7 @@ import './NowPlaying.css';
 const NowPlaying: React.FC = () => {
   return (
     <div className="NowPlaying">
-
+      Nowplaying
     </div>
   );
 }
