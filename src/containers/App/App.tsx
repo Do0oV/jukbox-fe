@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
 import Login from '../../components/Login/Login';
-import VenueLogin from '../../components/LoginVenue/LoginVenue'
+import LoginVenue from '../../components/LoginVenue/LoginVenue'
 import Dashboard from './../Dashboard/Dashboard';
 import Player from './../Player/Player';
 import Search from './../Search/Search';
@@ -13,13 +13,13 @@ const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={SplashScreen} />
-        <Route path="/login" component={Login} />
-        <Route path="/venuelogin" component={VenueLogin} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/player" component={Player} />
-        <Route path="/search" component={Search} />
+        <Route path='/login' component={Login} />
+        <Route path='/venuelogin' component={LoginVenue} />
+        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/player' component={Player} />
+        <Route path='/search' component={Search} />
         <Route component={NotFound} />
+        <Route path='/' component={SplashScreen} />
       </Switch>
     </Router>
   );
