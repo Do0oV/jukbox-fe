@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import allReducers from './redux/reducers'
-import { loginGetRequest } from './redux/middleware/login'
+import { api } from './redux/middleware/api'
 
 declare global {
   interface Window {
@@ -16,7 +16,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers(applyMiddleware(loginGetRequest)))
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(api)))
 
 ReactDOM.render(
   <Provider store={store}>
