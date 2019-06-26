@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import SplashScreen from '../../components/SplashScreen/SplashScreen';
 import Login from '../../components/Login/Login';
 import LoginVenue from '../../components/LoginVenue/LoginVenue'
@@ -15,7 +16,7 @@ const App: React.FC = () => {
       <Switch>
         <Route path='/login' component={Login} />
         <Route path='/venuelogin' component={LoginVenue} />
-        <Route path='/dashboard' component={Dashboard} />
+        <Route path='/dashboard/:access_token' component={Dashboard} />
         <Route path='/player' component={Player} />
         <Route path='/search' component={Search} />
         <Route component={NotFound} />
