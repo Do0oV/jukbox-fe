@@ -1,9 +1,9 @@
 // import all reducers
 import { combineReducers } from 'redux';
-import login from './login'
+import apiReducer from './api'
 
 const allReducers = combineReducers({
-  isLoggedIn: login,
+  api: apiReducer
 })
 
 export default allReducers;
