@@ -16,7 +16,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers(applyMiddleware(api)))
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(api)));
 
 ReactDOM.render(
   <Provider store={store}>

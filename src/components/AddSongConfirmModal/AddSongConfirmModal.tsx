@@ -11,7 +11,7 @@ const AddSongConfirmModal: React.FC = () => {
 
   return (
     <div className="AddSongConfirmModal">
-      <StyledButton onClick={handleOnClick}>Log In With Google</StyledButton>
+      <StyledButton onClick={handleOnClick}>Confirm Song</StyledButton>
     </div>
   );
 }

@@ -1,11 +1,14 @@
 import { BASE_URL } from '../../config'
 import { Middleware } from 'redux';
 
-export const api: Middleware<any, any, any> = () => ({ dispatch, getState }: any) => (next: any) => (action: any) => {
+export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
+  if (!action.method) return next(action);
 
-  if (action.type !== 'API') return;
+  // if (action.type !== 'GET_USER_STATS') return;
+  // if (getState().api.userStats !== 'John') return next(action)
+  // console.log(getState().api.userStats.name)
 
-  const defaultHeaders : HeadersInit = {
+  const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
   };
 
@@ -35,6 +38,7 @@ export const api: Middleware<any, any, any> = () => ({ dispatch, getState }: any
         type: `${action.type}_SUCCESS`,
         data
       })
+
     })
     .catch(error => {
       dispatch({

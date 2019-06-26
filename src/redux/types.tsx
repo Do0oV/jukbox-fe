@@ -1,3 +1,3 @@
 export interface reduxReducers {
-  API?: any 
+  API?: any,
 }

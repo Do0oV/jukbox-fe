@@ -1,5 +1,8 @@
-export const searchSongs = () => ({ 
+export const searchSongs = (searchTerm: string) => ({ 
   type: 'SEARCH_SONGS',
   method: 'GET',
-  endpoint: '/:search?q=SEARCH_TERM',
+  endpoint: `search?q=${searchTerm}`,
+  headers: {
+    'Content-Type': 'text/plain',
+  }
 });

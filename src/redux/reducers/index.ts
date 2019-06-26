@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import api from './api'
 
 const allReducers = combineReducers({
-  API: api
+  api
 })
 
 export default allReducers;

@@ -2,10 +2,10 @@ import Reducer from 'redux';
 
 const initialState = {
   userStats: {
-    name: 'tom',
-    email: 'tom@tom.com',
-    tickets: 0,
-    diamonds: 0,
+    name: 'loading...',
+    email: 'loading...',
+    tickets: 'loading...',
+    diamonds: 'loading...',
     loading: false,
   },
   searchResults: {
@@ -25,6 +25,9 @@ const api: Reducer.Reducer = (state = initialState, action: any) => {
   //     loading: true,
   //   }
   // }
+  // console.log('reducer', action);
+  console.log(action);
+  
   switch (action.type) {
     case 'GET_USER_STATS_PENDING':
       return {
