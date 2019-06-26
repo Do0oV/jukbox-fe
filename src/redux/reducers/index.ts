@@ -1,9 +1,9 @@
 // import all reducers
 import { combineReducers } from 'redux';
-import apiReducer from './api'
+import api from './api'
 
 const allReducers = combineReducers({
-  api: apiReducer
+  API: api
 })
 
 export default allReducers;

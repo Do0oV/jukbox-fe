@@ -1,18 +1,24 @@
+import Reducer from 'redux';
+
 const initialState = {
-  userStats : {
-    name: '',
-    email: '',
+  userStats: {
+    name: 'tom',
+    email: 'tom@tom.com',
     tickets: 0,
-    diamonds: 0
+    diamonds: 0,
+    loading: false,
   },
   searchResults: {
-    songs: []
+    songs: [],
+    loading: false,
   },
-  addSongToQueue: {},
-  loading: false,
-};
+  addSongToQueue: {
+    songAdded: false,
+    loading: false,
+  }
+}
 
-export default (state = initialState, action: any) => {
+const api: Reducer.Reducer = (state = initialState, action: any) => {
   // if(!~action.type.indexOf('_PENDING')) {
   //   return {
   //     ...state,
@@ -20,6 +26,31 @@ export default (state = initialState, action: any) => {
   //   }
   // }
   switch (action.type) {
+    case 'GET_USER_STATS_PENDING':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'GET_USER_STATS_SUCCESS':
+      return {
+        ...state,
+        userStats: {
+          name: action.data.name,
+          email: action.data.email,
+          tickets: action.data.tickets,
+          diamonds: action.data.diamonds
+        }
+      };
+    case 'GET_USER_STATS_FAILURE':
+      return {
+        ...state,
+        error: 'cannot retreive user data'
+      };
+    case 'SEARCH_SONGS_PENDING':
+      return {
+        ...state,
+        loading: true,
+      };
     case 'SEARCH_SONGS_SUCCESS':
       return {
         ...state,
@@ -28,12 +59,29 @@ export default (state = initialState, action: any) => {
           songs: action.data
         }
       };
-    case 'LOG_IN_SUCCESS':
+    case 'SEARCH_SONGS_FAILURE':
       return {
         ...state,
-        userStats: action.data
-      }
+        error: 'cannot retreive serach data'
+      };
+    case 'ADD_SONG_TO_QUEUE_PENDING':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'ADD_SONG_TO_QUEUE_SUCCESS':
+      return {
+        ...state,
+        songAdded: true,
+      };
+    case 'ADD_SONG_TO_QUEUE_FAILURE':
+      return {
+        ...state,
+        error: 'cannot add song to queue'
+      };
     default:
       return state;
   }
 };
+
+export default api;

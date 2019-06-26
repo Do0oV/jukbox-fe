@@ -7,7 +7,6 @@ export const api: Middleware<any, any, any> = () => ({ dispatch, getState }: any
 
   const defaultHeaders : HeadersInit = {
     'Content-Type': 'application/json',
-    // 'Authorization:'
   };
 
   const accessToken = getState().authroization
