@@ -8,14 +8,6 @@ const initialState = {
     diamonds: 'loading...',
     loading: false,
   },
-  searchResults: {
-    songs: [],
-    loading: false,
-  },
-  addSongToQueue: {
-    songAdded: false,
-    loading: false,
-  }
 }
 
 const userStatsAPI: Reducer.Reducer = (state = initialState, action: any) => {

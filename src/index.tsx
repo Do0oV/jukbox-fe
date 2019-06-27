@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import allReducers from './redux/reducers'
 import { api } from './redux/middleware/api'
+import { socket } from './redux/middleware/socket';
 
 declare global {
   interface Window {
@@ -16,7 +17,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers(applyMiddleware(api)));
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(api, socket)));
 
 ReactDOM.render(
   <Provider store={store}>
