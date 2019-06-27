@@ -5,7 +5,7 @@ import { getUserStats } from '../../redux/actions/getUserStats'
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import UserStats from '../../components/UserStats/UserStats'
-import songQueue from '../../components/SongQueue/SongQueue'
+import SongQueue from '../../components/SongQueue/SongQueue';
 
 const Dashboard: React.FC<LoginProps> = () => {
 
@@ -22,6 +22,7 @@ const Dashboard: React.FC<LoginProps> = () => {
     <div className="Dashboard">
       <h1>Dashboard</h1>
       <StyledUserStats userStats={userStats} />
+      <StyledSonQueue />
     </div>
   );
 }
@@ -29,7 +30,7 @@ const Dashboard: React.FC<LoginProps> = () => {
 const StyledUserStats = styled(UserStats)`
     width: 500px;`
 
-const StyledUserStats = styled(UserStats)`
+const StyledSonQueue = styled(SongQueue)`
     width: 500px;`
 
 export default Dashboard;
