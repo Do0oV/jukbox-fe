@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Dashboard: React.FC<LoginProps> = ({ match }) => {
 
-  const userStats = useSelector((state: any) => state.api.userStats)
+  const userStats = useSelector((state: any) => state.userStatsReducer.userStats)
   const dispatch = useDispatch();
   
   useEffect(() => {

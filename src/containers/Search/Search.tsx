@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Search: React.FC = () => {
   
-  const searchResults = useSelector((state: any) => state.api.searchResults)
+  const searchResults = useSelector((state: any) => state.searchResultsReducer.songs)
   const dispatch = useDispatch();
   
   const handleChange = (event: any) => {
@@ -17,12 +17,8 @@ const Search: React.FC = () => {
       <form>
         <input type="text" onChange={handleChange} />
       </form>
-      {/* {searchResults.songs.length && */}
-      {console.log(searchResults)}
-      <h2>{ 'name:  ' + searchResults.songs.songs}</h2>
-      {/* <h2>{ 'email:  ' + searchResults. }</h2>
-      <h2>{ 'tickets:  ' + searchResults. }</h2>
-      <h2>{ 'diamonds:  ' + searchResults. }</h2> */}
+      {console.log(searchResults.songs)}
+      <h2>{ 'Search Results:  ' + searchResults.songs}</h2>
     </div>
   );
 }

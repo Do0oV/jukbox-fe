@@ -4,10 +4,6 @@ import { Middleware } from 'redux';
 export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
   if (!action.method) return next(action);
 
-  // if (action.type !== 'GET_USER_STATS') return;
-  // if (getState().api.userStats !== 'John') return next(action)
-  // console.log(getState().api.userStats.name)
-
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
   };
