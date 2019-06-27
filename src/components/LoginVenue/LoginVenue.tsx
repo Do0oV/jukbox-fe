@@ -15,7 +15,7 @@ const LoginVenue: React.FC = (props) => {
 
   const adminLogIn = () => {
     // redirect to BE URL need to be changed
-    window.location.href = 'http://localhost:3001/authorized-admin?access_token=BQBmJ_2zVCrL1FoEaYlKisGnYcinSwB0FMM7xkhdrly1TSHgutbhhU7dwVldv6J8CvcPdx5LwlKuBuw-WZRSK-3baPmNiU-gg5ETNzJ9YXcqwYqc443Uw4JDvME5lt-8dRHmDzBjQelCRUPfbiNghip8aEH5ur4FFRQJ'
+    window.location.href = 'http://localhost:3001/authorized-admin?access_token=BQATCvzW-rwDYDCLskrjG549NnD6teFfQY-FUsPL8-nQrted86jbPjPwsD72L16XWgTY_CIl1ODmxW0bw6T88oF9vPg5eWZ1xDA9x9j4pWadajybgGZVh57--c_lJw7y-o9RicxNiURNY7ywVMMQl-lxe_cqoMcSaSuY'
   }
 
   useEffect(()=> {

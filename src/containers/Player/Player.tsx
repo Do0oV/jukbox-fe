@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Player.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentSong } from '../../redux/actions/setCurrentSong';
+import { setSongPosition } from '../../redux/actions/setSongPosition';
+import { isLocked } from '../../redux/actions/isLocked';
+
+
 export const Venue:any = {};
 
 interface WindowInterface extends Window {
@@ -8,17 +14,12 @@ interface WindowInterface extends Window {
 
 const Player: React.FC = () => {
 
-  const [currentSong, setCurrentSong] = useState({
-    song_id: '',
-    artist: '',
-    title: '',
-    album: '',
-    album_cover: [],
-    duration: 0
-  });
+  const accesToken = useSelector((state: any) => state.access_token);
+  const current_song = useSelector((state: any) => state.current_song);
+  const position = useSelector((state: any) => state.position);
+  const flag = useSelector((state: any) => state.isLocked);
 
-  const [flag, setFlag] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const dispatch = useDispatch();
 
   const playerCheckInterval = setInterval(() => checkForPlayer(), 1000);
   const accT:string = localStorage.getItem('access_token') || '';
@@ -49,20 +50,19 @@ const Player: React.FC = () => {
         album_cover: current.album.images,
         duration: current.duration_ms
       };
-
-      setCurrentSong(prev => newStateOfCurrent);
+      dispatch(setCurrentSong(newStateOfCurrent));
     });
     Venue.player.on('ready', (data:any) => console.log('ready', data))
   };
 
-  const getPosition = () => {
+  const getPosition = (cb:any) => {
     Venue.player.getCurrentState().then((state:any) => {
       if (!state) {
         console.error('User is not playing music through the Web Playback SDK');
         return;
       }
       // set current position to check when -15sec
-      setCurrentPosition(prev => state.position);
+      cb(setSongPosition(state.position));
 
     });
   };
@@ -71,21 +71,20 @@ const Player: React.FC = () => {
     console.log('start')
   }
   if (!flag) {
-    if (currentSong.duration - currentPosition !== 0 && currentSong.duration - currentPosition <= 17000) {
-      setFlag(true);
+    if (current_song.duration - position >= 0 && current_song.duration - position <= 17000) {
+      dispatch(isLocked(true));
       console.log('flag');
     }
   }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      getPosition();
+      getPosition(dispatch);
     }, 5000);
     return () => { // Return callback to run on unmount.
       clearInterval(timer);
     };
   }, []);
-
 
   return (
     <div className="Player">
