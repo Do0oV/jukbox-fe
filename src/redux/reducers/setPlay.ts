@@ -1,24 +1,24 @@
 import Reducer from 'redux';
 
 const initialState = {
-  nextSongLocked: false,
+  playing: false,
   loading: false
 }
 
-const nextSong: Reducer.Reducer = (state = initialState, action: any) => {
+const setPlay: Reducer.Reducer = (state = initialState, action: any) => {
 
   switch (action.type) {
-    case 'SEND_NEXT_SONG_PENDING':
+    case 'PLAY_SONG_PENDING':
       return {
         ...state,
         loading: true,
       };
-    case 'SEND_NEXT_SONG_SUCCESS':
+    case 'PLAY_SONG_SUCCESS':
       return {
         ...state,
-        nextSongLocked: true,
+        playing: true,
       };
-    case 'SEND_NEXT_SONG_FAILURE':
+    case 'PLAY_SONG_FAILURE':
       return {
         ...state,
         error: 'cannot lock the song'
@@ -28,4 +28,4 @@ const nextSong: Reducer.Reducer = (state = initialState, action: any) => {
   }
 };
 
-export default nextSong;
+export default setPlay;

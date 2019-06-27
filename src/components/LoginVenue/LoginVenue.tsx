@@ -4,6 +4,7 @@ import './LoginVenue.css';
 import { setAccessToken } from '../../redux/actions/setAccessToken';
 import { setLogIn } from '../../redux/actions/setLogIn';
 import { useSelector, useDispatch } from 'react-redux';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const LoginVenue: React.FC = (props) => {
 
@@ -15,7 +16,9 @@ const LoginVenue: React.FC = (props) => {
 
   const adminLogIn = () => {
     // redirect to BE URL need to be changed
-    window.location.href = 'http://localhost:3001/authorized-admin?access_token=BQATCvzW-rwDYDCLskrjG549NnD6teFfQY-FUsPL8-nQrted86jbPjPwsD72L16XWgTY_CIl1ODmxW0bw6T88oF9vPg5eWZ1xDA9x9j4pWadajybgGZVh57--c_lJw7y-o9RicxNiURNY7ywVMMQl-lxe_cqoMcSaSuY'
+    if (apiUrl) {
+    window.location.href = apiUrl;
+    }
   }
 
   useEffect(()=> {

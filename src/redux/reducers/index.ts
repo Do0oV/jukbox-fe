@@ -8,6 +8,10 @@ import loginReducer from './loginReducer';
 import setCurrentSong from './setCurrentSong';
 import setSongPosition from './setSongPosition';
 import isLockedReducer from './isLockedReducer';
+import setPlay from './setPlay';
+import setDeviceId from './setDeviceId';
+
+
 
 const allReducers = combineReducers({
   userStatsReducer: userStatsAPI,
@@ -17,7 +21,9 @@ const allReducers = combineReducers({
   isLoggedIn: loginReducer,
   current_song: setCurrentSong,
   position: setSongPosition,
-  isLocked: isLockedReducer
+  isLocked: isLockedReducer,
+  playing: setPlay,
+  device_id : setDeviceId
 })
 
 export default allReducers;

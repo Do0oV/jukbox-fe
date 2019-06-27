@@ -11,7 +11,10 @@ const TokenLogic: React.FC = (props:any) => {
   const search = new URLSearchParams(props.location.search);
   const accessToken = search.get('access_token');
   accessToken && dispatch(setAccessToken(accessToken));
-  localStorage.setItem("access_token", accessToken || '');
+  if (accessToken) {
+    localStorage.setItem("access_token", accessToken);
+  }
+
   dispatch(setLogIn());
 
   return (
