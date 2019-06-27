@@ -5,13 +5,13 @@ import { Button } from 'antd';
 import styled from 'styled-components';
 
 const AddSongConfirmModal: React.FC = () => {
-  const handleOnClick = () => {
-    addSongToQueue()
-  }
+  // const handleOnClick = () => {
+  //   addSongToQueue()
+  // }
 
   return (
     <div className="AddSongConfirmModal">
-      <StyledButton onClick={handleOnClick}>Confirm Song</StyledButton>
+      {/* <StyledButton onClick={handleOnClick}>Confirm Song</StyledButton> */}
     </div>
   );
 }

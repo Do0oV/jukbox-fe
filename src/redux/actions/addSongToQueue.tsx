@@ -1,5 +1,7 @@
-export const addSongToQueue = () => ({ 
+export const addSongToQueue = (song: any) => ({ 
   type: 'ADD_SONG_TO_QUEUE',
-  method: 'GET',
+  method: 'POST',
   endpoint: '/playlist:venueName',
+  headers: 'content-length:540',
+  body: `${song}`
 });

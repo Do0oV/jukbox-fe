@@ -3,8 +3,10 @@ import './Dashboard.css';
 import { LoginProps } from '../../types';
 import { getUserStats } from '../../redux/actions/getUserStats'
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import UserStats from '../../components/UserStats/UserStats'
 
-const Dashboard: React.FC<LoginProps> = ({ match }) => {
+const Dashboard: React.FC<LoginProps> = () => {
 
   const userStats = useSelector((state: any) => state.userStatsReducer.userStats)
   const dispatch = useDispatch();
@@ -18,12 +20,12 @@ const Dashboard: React.FC<LoginProps> = ({ match }) => {
   return (
     <div className="Dashboard">
       <h1>Dashboard</h1>
-      <h2>{ 'name:  ' + userStats.name }</h2>
-      <h2>{ 'email:  ' + userStats.email }</h2>
-      <h2>{ 'tickets:  ' + userStats.tickets }</h2>
-      <h2>{ 'diamonds:  ' + userStats.diamonds }</h2>
+      <StyledUserStats userStats={userStats}/>
     </div>
   );
 }
+
+const StyledUserStats = styled(UserStats)`
+    width: 500px;`
 
 export default Dashboard;
