@@ -1,0 +1,1 @@
+export const BASE_URL: string = 'https://private-c87a7-jukebox8.apiary-mock.com/'
