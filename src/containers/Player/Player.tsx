@@ -3,6 +3,7 @@ import './Player.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentSong } from '../../redux/actions/setCurrentSong';
 import { setSongPosition } from '../../redux/actions/setSongPosition';
+import { lockNextRequest } from '../../redux/actions/lockNextRequest';
 import { isLocked } from '../../redux/actions/isLocked';
 
 
@@ -73,6 +74,7 @@ const Player: React.FC = () => {
   if (!flag) {
     if (current_song.duration - position >= 0 && current_song.duration - position <= 17000) {
       dispatch(isLocked(true));
+      dispatch(lockNextRequest())
       console.log('flag');
     }
   }
