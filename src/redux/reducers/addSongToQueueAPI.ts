@@ -15,10 +15,11 @@ const addSongToQueueAPI: Reducer.Reducer = (state = initialState, action: any) =
         ...state,
         loading: true,
       };
-    case 'ADD_SONG_TO_QUEUE_SUCCESS':
-      return {
-        ...state,
-        songAdded: true,
+      case 'ADD_SONG_TO_QUEUE_SUCCESS':
+        return {
+          ...state,
+          songAdded: true,
+          loading: false,
       };
     case 'ADD_SONG_TO_QUEUE_FAILURE':
       return {

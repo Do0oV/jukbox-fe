@@ -2,14 +2,19 @@ import React from 'react';
 import './Search.css';
 import { searchSongs } from '../../redux/actions/searchSongs'
 import { useSelector, useDispatch } from 'react-redux';
+import { addSongToQueue } from '../../redux/actions/addSongToQueue'
 
 const Search: React.FC = () => {
-  
+
   const searchResults = useSelector((state: any) => state.searchResultsReducer.songs)
   const dispatch = useDispatch();
-  
+
   const handleChange = (event: any) => {
-    dispatch(searchSongs(event.currentTarget.value));    
+    dispatch(searchSongs(event.currentTarget.value));
+  }
+
+  const handleOnClick = (song: any) => {
+    dispatch(addSongToQueue(song))
   }
 
   return (
@@ -17,8 +22,13 @@ const Search: React.FC = () => {
       <form>
         <input type="text" onChange={handleChange} />
       </form>
-      {console.log(searchResults.songs)}
-      <h2>{ 'Search Results:  ' + searchResults.songs}</h2>
+      <h2>
+        {(searchResults.songs && searchResults.songs.length)
+          ? searchResults.songs
+            .map((el: any, index: number) => <li key={index} value={el} onClick={() => handleOnClick(el)}>{el.title}</li>)
+          : null
+        }
+      </h2>
     </div>
   );
 }
