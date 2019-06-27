@@ -5,9 +5,24 @@ export interface UserStatsProps {
   userStats: User
 }
 
-interface User {
-  name: string
-  email: string
-  tickets: number
-  diamonds: number
+class User {
+  constructor (
+    public name: string,
+    public email: string,
+    public tickets: number,
+    public diamonds: number
+  ) {}
+}
+
+export class SongQueue {
+  constructor (
+    public song: string,
+    public userEmail: string,
+    public venueName: string,
+    public diamonds: number,
+    public submission_time: string,
+    public currentlyPlaying: boolean,
+    public lockedIn: boolean,
+    private id?: number
+  ) {}
 }
