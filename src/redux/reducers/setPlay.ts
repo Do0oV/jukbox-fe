@@ -9,6 +9,7 @@ const setPlay: Reducer.Reducer = (state = initialState, action: any) => {
 
   switch (action.type) {
     case 'PLAY_SONG_PENDING':
+    console.log('play pending')
       return {
         ...state,
         loading: true,
