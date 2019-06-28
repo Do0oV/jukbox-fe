@@ -1,7 +1,7 @@
 import Reducer from 'redux';
 
 const initialState = {
-  addSongToQueue: {
+  addSongToQueue: { // NO NESTING
     songAdded: false,
     loading: false,
   }

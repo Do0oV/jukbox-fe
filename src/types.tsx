@@ -6,6 +6,11 @@ export interface UserStatsProps {
   userStats: User
 };
 
+export interface VenuePLayerProps {
+  current_song: CurrentSong,
+  startSession:any
+}
+
 class User {
   constructor (
     public name: string,
@@ -33,4 +38,15 @@ export class SongQueue {
     public lockedIn: boolean,
     private id?: number
   ) {}
+};
+
+export class CurrentSong {
+  constructor (
+    public song_id: string,
+    public artist: string,
+    public title: string,
+    public album: string,
+    public album_cover: string,
+    public duration: number
+    ) {}
 };
