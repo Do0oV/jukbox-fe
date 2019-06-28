@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Redirect } from 'react-router'
+import React, {useEffect} from 'react';
+import { Redirect } from 'react-router';
 import './LoginVenue.css';
 import { setAccessToken } from '../../redux/actions/setAccessToken';
 import { setLogIn } from '../../redux/actions/setLogIn';
@@ -8,8 +8,6 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const LoginVenue: React.FC = (props) => {
 
-  const accesToken = useSelector((state: any) => state.access_token);
-  const isLoggedIn = useSelector((state: any) => state.isLoggedIn);
   const dispatch = useDispatch();
 
   const accessToken:string = localStorage.getItem('access_token') || '';
@@ -26,11 +24,11 @@ const LoginVenue: React.FC = (props) => {
       dispatch(setAccessToken(accessToken));
       dispatch(setLogIn());
     }
-  },[accessToken])
+  },[])
 
   return (
     <div className="LoginVenue">
-      {isLoggedIn && <Redirect to="/player"/>}
+      {accessToken && <Redirect to="/player"/>}
       <button onClick={() => adminLogIn()}>LOGIN</button>
     </div>
     );

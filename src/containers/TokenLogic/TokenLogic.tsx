@@ -6,7 +6,6 @@ import { setLogIn } from '../../redux/actions/setLogIn';
 import { useDispatch } from 'react-redux';
 
 const TokenLogic: React.FC = (props:any) => {
-
   const dispatch = useDispatch();
   const search = new URLSearchParams(props.location.search);
   const accessToken = search.get('access_token');

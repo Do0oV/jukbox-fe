@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import allReducers from './redux/reducers'
 import { api } from './redux/middleware/api'
 import { socket } from './redux/middleware/socket';
+import { resetFlag } from './redux/middleware/resetFlag';
 
 declare global {
   interface Window {
@@ -17,12 +18,12 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers(applyMiddleware(api, socket)));
+const store = createStore(allReducers, composeEnhancers(applyMiddleware(api, socket, resetFlag)));
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, 
+  </Provider>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

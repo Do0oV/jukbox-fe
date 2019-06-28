@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Player.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentSong } from '../../redux/actions/setCurrentSong';
@@ -8,6 +8,9 @@ import { isLocked } from '../../redux/actions/isLocked';
 import { playSong } from '../../redux/actions/playSong';
 import { setDeviceId } from '../../redux/actions/setDeviceId';
 import { setAccessToken } from '../../redux/actions/setAccessToken';
+
+import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
+import VenueInfos from '../../components/VenueInfos/VenueInfos';
 
 export const Venue:any = {};
 
@@ -27,13 +30,13 @@ const Player: React.FC = () => {
 
   const playerCheckInterval = setInterval(() => checkForPlayer(), 1000);
   const accT:string = localStorage.getItem('access_token') || '';
-  dispatch(setAccessToken(accT));
+
 
   const checkForPlayer = async () => {
     if ((window as WindowInterface) !== null && !Venue.player) {
       Venue.player = new (window as WindowInterface).Spotify.Player({
         name: 'JukBox Awesome APP',
-        getOAuthToken: (cb:any) => { cb(accesToken)}
+        getOAuthToken: (cb:any) => { cb(accT)}
       });
       await Venue.player.connect();
       clearInterval(playerCheckInterval);
@@ -53,7 +56,7 @@ const Player: React.FC = () => {
         artist: current.artists[0].name,
         title: current.name,
         album: current.album.name,
-        album_cover: current.album.images,
+        album_cover: current.album.images[0],
         duration: current.duration_ms
       };
       dispatch(setCurrentSong(newStateOfCurrent));
@@ -67,6 +70,7 @@ const Player: React.FC = () => {
         console.error('User is not playing music through the Web Playback SDK');
         return;
       }
+      console.log(state)
       // set current position to check when -15sec
       dispatch(setSongPosition(state.position));
 
@@ -75,13 +79,14 @@ const Player: React.FC = () => {
   // action to start session
   const startSession = () => {
     dispatch(playSong(deviceId));
-    console.log('start');
   }
   if (!flag) {
     if (current_song.duration - position >= 0 && current_song.duration - position <= 17000) {
       dispatch(isLocked(true));
-      dispatch(lockNextRequest())
-      console.log('flag');
+      dispatch(lockNextRequest());
+      setTimeout(() => {
+        dispatch(playSong(deviceId));
+    }, 10000);
     }
   }
 
@@ -89,6 +94,7 @@ const Player: React.FC = () => {
     const timer = setInterval(() => {
       getPosition();
     }, 5000);
+    dispatch(setAccessToken(accT));
     return () => { // Return callback to run on unmount.
       clearInterval(timer);
     };
@@ -96,7 +102,10 @@ const Player: React.FC = () => {
 
   return (
     <div className="Player">
-    <button onClick={startSession}>START</button>
+      <VenueInfos />
+      {current_song &&
+      <VenuePlayer current_song={current_song} startSession={startSession}/>
+    }
     </div>
     );
 }
