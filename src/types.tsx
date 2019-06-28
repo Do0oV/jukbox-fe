@@ -9,7 +9,7 @@ export interface UserStatsProps {
 export interface VenuePLayerProps {
   currentSong: CurrentSong,
   startSession:any
-}
+};
 
 class User {
   constructor (
