@@ -3,11 +3,12 @@ export const connectSocket = (userEmail: string) => {
     type: 'MAKE_CONNECTION',
     socket: {
       command: 'connect',
-      message: 'connectUserToVenue',
-      data: {
-        userEmail
-      },
-      response: 'updatedPlaylist'
+      message: {
+        route: 'connectUserToVenue',
+        data: {
+          userEmail
+        }
+      }
     }
   };
 };

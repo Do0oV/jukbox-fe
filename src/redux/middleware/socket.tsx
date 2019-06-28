@@ -1,7 +1,7 @@
 import { WS_BASE_URL } from '../../config';
 import { Middleware } from 'redux';
 import client from 'socket.io-client';
-import { SongQueue } from '../../types';
+import { socketServerResponse } from '../../types';
 
 export const socket: Middleware<any, any, any> = ({ dispatch }) => {
   let socket: SocketIOClient.Socket;
@@ -9,19 +9,18 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
   return next => action => {
     if (!action.socket) return next(action);
     
-    const { command, message, data, response } = action.socket;
+    const { command, message } = action.socket;
     if (command === 'connect') {
       const url =`${WS_BASE_URL}/codeworks`;
       socket = client.connect(url);
 
       socket.on('connect', () => {
         console.log('CONNECTED TO SOCKET AT ', url);
-        socket.emit(message, data.userEmail);
-        socket.on(response, (playlist: SongQueue) => {
-          console.log('CONNECTED TO NAMESPACE CODEWORKS');
+        socket.emit('message', message);
+        socket.on('message', (message: socketServerResponse) => {
           dispatch({
             type: `UPDATED_LIST`,
-            playlist
+            playlist: message.data.updatedPlaylist
           });
         });
       });
@@ -34,7 +33,7 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
       });
       
     } else if (command === 'updateSongQueue') {
-      socket.emit(message, data.song, data.userEmail);
+      socket.emit('message', message);
     }
 
     next(action);

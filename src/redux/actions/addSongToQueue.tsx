@@ -3,12 +3,13 @@ export const addSongToQueue = (songId: string, userEmail: string) => {
     type: 'ADD_SONG_TO_QUEUE',
     socket: {
       command: 'updateSongQueue',
-      message: 'addSong',
-      data: {
-        songId,
-        userEmail
-      },
-      response: 'updatedPlaylist'
+      message: {
+        route: 'addSong',
+        data: {
+          songId,
+          userEmail
+        }
+      }
     }
   };
 };

@@ -1,9 +1,10 @@
 export interface LoginProps {
   match: string
-}
+};
+
 export interface UserStatsProps {
   userStats: User
-}
+};
 
 class User {
   constructor (
@@ -12,7 +13,14 @@ class User {
     public tickets: number,
     public diamonds: number
   ) {}
-}
+};
+
+export interface socketServerResponse {
+  route: string,
+  data: {
+    updatedPlaylist: Array<SongQueue>
+  }
+};
 
 export class SongQueue {
   constructor (
@@ -25,4 +33,4 @@ export class SongQueue {
     public lockedIn: boolean,
     private id?: number
   ) {}
-}
+};
