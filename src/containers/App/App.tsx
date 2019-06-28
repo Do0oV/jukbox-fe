@@ -8,6 +8,7 @@ import Dashboard from './../Dashboard/Dashboard';
 import Player from './../Player/Player';
 import Search from './../Search/Search';
 import TokenLogic from './../TokenLogic/TokenLogic';
+import UserTokenLogic from './../userTokenLogic/userTokenLogic';
 import NotFound from '../../components/NotFound/NotFound';
 
 const App: React.FC = () => {
@@ -15,6 +16,7 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route path='/authorized-admin' component={TokenLogic} />
+        <Route path='/authorized-user' component={UserTokenLogic} />
         <Route path='/login' component={Login} />
         <Route path='/venuelogin' component={LoginVenue} />
         <Route path='/dashboard' component={Dashboard} />

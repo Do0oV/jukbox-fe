@@ -9,11 +9,9 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
     'Content-Type': 'application/json',
   };
 
-  const accessToken = getState().authroization
-    ? getState().authroization.access_token
-    : undefined;
-  if (accessToken) {
-    defaultHeaders['Authorization'] = `Bearer ${accessToken}`;
+  const googleAccessToken = localStorage.getItem('access_token')
+  if (googleAccessToken) {
+    defaultHeaders['Authorization'] = `Bearer ${googleAccessToken}`;
   }
 
   const headers = {
