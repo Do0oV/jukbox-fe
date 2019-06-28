@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const AddSongConfirmModal: React.FC = () => {
   // const handleOnClick = () => {
-  //   addSongToQueue()
+  //   addSong()
   // }
 
   return (

@@ -1,9 +1,9 @@
-export const addSongToQueue = (songId: string, userEmail: string) => {
+export const updateSongDiamonds = (songId: string, userEmail: string) => {
   return { 
-    type: 'ADD_SONG_TO_QUEUE',
+    type: 'ADD_SONG_DIAMONDS',
     socket: {
       command: 'updateSongQueue',
-      message: 'addSong',
+      message: 'updateSongDiamonds',
       data: {
         songId,
         userEmail

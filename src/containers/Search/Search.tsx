@@ -7,6 +7,7 @@ import { addSongToQueue } from '../../redux/actions/addSongToQueue'
 const Search: React.FC = () => {
 
   const searchResults = useSelector((state: any) => state.searchResultsReducer.songs)
+  const userEmail = useSelector((state: any) => state.userStatsReducer.userStats.email);
   const dispatch = useDispatch();
 
   const handleChange = (event: any) => {
@@ -14,7 +15,8 @@ const Search: React.FC = () => {
   }
 
   const handleOnClick = (song: any) => {
-    dispatch(addSongToQueue(song))
+    const songId = song.song_id;
+    dispatch(addSongToQueue(songId, userEmail));
   }
 
   return (
