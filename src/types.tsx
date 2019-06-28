@@ -1,9 +1,10 @@
 export interface LoginProps {
   match: string
-}
+};
+
 export interface UserStatsProps {
   userStats: User
-}
+};
 
 export interface VenuePLayerProps {
   current_song: CurrentSong,
@@ -16,8 +17,15 @@ class User {
     public email: string,
     public tickets: number,
     public diamonds: number
-    ) {}
-}
+  ) {}
+};
+
+export interface socketServerResponse {
+  route: string,
+  data: {
+    updatedPlaylist: Array<SongQueue>
+  }
+};
 
 export class SongQueue {
   constructor (
@@ -29,8 +37,8 @@ export class SongQueue {
     public currentlyPlaying: boolean,
     public lockedIn: boolean,
     private id?: number
-    ) {}
-}
+  ) {}
+};
 
 export class CurrentSong {
   constructor (
@@ -41,4 +49,4 @@ export class CurrentSong {
     public album_cover: string,
     public duration: number
     ) {}
-}
+};

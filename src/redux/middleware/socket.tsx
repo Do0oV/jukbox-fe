@@ -1,36 +1,39 @@
 import { WS_BASE_URL } from '../../config';
 import { Middleware } from 'redux';
 import client from 'socket.io-client';
-import { SongQueue } from '../../types';
+import { socketServerResponse } from '../../types';
 
-export const socket: Middleware<any, any, any> = ({ dispatch, getState }: any) => {
+export const socket: Middleware<any, any, any> = ({ dispatch }) => {
   let socket: SocketIOClient.Socket;
-
-  return (next: any) => (action: any) => {
+  
+  return next => action => {
     if (!action.socket) return next(action);
-
-    if (action.socket.command === 'connect') {
-      const url = `${WS_BASE_URL}/codeworks`;
-      console.log('CONNECTING TO SOCKET', url);
+    
+    const { command, message } = action.socket;
+    if (command === 'connect') {
+      const url =`${WS_BASE_URL}/codeworks`;
       socket = client.connect(url);
-      
+
       socket.on('connect', () => {
-        console.log('CONNECTED');
-        socket.on('updatedPlaylist', (playlist: SongQueue) => {
+        console.log('CONNECTED TO SOCKET AT ', url);
+        socket.emit('message', message);
+        socket.on('message', (message: socketServerResponse) => {
           dispatch({
             type: `UPDATED_LIST`,
-            playlist
+            playlist: message.data.updatedPlaylist
           });
         });
-
       });
-
-      socket.on('error', (error: any) => {
+  
+      socket.on('error', (error: Error) => {
         dispatch({
           type: `SOCKET_ERROR`,
           error
         });
       });
+      
+    } else if (command === 'updateSongQueue') {
+      socket.emit('message', message);
     }
 
     next(action);
