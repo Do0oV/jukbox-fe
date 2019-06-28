@@ -10,6 +10,14 @@ export const BigLogo = styled.h1`
 `;
 
 
+export const SmallLogo = styled.h1`
+  color: var(--primary-color);
+  font-size: 20px;
+  letter-spacing: 6px;
+  margin: 0;
+`;
+
+
 export const CenteredContent = styled.div`
   display: flex
   flex-direction: column;
