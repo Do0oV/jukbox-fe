@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 const Login: React.FC = () => {
 
   const handleOnClick = () => {
-
+    window.location.href = "http://localhost:4000/login/user/Codeworks";
   }
 
   return (
