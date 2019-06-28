@@ -1,9 +1,27 @@
 import React, {useEffect} from 'react';
 import { Redirect } from 'react-router';
 import './LoginVenue.css';
-import { setAccessToken } from '../../redux/actions/';
-import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/actions/setAccessToken';
+import { setLogIn } from '../../redux/actions/setLogIn';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { BigLogo, CenteredContent } from '../../assests/globalStyles';
+
 const apiUrl = process.env.REACT_APP_API_URL;
+
+const SpotifyButton = styled.button`
+  background-color: #1DB954;
+  color: #fff;
+  border-radius: 30px;
+  width: 210px;
+  border: none;
+  padding: 5px;
+  letter-spacing: 2px;
+
+  &:hover {
+    background-color: #1ED760;
+  }
+`;
 
 const LoginVenue: React.FC = () => {
 
@@ -25,10 +43,11 @@ const LoginVenue: React.FC = () => {
   },[])
 
   return (
-    <div className="LoginVenue">
+    <CenteredContent className="LoginVenue">
       {accessToken && <Redirect to="/player"/>}
-      <button onClick={() => adminLogIn()}>LOGIN</button>
-    </div>
+      <BigLogo>JUKBOX</BigLogo>
+      <SpotifyButton onClick={() => adminLogIn()}>LOG IN WITH SPOTIFY</SpotifyButton>
+    </CenteredContent>
     );
 }
 

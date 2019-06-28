@@ -19,13 +19,6 @@ const Container = styled.div`
   background-color: var(--primary-bg-color);
 `;
 
-const myTheme = {
-  background: "grey",
-  textColor: "pink",
-  buttonColor: "purple"
-};
-
-
 const App: React.FC = () => {
   return (
     <Container>

@@ -3,29 +3,21 @@ import './Login.css';
 import styled from 'styled-components';
 import { setAccessToken } from '../../redux/actions/';
 import { useDispatch } from 'react-redux';
+import { BigLogo, CenteredContent } from '../../assests/globalStyles';
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const Container = styled.div`
-  display: flex
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const Logo = styled.h1`
-  color: var(--primary-color);
-  font-size: 34px;
-  letter-spacing: 10px;
-  margin: 0 auto;
-  text-align: center;
-  padding-bottom: 20px;
-`;
-
-const Button = styled.button`
-  background-color: var(--fourth-color);
+const GoogleButton = styled.button`
+  background-color: rgb(221, 76, 60);
   border-radius: 30px;
-  width: 190px;
+  color: white;
+  width: 210px;
+  border: none;
+  padding: 5px;
+  letter-spacing: 2px;
+
+  &:hover {
+    background-color: rgb(224, 97, 83);
+  }
 `;
 
 const Login: React.FC = () => {
@@ -48,10 +40,10 @@ const Login: React.FC = () => {
   },[])
 
   return (
-    <Container className="Login">
-      <Logo>JUKBOX</Logo>
-      <Button onClick={handleOnClick}>LOG IN WITH GOOGLE</Button>
-    </Container>
+    <CenteredContent className="Login">
+      <BigLogo>JUKBOX</BigLogo>
+      <GoogleButton onClick={handleOnClick}>LOG IN WITH GOOGLE</GoogleButton>
+    </CenteredContent>
   );
 }
 
