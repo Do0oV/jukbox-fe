@@ -1,4 +1,4 @@
-export const getUserProfile = () => ({ 
+export const getUserProfile = () => ({
   type: 'GET_USER_STATS',
   method: 'GET',
   endpoint: '/me',
@@ -15,13 +15,22 @@ export const lockNextRequest = () => ({
   endpoint: '/next',
 });
 
+export const transferPlayerPlayback = (deviceId: string) => ({
+  type: 'TRANSFER_PLAY',
+  method: 'GET',
+  endpoint: `/transferplayback/${deviceId}`,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
 export const playSong = (deviceId: string) => ({
   type: 'PLAY_SONG',
   method: 'GET',
   endpoint: `/playdevice/${deviceId}`
 });
 
-export const searchSongs = (searchTerm: string) => ({ 
+export const searchSongs = (searchTerm: string) => ({
   type: 'SEARCH_SONGS',
   method: 'GET',
   endpoint: `/search?q=${searchTerm}`,
@@ -65,7 +74,7 @@ export const updateSongQueue = () => {
 };
 
 export const addSongToQueue = (songId: string, userEmail: string) => {
-  return { 
+  return {
     type: 'ADD_SONG_TO_QUEUE',
     socket: {
       command: 'updateSongQueue',
@@ -96,7 +105,7 @@ export const connectSocket = (userEmail: string) => {
 };
 
 export const updateSongDiamonds = (songId: string, userEmail: string) => {
-  return { 
+  return {
     type: 'ADD_SONG_DIAMONDS',
     socket: {
       command: 'updateSongQueue',

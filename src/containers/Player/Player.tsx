@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Player.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken } from '../../redux/actions/';
+import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken, transferPlayerPlayback } from '../../redux/actions/';
 import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
 import VenueInfos from '../../components/VenueInfos/VenueInfos';
 
@@ -11,7 +11,7 @@ interface WindowInterface extends Window {
   Spotify: any;
 }
 
-const Player: React.FC = () => {
+const Player: React.FC = (props:any) => {
 
   const deviceId = useSelector((state: any) => state.player.deviceId);
   const currentSong = useSelector((state: any) => state.player.currentSong);
@@ -26,11 +26,14 @@ const Player: React.FC = () => {
 
   const checkForPlayer = async () => {
     if ((window as WindowInterface) !== null && !Venue.player) {
-      Venue.player = new (window as WindowInterface).Spotify.Player({
+      Venue.player = await new (window as WindowInterface).Spotify.Player({
         name: 'JukBox Awesome APP',
         getOAuthToken: (cb:any) => { cb(accT)}
       });
-      await Venue.player.connect();
+      await Venue.player.connect()
+        .then((success:any) => {
+          if(success) console.log('connected')
+        })
       clearInterval(playerCheckInterval);
       createEventHandlers();
     }
@@ -53,7 +56,7 @@ const Player: React.FC = () => {
       };
       dispatch(setCurrentSong(newStateOfCurrent));
     });
-    Venue.player.on('ready', (data:any) => console.log('ready', data))
+    Venue.player.on('ready', (data:any) => dispatch(transferPlayerPlayback(data.device_id)));
   };
 
   const getPosition = () => {
@@ -70,6 +73,7 @@ const Player: React.FC = () => {
   // action to start session
   const startSession = () => {
     dispatch(playSong(deviceId));
+    //dispatch(transferPlayerPlayback(deviceId))
   }
   if (!flag) {
     if (currentSong.duration - position >= 0 && currentSong.duration - position <= 17000) {
@@ -77,11 +81,15 @@ const Player: React.FC = () => {
       dispatch(lockNextRequest());
       setTimeout(() => {
         dispatch(playSong(deviceId));
-    }, 10000);
+      }, 10000);
     }
   }
 
   useEffect(() => {
+
+    if (!accT) {
+      props.history.push('/venuelogin')
+    }
     const timer = setInterval(() => {
       getPosition();
     }, 5000);
@@ -93,8 +101,8 @@ const Player: React.FC = () => {
 
   return (
     <div className="Player">
-      <VenueInfos />
-      {currentSong &&
+    <VenueInfos />
+    {currentSong &&
       <VenuePlayer currentSong={currentSong} startSession={startSession}/>
     }
     </div>
