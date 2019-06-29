@@ -4,7 +4,8 @@ import './LoginVenue.css';
 import { setAccessToken } from '../../redux/actions/setAccessToken';
 import { setLogIn } from '../../redux/actions/setLogIn';
 import { useSelector, useDispatch } from 'react-redux';
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = 'http://localhost:4000/login/admin';
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 const LoginVenue: React.FC = (props) => {
 
@@ -13,6 +14,7 @@ const LoginVenue: React.FC = (props) => {
   const accessToken:string = localStorage.getItem('access_token') || '';
 
   const adminLogIn = () => {
+    console.log(apiUrl);
     // redirect to BE URL need to be changed
     if (apiUrl) {
     window.location.href = apiUrl;
