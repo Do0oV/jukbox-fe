@@ -4,6 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken } from '../../redux/actions/';
 import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
 import VenueInfos from '../../components/VenueInfos/VenueInfos';
+import Header from '../../components/Header/Header';
+import styled from 'styled-components';
+import { Progress } from 'antd';
+import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
 
 export const Venue:any = {};
 
@@ -93,10 +97,18 @@ const Player: React.FC = () => {
 
   return (
     <div className="Player">
-      <VenueInfos />
-      {currentSong &&
-      <VenuePlayer currentSong={currentSong} startSession={startSession}/>
-    }
+      <Header />
+      <CenteredContent>
+        <VenueInfos />
+        {currentSong &&
+        <VenuePlayer currentSong={currentSong} startSession={startSession}/>}
+        <h1>Codeworks</h1>
+        <img src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
+        <Song>Cut To The Feeling</Song>
+        <Artist>Carly Rae Jepsen</Artist>
+        <Progress percent={45} strokeWidth={2} showInfo={false} size="small" strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
+        <button onClick={startSession}>START</button>
+      </CenteredContent>
     </div>
     );
 }
