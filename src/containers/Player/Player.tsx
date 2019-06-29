@@ -102,12 +102,6 @@ const Player: React.FC = () => {
         <VenueInfos />
         {currentSong &&
         <VenuePlayer currentSong={currentSong} startSession={startSession}/>}
-        <h1>Codeworks</h1>
-        <img src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-        <Song>Cut To The Feeling</Song>
-        <Artist>Carly Rae Jepsen</Artist>
-        <Progress percent={45} strokeWidth={2} showInfo={false} size="small" strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
-        <button onClick={startSession}>START</button>
       </CenteredContent>
     </div>
     );

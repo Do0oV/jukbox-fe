@@ -68,7 +68,7 @@ export const Button = styled.button`
 `;
 
 export const MutedButton = styled(Button)`
-  font-size: 14px;
+  font-size: 10px;
   color: var(--fourth-color);
   margin-top: 15px;
   background-color: var(--primary-bg-color);
