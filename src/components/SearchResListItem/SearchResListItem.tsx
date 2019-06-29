@@ -1,37 +1,40 @@
 import React, { useState } from 'react';
 import './SearchResListItem.css';
 import { CurrentSong } from '../../types';
+import { Modal, Button } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { addSongToQueue } from '../../redux/actions';
 import { Redirect } from 'react-router';
+const { confirm } = Modal;
 
-const SearchResListItem: React.FC<{ song: any }> = ({ song }) => {
+const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
 
-  // This needs to be handled with Redux, so AddSongConfirmModal has access to it:
-  const initialState = { song_id: 'N/A', artist: 'N/A', title: 'N/A', album: 'N/A', album_cover: 'N/A', duration: 0 };
-  const [selectedSong, setSelectedSong] = useState(initialState);
+  const songId = song.song_id;
+  const userEmail = useSelector((state: any) => state.user.userProfile.email);
+  const dispatch = useDispatch();
+  const [addedSongtoQueue, setAddedSongToQueue] = useState(false);
 
-  const handleOnClick = (song: any) => {
-    const song_id = song.id;
-    const artist = song.artists[0].name;
-    const title = song.name;
-    const album = song.album.name;
-    const album_cover = song.album.images[0].url;
-    const duration = song.duration;
-    setSelectedSong({ song_id, artist, title, album, album_cover, duration });
-  };
+  function showConfirm(song: CurrentSong) {
+    confirm({
+      title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
+      onOk() {
+        dispatch((addSongToQueue(songId, userEmail)));
+        setAddedSongToQueue(true);
+        console.log(`Added to queue: ${song.title} by ${song.artist}`);
+        console.log(userEmail);
+      }
+    });
+  }
 
   return (
     <div className="SearchResList">
-      { song.name } by { song.artists[0].name } ({ song.album.name })
-      {
-        selectedSong.song_id === 'N/A'
-          ? <div onClick={() => handleOnClick(song)}>
-              <button>+</button>
-            </div>
-          : null
-      }
+      {addedSongtoQueue && <Redirect to="/dashboard"/>}
+      { song.title } by { song.artist } ({ song.album })
+      <div onClick={() => showConfirm(song)}>
+        <Button>+</Button>
+      </div>
     </div>
   );
 }
-{/* <Redirect to="/addsongconfirmmodal" /> */}
 
 export default SearchResListItem;

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Search.css';
 import { searchSongs, addSongToQueue } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
 import SearchResList from '../../components/SearchResList/SearchResList';
+import { getUserProfile } from '../../redux/actions/'
 
 const Search: React.FC = () => {
 
-  const searchResults = useSelector((state: any) => state.searchResults.songs)
-  const userEmail = useSelector((state: any) => state.user.userProfile.email);
+  const searchResults = useSelector((state: any) => state.searchResults.songs);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [])
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     dispatch(searchSongs(event.currentTarget.value));
@@ -19,7 +23,7 @@ const Search: React.FC = () => {
       <form>
         <input type="text" onChange={handleChange} />
       </form>
-      { searchResults.tracks ? <SearchResList songs={searchResults.tracks.items} /> : null }
+      { searchResults ? <SearchResList songs={searchResults} /> : null }
     </div>
   );
 }

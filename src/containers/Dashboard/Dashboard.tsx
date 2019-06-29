@@ -11,11 +11,13 @@ const Dashboard: React.FC = () => {
 
   const userProfile = useSelector((state: any) => state.user.userProfile)
   const dispatch = useDispatch();
+  const playlist = useSelector((state: any) => state.playlist.playlist);
 
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(connectSocket(userProfile.email));
     dispatch(updateSongQueue());
+    playlist && console.log('Playlist: ', playlist);
   }, [])
 
   return (

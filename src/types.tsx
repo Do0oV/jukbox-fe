@@ -46,7 +46,7 @@ export class CurrentSong {
     public artist: string,
     public title: string,
     public album: string,
-    public album_cover: string,
+    public album_cover: Array<string>,
     public duration: number
     ) {}
 };

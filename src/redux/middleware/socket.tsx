@@ -34,7 +34,20 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
       });
       
     } else if (command === 'updateSongQueue') {
-      socket.emit('message', message);
+      const url =`${WS_BASE_URL}/codeworks`;
+      socket = client.connect(url);
+
+      socket.on('connect', () => {
+        socket.emit('message', message);
+        console.log(message);
+      });
+  
+      socket.on('error', (error: Error) => {
+        dispatch({
+          type: `SOCKET_ERROR`,
+          error
+        });
+      });
     }
 
     next(action);
