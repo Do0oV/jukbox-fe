@@ -1,17 +1,15 @@
 import React from 'react';
 import './SplashScreen.css';
 import styled from 'styled-components';
-import { BigLogo, CenteredContent } from '../../assests/globalStyles';
+import { BigLogo, CenteredContent, Button, MutedButton } from '../../assests/globalStyles';
 
+const apiUrl = 'localhost:3000';
 
-const UserButton = styled.button`
+const UserButton = styled(Button)`
   background-color: var(--secondary-color);
-  border-radius: 30px;
   color: var(--primary-bg-color);
-  border: none;
-  padding: 5px 15px;
-  letter-spacing: 2px;
   border: 1px solid var(--primary-bg-color);
+  min-width: 150px;
 
   &:hover {
     background-color: var(--primary-bg-color);
@@ -20,11 +18,22 @@ const UserButton = styled.button`
   }
 `;
 
-const SplashScreen: React.FC = () => {
+const SplashScreen: React.FC = (props: any) => {
+  console.log(props);
+
+  const handleUserOnClick = () => {
+    props.history.push('/login');
+  }
+
+  const handleVenueOnClick = () => {
+    props.history.push('/venuelogin')
+  }
+
   return (
     <CenteredContent className="SplashScreen">
-        <BigLogo>JUKBOX</BigLogo>
-        <UserButton>LOGIN AS USER</UserButton>
+        <BigLogo>jukbox</BigLogo>
+        <UserButton onClick={handleUserOnClick}>user login</UserButton>
+        <MutedButton onClick={handleVenueOnClick}>venue?</MutedButton>
     </CenteredContent>
   );
 }
