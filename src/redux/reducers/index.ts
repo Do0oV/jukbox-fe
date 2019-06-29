@@ -1,29 +1,15 @@
 // import all reducers
 import { combineReducers } from 'redux';
-import userStatsAPI from './userStatsAPI';
-import searchResultsAPI from './searchResultsAPI';
-import addSongToQueueAPI from './addSongToQueueAPI';
-import setAccessToken from './setAccessToken';
-import loginReducer from './loginReducer';
-import setCurrentSong from './setCurrentSong';
-import setSongPosition from './setSongPosition';
-import isLockedReducer from './isLockedReducer';
-import setPlay from './setPlay';
-import setDeviceId from './setDeviceId';
-
-
+import user from './user';
+import searchResults from './searchResults';
+import playlist from './playlist';
+import player from './player';
 
 const allReducers = combineReducers({
-  userStatsReducer: userStatsAPI,
-  searchResultsReducer: searchResultsAPI,
-  addSongToQueueReducer: addSongToQueueAPI,
-  access_token: setAccessToken,
-  isLoggedIn: loginReducer,
-  current_song: setCurrentSong,
-  position: setSongPosition,
-  isLocked: isLockedReducer,
-  playing: setPlay,
-  device_id : setDeviceId
+  user: user,
+  searchResults: searchResults,
+  playlist: playlist,
+  player : player
 })
 
 export default allReducers;

@@ -1,8 +1,6 @@
 import React from 'react';
-import './TokenLogic.css';
 import { Redirect } from 'react-router';
-import { setAccessToken } from '../../redux/actions/setAccessToken';
-import { setLogIn } from '../../redux/actions/setLogIn';
+import { setAccessToken } from '../../redux/actions/';
 import { useDispatch } from 'react-redux';
 
 const TokenLogic: React.FC = (props:any) => {
@@ -13,8 +11,6 @@ const TokenLogic: React.FC = (props:any) => {
   if (accessToken) {
     localStorage.setItem("access_token", accessToken);
   }
-
-  dispatch(setLogIn());
 
   return (
       <Redirect to="/player"/>

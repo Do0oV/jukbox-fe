@@ -2,7 +2,7 @@ import React from 'react';
 //import './VenuePLayer.css';
 import { VenuePLayerProps } from '../../types';
 
-const VenuePLayer: React.FC<VenuePLayerProps> = ({current_song, startSession}) => {
+const VenuePLayer: React.FC<VenuePLayerProps> = ({currentSong, startSession}) => {
   return (
     <div className="VenuePLayer">
     Player

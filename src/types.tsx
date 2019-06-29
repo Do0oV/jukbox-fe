@@ -7,7 +7,7 @@ export interface UserStatsProps {
 };
 
 export interface VenuePLayerProps {
-  current_song: CurrentSong,
+  currentSong: CurrentSong,
   startSession:any
 }
 

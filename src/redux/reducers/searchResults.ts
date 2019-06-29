@@ -5,7 +5,7 @@ const initialState = {
   loading: false,
 }
 
-const searchResultsAPI: Reducer.Reducer = (state = initialState, action: any) => {
+const searchResults: Reducer.Reducer = (state = initialState, action: any) => {
 
   switch (action.type) {
     case 'SEARCH_SONGS_PENDING':
@@ -28,4 +28,4 @@ const searchResultsAPI: Reducer.Reducer = (state = initialState, action: any) =>
   }
 };
 
-export default searchResultsAPI;
+export default searchResults;

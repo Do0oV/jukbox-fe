@@ -1,11 +1,11 @@
 import Reducer from 'redux';
 
 const initialState = {
-  playlist: null,
+  playlist: [],
   loading: false
 };
 
-const updateSongQueue: Reducer.Reducer = (state = initialState, action: any) => {
+const playlist: Reducer.Reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case 'MAKE_CONNECTION_PENDING':
       return {
@@ -27,4 +27,4 @@ const updateSongQueue: Reducer.Reducer = (state = initialState, action: any) => 
   }
 };
 
-export default updateSongQueue;
+export default playlist;

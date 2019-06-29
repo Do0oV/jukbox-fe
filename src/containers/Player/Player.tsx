@@ -1,14 +1,7 @@
 import React, { useEffect } from 'react';
 import './Player.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentSong } from '../../redux/actions/setCurrentSong';
-import { setSongPosition } from '../../redux/actions/setSongPosition';
-import { lockNextRequest } from '../../redux/actions/lockNextRequest';
-import { isLocked } from '../../redux/actions/isLocked';
-import { playSong } from '../../redux/actions/playSong';
-import { setDeviceId } from '../../redux/actions/setDeviceId';
-import { setAccessToken } from '../../redux/actions/setAccessToken';
-
+import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken } from '../../redux/actions/';
 import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
 import VenueInfos from '../../components/VenueInfos/VenueInfos';
 
@@ -20,11 +13,10 @@ interface WindowInterface extends Window {
 
 const Player: React.FC = () => {
 
-  const accesToken = useSelector((state: any) => state.access_token);
-  const deviceId = useSelector((state: any) => state.device_id);
-  const current_song = useSelector((state: any) => state.current_song);
-  const position = useSelector((state: any) => state.position);
-  const flag = useSelector((state: any) => state.isLocked);
+  const deviceId = useSelector((state: any) => state.player.deviceId);
+  const currentSong = useSelector((state: any) => state.player.currentSong);
+  const position = useSelector((state: any) => state.player.position);
+  const flag = useSelector((state: any) => state.player.isLocked);
 
   const dispatch = useDispatch();
 
@@ -70,7 +62,6 @@ const Player: React.FC = () => {
         console.error('User is not playing music through the Web Playback SDK');
         return;
       }
-      console.log(state)
       // set current position to check when -15sec
       dispatch(setSongPosition(state.position));
 
@@ -81,7 +72,7 @@ const Player: React.FC = () => {
     dispatch(playSong(deviceId));
   }
   if (!flag) {
-    if (current_song.duration - position >= 0 && current_song.duration - position <= 17000) {
+    if (currentSong.duration - position >= 0 && currentSong.duration - position <= 17000) {
       dispatch(isLocked(true));
       dispatch(lockNextRequest());
       setTimeout(() => {
@@ -103,8 +94,8 @@ const Player: React.FC = () => {
   return (
     <div className="Player">
       <VenueInfos />
-      {current_song &&
-      <VenuePlayer current_song={current_song} startSession={startSession}/>
+      {currentSong &&
+      <VenuePlayer currentSong={currentSong} startSession={startSession}/>
     }
     </div>
     );
