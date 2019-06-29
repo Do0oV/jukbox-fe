@@ -12,6 +12,8 @@ import UserTokenLogic from './../userTokenLogic/userTokenLogic';
 import NotFound from '../../components/NotFound/NotFound';
 import styled from 'styled-components';
 
+
+
 const Container = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -31,8 +33,8 @@ const App: React.FC = () => {
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/player' component={Player} />
           <Route path='/search' component={Search} />
+          <Route exact path='/' component={SplashScreen} />
           <Route component={NotFound} />
-          <Route path='/' component={SplashScreen} />
         </Switch>
       </Router>
     </Container>

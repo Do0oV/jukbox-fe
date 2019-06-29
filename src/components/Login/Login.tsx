@@ -10,9 +10,8 @@ const GoogleButton = styled.button`
   background-color: rgb(221, 76, 60);
   border-radius: 30px;
   color: white;
-  width: 210px;
   border: none;
-  padding: 5px;
+  padding: 5px 15px;
   letter-spacing: 2px;
 
   &:hover {

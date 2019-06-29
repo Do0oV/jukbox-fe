@@ -13,9 +13,8 @@ const SpotifyButton = styled.button`
   background-color: #1DB954;
   color: #fff;
   border-radius: 30px;
-  width: 210px;
   border: none;
-  padding: 5px;
+  padding: 5px 15px;
   letter-spacing: 2px;
 
   &:hover {

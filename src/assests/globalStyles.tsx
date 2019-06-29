@@ -25,3 +25,18 @@ export const CenteredContent = styled.div`
   align-items: center;
   height: 100vh;
 `;
+
+
+export const Song = styled.div`
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--secondary-color);
+`;
+
+export const Artist = styled.div`
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--primary-bg-color);
+`;
