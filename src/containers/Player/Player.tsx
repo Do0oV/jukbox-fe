@@ -4,6 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken } from '../../redux/actions/';
 import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
 import VenueInfos from '../../components/VenueInfos/VenueInfos';
+import Header from '../../components/Header/Header';
+import styled from 'styled-components';
+import { Progress } from 'antd';
+import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
 
 export const Venue:any = {};
 
@@ -93,10 +97,12 @@ const Player: React.FC = () => {
 
   return (
     <div className="Player">
-      <VenueInfos />
-      {currentSong &&
-      <VenuePlayer currentSong={currentSong} startSession={startSession}/>
-    }
+      <Header />
+      <CenteredContent>
+        <VenueInfos />
+        {currentSong &&
+        <VenuePlayer currentSong={currentSong} startSession={startSession}/>}
+      </CenteredContent>
     </div>
     );
 }

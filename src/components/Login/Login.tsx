@@ -1,12 +1,28 @@
 import React, { useEffect } from 'react';
 import './Login.css';
-import { Button } from 'antd';
 import styled from 'styled-components';
 import { setAccessToken } from '../../redux/actions/';
 import { useDispatch } from 'react-redux';
+import { BigLogo, CenteredContent, Button, MutedButton } from '../../assests/globalStyles';
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const Login: React.FC = () => {
+const GoogleButton = styled(Button)`
+  background-color: rgb(221, 76, 60);
+  color: white;
+  min-width: 150px;
+
+  &:hover {
+    background-color: var(--primary-bg-color);
+    border: 1px solid rgb(221, 76, 60);
+    color: rgb(221, 76, 60);
+  }
+
+  @media(min-width: 800px) {
+    min-width: 225px;
+  }
+`;
+
+const Login: React.FC = (props: any) => {
 
   const dispatch = useDispatch();
 
@@ -19,6 +35,10 @@ const Login: React.FC = () => {
     }
   }
 
+  const handleMutedOnClick = () => {
+    props.history.push('/');
+  }
+
   useEffect(()=> {
     if(accessToken){
       dispatch(setAccessToken(accessToken));
@@ -26,13 +46,13 @@ const Login: React.FC = () => {
   },[])
 
   return (
-    <div className="Login">
-    <StyledButton onClick={handleOnClick}>Log In With Google</StyledButton>
-    </div>
+    <CenteredContent className="Login">
+      <BigLogo>jukbox</BigLogo>
+      <GoogleButton onClick={handleOnClick}>log in with google</GoogleButton>
+      <MutedButton onClick={handleMutedOnClick}>Back</MutedButton>
+    </CenteredContent>
   );
 }
 
-const StyledButton = styled(Button)`
-    width: 500px;`
 
 export default Login;
