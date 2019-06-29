@@ -18,6 +18,7 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
         console.log('CONNECTED TO SOCKET AT ', url);
         socket.emit('message', message);
         socket.on('message', (message: socketServerResponse) => {
+          console.log('Connected user to venue Codeworks');
           dispatch({
             type: `UPDATED_LIST`,
             playlist: message.data.updatedPlaylist

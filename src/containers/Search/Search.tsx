@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Search: React.FC = () => {
 
-  const searchResults = useSelector((state: any) => state.searchResultsReducer.songs)
-  const userEmail = useSelector((state: any) => state.userStatsReducer.userStats.email);
+  const searchResults = useSelector((state: any) => state.searchResults.songs)
+  const userEmail = useSelector((state: any) => state.user.userProfile.email);
   const dispatch = useDispatch();
 
   const handleChange = (event: any) => {

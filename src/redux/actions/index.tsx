@@ -1,5 +1,5 @@
 export const getUserProfile = () => ({ 
-  type: 'GET_USER_STATS',
+  type: 'GET_USER_PROFILE',
   method: 'GET',
   endpoint: '/me',
 });

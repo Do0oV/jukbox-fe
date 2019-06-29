@@ -14,6 +14,8 @@ const initialState = {
 
 const user: Reducer.Reducer = (state = initialState, action: any) => {
 
+  console.log(action)
+
   switch (action.type) {
     case 'GET_USER_PROFILE_PENDING':
       return {
@@ -21,6 +23,7 @@ const user: Reducer.Reducer = (state = initialState, action: any) => {
         loading: true,
       };
     case 'GET_USER_PROFILE_SUCCESS':
+      console.log(action)
       return {
         ...state,
         userProfile: {

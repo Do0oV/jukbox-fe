@@ -33,7 +33,6 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
         type: `${action.type}_SUCCESS`,
         data
       })
-
     })
     .catch(error => {
       dispatch({
