@@ -2,6 +2,7 @@ import React from 'react';
 import './Search.css';
 import { searchSongs, addSongToQueue } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
+import SearchResList from '../../components/SearchResList/SearchResList'
 
 const Search: React.FC = () => {
 
@@ -30,6 +31,7 @@ const Search: React.FC = () => {
           : null
         }
       </h2>
+      <SearchResList />
     </div>
   );
 }
