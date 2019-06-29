@@ -1,28 +1,25 @@
 import React, { useEffect } from 'react';
 import './Dashboard.css';
-import { getUserStats } from '../../redux/actions/getUserStats'
+import { getUserProfile, updateSongQueue } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
-import { updateSongQueue } from '../../redux/actions/updateSongQueue';
 
 const Dashboard: React.FC = () => {
 
-  const userStats = useSelector((state: any) => state.userStatsReducer.userStats)
+  const userProfile = useSelector((state: any) => state.user.userProfile)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserStats());
+    dispatch(getUserProfile());
     dispatch(updateSongQueue());
   }, [])
-
-  console.log(userStats)
 
   return (
     <div className="Dashboard">
       <h1>Dashboard</h1>
-      <StyledUserStats userStats={userStats} />
+      <StyledUserStats userStats={userProfile} />
       <StyledSongQueue />
     </div>
   );

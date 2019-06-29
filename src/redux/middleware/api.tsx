@@ -2,7 +2,7 @@ import { BASE_URL } from '../../config'
 import { Middleware } from 'redux';
 
 export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
-  console.log(action)
+
   if (!action.method) return next(action);
 
   const defaultHeaders: HeadersInit = {

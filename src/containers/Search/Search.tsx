@@ -1,8 +1,7 @@
 import React from 'react';
 import './Search.css';
-import { searchSongs } from '../../redux/actions/searchSongs'
+import { searchSongs, addSongToQueue } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
-import { addSongToQueue } from '../../redux/actions/addSongToQueue'
 
 const Search: React.FC = () => {
 

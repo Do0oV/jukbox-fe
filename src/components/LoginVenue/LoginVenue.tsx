@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import { Redirect } from 'react-router';
 import './LoginVenue.css';
-import { setAccessToken } from '../../redux/actions/setAccessToken';
-import { setLogIn } from '../../redux/actions/setLogIn';
-import { useSelector, useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/actions/';
+import { useDispatch } from 'react-redux';
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const LoginVenue: React.FC = (props) => {
+const LoginVenue: React.FC = () => {
 
   const dispatch = useDispatch();
 
@@ -15,14 +14,13 @@ const LoginVenue: React.FC = (props) => {
   const adminLogIn = () => {
     // redirect to BE URL need to be changed
     if (apiUrl) {
-    window.location.href = apiUrl;
+    window.location.href = `${apiUrl}/login/admin`;
     }
   }
 
   useEffect(()=> {
     if(accessToken){
       dispatch(setAccessToken(accessToken));
-      dispatch(setLogIn());
     }
   },[])
 
