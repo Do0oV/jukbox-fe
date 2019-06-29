@@ -1,11 +1,3 @@
-export const addSongToQueue = (song: any) => ({ 
-  type: 'ADD_SONG_TO_QUEUE',
-  method: 'POST',
-  endpoint: '/playlist:venueName',
-  headers: 'content-length:540',
-  body: `${song}`
-});
-
 export const getUserProfile = () => ({ 
   type: 'GET_USER_STATS',
   method: 'GET',
@@ -68,6 +60,53 @@ export const updateSongQueue = () => {
     type: 'MAKE_CONNECTION',
     socket: {
       command: 'connect',
+    }
+  };
+};
+
+export const addSongToQueue = (songId: string, userEmail: string) => {
+  return { 
+    type: 'ADD_SONG_TO_QUEUE',
+    socket: {
+      command: 'updateSongQueue',
+      message: {
+        route: 'addSong',
+        data: {
+          songId,
+          userEmail
+        }
+      }
+    }
+  };
+};
+
+export const connectSocket = (userEmail: string) => {
+  return {
+    type: 'MAKE_CONNECTION',
+    socket: {
+      command: 'connect',
+      message: {
+        route: 'connectUserToVenue',
+        data: {
+          userEmail
+        }
+      }
+    }
+  };
+};
+
+export const updateSongDiamonds = (songId: string, userEmail: string) => {
+  return { 
+    type: 'ADD_SONG_DIAMONDS',
+    socket: {
+      command: 'updateSongQueue',
+      message: {
+        route: 'updateSongDiamonds',
+        data: {
+          songId,
+          userEmail
+        }
+      }
     }
   };
 };

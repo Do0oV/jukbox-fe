@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
+import { connectSocket } from '../../redux/actions/';
 
 const Dashboard: React.FC = () => {
 
@@ -13,6 +14,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     dispatch(getUserProfile());
+    dispatch(connectSocket(userProfile.email));
     dispatch(updateSongQueue());
   }, [])
 
