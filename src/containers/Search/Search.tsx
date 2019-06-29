@@ -19,7 +19,7 @@ const Search: React.FC = () => {
       <form>
         <input type="text" onChange={handleChange} />
       </form>
-      <SearchResList songs={searchResults.songs} />
+      { searchResults.tracks ? <SearchResList songs={searchResults.tracks.items} /> : null }
     </div>
   );
 }

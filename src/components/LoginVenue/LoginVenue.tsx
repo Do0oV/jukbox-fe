@@ -12,6 +12,7 @@ const LoginVenue: React.FC = () => {
   const accessToken:string = localStorage.getItem('access_token') || '';
 
   const adminLogIn = () => {
+    console.log(apiUrl);
     // redirect to BE URL need to be changed
     if (apiUrl) {
     window.location.href = `${apiUrl}/login/admin`;
