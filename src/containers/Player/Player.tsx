@@ -6,7 +6,7 @@ import VenuePlayer from '../../components/VenuePlayer/VenuePlayer';
 import VenueInfos from '../../components/VenueInfos/VenueInfos';
 import Header from '../../components/Header/Header';
 import styled from 'styled-components';
-import { Progress } from 'antd';
+import { Progress, Switch } from 'antd';
 import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
 
 export const Venue:any = {};
@@ -91,12 +91,10 @@ const Player: React.FC = (props:any) => {
     }
   };
 
-  // action to start session
+  // action to start || stop session
   const startSession = () => {
     setSession(prev => {
-      if (prev === true) {
-        tooglePlay();
-      }
+      prev &&isPlaying && tooglePlay();
       return !prev;
     });
     createPlayer();
@@ -141,7 +139,7 @@ const Player: React.FC = (props:any) => {
     <div className="Player">
     <Header />
     <CenteredContent>
-    <button onClick={startSession}>START</button>
+    <Switch onChange={startSession} />
     <VenueInfos />
     {session &&
       <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay} playing={isPlaying} position={position}/>}

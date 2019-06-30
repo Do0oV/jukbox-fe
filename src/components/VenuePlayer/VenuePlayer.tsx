@@ -40,8 +40,8 @@ const TimerCount = styled.div`
 
 
 const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playing, position}) => {
-    let start = moment.duration(position).format("*mm:ss")
-    let end = moment.duration(currentSong.duration).format("*mm:ss")
+    let current = moment.duration(position).format("*mm:ss");
+    let end = moment.duration(currentSong.duration).format("*mm:ss");
   return (
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
@@ -51,10 +51,10 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
         <Progress percent={position * 100 / currentSong.duration} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
         <TimerCount>
-          {start}{end}
+          {current}{end}
         </TimerCount>
         <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
-        </>}
+      </>}
     </CenteredContent>
   );
 }
