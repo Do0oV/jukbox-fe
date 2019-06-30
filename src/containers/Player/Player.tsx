@@ -110,7 +110,6 @@ const Player: React.FC = (props:any) => {
   // player controls
   const tooglePlay = () => {
     Venue.player.togglePlay().then(() => {
-      console.log(Venue.player.paused);
       dispatch(isPLaying(!isPlaying));
     });
   };
