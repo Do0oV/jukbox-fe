@@ -21,7 +21,7 @@ const SongPlayer = styled(Song)`
 `;
 
 const PlayIcon = styled(Icon)`
-  font-size: 120px;
+  font-size: 80px;
   margin: 70px;
   svg {
     color: var(--fourth-color);
@@ -51,7 +51,7 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
         <TimerCount>
           {start}{end}
         </TimerCount>
-        <PlayIcon type="play-circle" theme="filled" onClick={tooglePlay}/>
+        <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
     </CenteredContent>
   );
 }
