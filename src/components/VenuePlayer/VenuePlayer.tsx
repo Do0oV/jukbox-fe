@@ -31,14 +31,14 @@ const PlayIcon = styled(Icon)`
   }
 `;
 
-const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, startSession}) => {
+const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay}) => {
   return (
     <CenteredContent className="VenuePlayer">
-        <img src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-        <SongPlayer>Cut To The Feeling</SongPlayer>
-        <ArtistPlayer>Carly Rae Jepsen</ArtistPlayer>
+        <img src={currentSong.album_cover} />
+        <SongPlayer>{currentSong.title}</SongPlayer>
+        <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
         <Progress percent={45} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
-        <PlayIcon type="play-circle" theme="filled"/>
+        <PlayIcon type="play-circle" theme="filled" onClick={tooglePlay}/>
     </CenteredContent>
   );
 }

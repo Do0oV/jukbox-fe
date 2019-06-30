@@ -9,6 +9,11 @@ export const isLocked = (bool:boolean) => ({
   data: bool
 });
 
+export const isPLaying = (bool:boolean) => ({
+  type: 'TOOGLE_PLAY',
+  data: bool
+});
+
 export const lockNextRequest = () => ({
   type: 'SEND_NEXT_SONG',
   method: 'GET',
