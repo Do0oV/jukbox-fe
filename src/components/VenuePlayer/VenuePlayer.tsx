@@ -44,6 +44,8 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
     let end = moment.duration(currentSong.duration).format("*mm:ss")
   return (
     <CenteredContent className="VenuePlayer">
+    {currentSong.title &&
+      <>
         <img src={currentSong.album_cover} />
         <SongPlayer>{currentSong.title}</SongPlayer>
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
@@ -52,6 +54,7 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
           {start}{end}
         </TimerCount>
         <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
+        </>}
     </CenteredContent>
   );
 }

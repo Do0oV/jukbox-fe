@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Player.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentSong, setSongPosition, lockNextRequest, isLocked, playSong, setDeviceId, setAccessToken, transferPlayerPlayback, isPLaying } from '../../redux/actions/';
@@ -24,6 +24,7 @@ const Player: React.FC = (props:any) => {
   const flag = useSelector((state: any) => state.player.isLocked);
   const isPlaying = useSelector((state: any) => state.player.isPlaying);
 
+  const [session, setSession] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -92,6 +93,12 @@ const Player: React.FC = (props:any) => {
 
   // action to start session
   const startSession = () => {
+    setSession(prev => {
+      if (prev === true) {
+        tooglePlay();
+      }
+      return !prev;
+    });
     createPlayer();
   };
 
@@ -136,7 +143,7 @@ const Player: React.FC = (props:any) => {
     <CenteredContent>
     <button onClick={startSession}>START</button>
     <VenueInfos />
-    {currentSong.title &&
+    {session &&
       <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay} playing={isPlaying} position={position}/>}
       </CenteredContent>
       </div>
