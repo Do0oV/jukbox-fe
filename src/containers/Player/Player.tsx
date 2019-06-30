@@ -44,7 +44,7 @@ const Player: React.FC = (props:any) => {
         await Venue.player.connect()
         .then((success:any) => {
           if(success) console.log('connected')
-        })
+        });
         clearInterval(playerCheckInterval);
         createEventHandlers();
       }
@@ -52,20 +52,19 @@ const Player: React.FC = (props:any) => {
 
     // player events
     const createEventHandlers = () => {
-      // update current song
       Venue.player.on('player_state_changed', (state:any) => state && updateCurrentSong(state));
 
       // when ready send request to BE
       Venue.player.on('ready', (data:any) => {
         const device_id = window.localStorage.getItem('_spharmony_device_id') || '';
         dispatch(setDeviceId(data.device_id));
-        dispatch(transferPlayerPlayback(data.device_id))
+        dispatch(transferPlayerPlayback(data.device_id));
       });
     };
-  }
+  };
 
+  // update current song
   const updateCurrentSong = (state:any) => {
-    console.log('state.paused', state.paused)
     const current = state.track_window.current_track;
     const newStateOfCurrent = {
       song_id: current.id,
@@ -94,7 +93,7 @@ const Player: React.FC = (props:any) => {
   // action to start session
   const startSession = () => {
     createPlayer();
-  }
+  };
 
   // if flag to lock next song is false keep looking to send request to BE
   if (!flag && position) {
@@ -103,7 +102,7 @@ const Player: React.FC = (props:any) => {
       dispatch(lockNextRequest());
       setTimeout(() => {
         dispatch(playSong(deviceId));
-      }, 10000);
+      }, 16000);
     }
   }
 
@@ -117,7 +116,7 @@ const Player: React.FC = (props:any) => {
   // on mount check if accessToken in localStorage if not redirect to login
   useEffect(() => {
     if (!accT) {
-      props.history.push('/venuelogin')
+      props.history.push('/venuelogin');
     } else {
       dispatch(setAccessToken(accT));
     }
@@ -138,7 +137,7 @@ const Player: React.FC = (props:any) => {
     <button onClick={startSession}>START</button>
     <VenueInfos />
     {currentSong.title &&
-      <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay}/>}
+      <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay} playing={isPlaying} position={position}/>}
       </CenteredContent>
       </div>
       );

@@ -63,7 +63,6 @@ const Player: Reducer.Reducer = (state = initialState, action: any) => {
         error: 'cannot lock the song'
       }
     case 'TOOGLE_PLAY':
-    console.log(state.isPlaying)
       return {
         ...state,
         isPlaying: action.data
