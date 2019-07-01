@@ -18,8 +18,12 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
         message && socket.emit('message', message);
         socket.on('message', (message: socketServerResponse) => {
           dispatch({
-            type: `SOCKET_RECEIVED`,
+            type: `PLAYLIST_RECEIVED`,
             playlist: message.data.updatedPlaylist
+          });
+          dispatch({
+            type: `TICKETS_RECEIVED`,
+            tickets: message.data.tickets
           });
         });
       });

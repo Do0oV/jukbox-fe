@@ -7,17 +7,12 @@ const initialState = {
 
 const playlist: Reducer.Reducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case 'MAKE_CONNECTION_PENDING':
-      return {
-        ...state,
-        loading: true
-      };
-    case 'MAKE_CONNECTION_SUCCESS':
+    case 'PLAYLIST_RECEIVED':
       return {
         ...state,
         playlist: action.playlist
       };
-    case 'MAKE_CONNECTION_FAILURE':
+    case 'SOCKET_ERROR':
       return {
         ...state,
         error: 'cannot retrieve songs'
