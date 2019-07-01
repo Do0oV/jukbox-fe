@@ -9,15 +9,25 @@ import 'moment-duration-format';
 
 const ArtistPlayer = styled(Artist)`
   color: var(--fourth-color);
-  font-size: 22px;
+  font-size: 16px;
   letter-spacing: 4px;
-  margin: 20px 0;
+  margin: 10px 0 20px 0;
+
+  @media(min-width: 800px) {
+    font-size: 22px;
+  }
 `;
 
 const SongPlayer = styled(Song)`
-  font-size: 28px;
-  letter-spacing: 6px;
+  font-size: 20px;
+  letter-spacing: 4px;
   margin: 40px 0 0 0;
+
+  @media(min-width: 800px) {
+    font-size: 28px;
+    letter-spacing: 6px;
+    margin: 40px 0 0 0;
+  }
 `;
 
 const PlayIcon = styled(Icon)`
@@ -30,6 +40,20 @@ const PlayIcon = styled(Icon)`
 
   &:hover {
     opacity: .8;
+  }
+
+  @media(min-width: 800px) {
+    font-size: 110px;
+  }
+`;
+
+const AlbumCover = styled.img`
+  width: 150px;
+  height: 150px;
+
+  @media(min-width: 800px) {
+    width: 220px;
+    height: 220px;
   }
 `;
 const TimerCount = styled.div`

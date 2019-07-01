@@ -13,6 +13,10 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+
+  @media(min-width: 800px) {
+    padding: 20px 50px;
+  }
 `;
 
 const SubContainer = styled.div`

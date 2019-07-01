@@ -21,6 +21,11 @@ export const SmallLogo = styled.h1`
   letter-spacing: 6px;
   margin: 0;
   text-transform: uppercase;
+
+  @media(min-width: 800px) {
+    font-size: 24px;
+    letter-spacing: 8px;
+  }
 `;
 
 export const CenteredContent = styled.div`
@@ -28,7 +33,7 @@ export const CenteredContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const Song = styled.div`
@@ -37,12 +42,14 @@ export const Song = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: var(--secondary-color);
+  text-align: center;
 `;
 
 export const Artist = styled.div`
   text-transform: uppercase;
   font-size: 14px;
   color: var(--primary-bg-color);
+  text-align: center;
 `;
 
 export const Button = styled.button`
@@ -53,6 +60,7 @@ export const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
   font-size: 10px;
+  transition: 0.5s;
 
   @media(min-width: 800px) {
     font-size: 14px;
@@ -87,5 +95,14 @@ export const MutedButton = styled(Button)`
   &:hover {
     border: 1px solid var(--fourth-color);
   }
+`;
 
+export const AccountName = styled.div`
+  letter-spacing: 1px;
+  color: var(--fourth-color);
+  background-color: rgb(31, 30, 33);
+  padding: 5px 15px;
+  border-radius: 40px;
+  position: relative;
+  top: -10px;
 `;

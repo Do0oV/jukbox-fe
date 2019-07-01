@@ -2,23 +2,45 @@ import React from 'react';
 import './UserStats.css';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
+import { CenteredContent, AccountName } from '../../assests/globalStyles';
 import styled from 'styled-components';
+
+const Container = styled(CenteredContent)`
+  @media(min-width: 800px) {
+    width: 90vw;
+    margin: 0 auto;
+  }
+`;
 
 const DiamondIcon = styled(Icon)`
   font-size: 40px;
-  color: var(--fourth-color);
+  svg {
+    color: var(--fourth-color);
+  }
+
+  @media(min-width: 800px) {
+    font-size: 60px;
+  }
 `;
 
 const TicketIcon = styled(Icon)`
-  .anticon {
-    color: var(--fourth-color);
-  }
   font-size: 40px;
   transform: rotate(90deg);
+  svg {
+    color: var(--fourth-color);
+  }
+
+  @media(min-width: 800px) {
+    font-size: 60px;
+  }
 `;
 
 const StyledBadge = styled(Badge)`
-  margin: 10px;
+  font-size: 20px;
+
+  @media(min-width: 800px) {
+    font-size: 40px;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -31,13 +53,14 @@ const CntrCol = styled(Col)`
   text-align: center;
 `;
 
-const UserName = styled.div`
-  position: relative;
-  top: -15px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: var(--primary-bg-color);
-  color: var(--fourth-color);
+const UserName = styled(AccountName)`
+  font-size: 14px;
+  margin: 0 0 40px 0;
+
+  @media(min-width: 800px) {
+    font-size: 20px;
+    padding: 5px 25px;
+  }
 `;
 
 const StyledAvatar = styled(Avatar)`
@@ -52,13 +75,13 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
           <Badge count={1} style={{backgroundColor:'var(--tertiary-color)'}}>
             <TicketIcon type="book" theme="filled" />
           </Badge>
-          <Badge count={5} style={{backgroundColor:'var(--secondary-color)'}}>
+          <Badge count={5} style={{backgroundColor:'var(--secondary-color)', height: '20px'}}>
             <DiamondIcon type="sketch-circle" theme="filled" />
           </Badge>
         </IconContainer>
       </Col>
       <CntrCol>
-        <StyledAvatar size={70} icon="user">Bob</StyledAvatar>
+        <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
         <UserName>Bob</UserName>
       </CntrCol>
     </Row>
