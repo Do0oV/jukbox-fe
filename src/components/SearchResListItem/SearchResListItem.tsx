@@ -5,10 +5,10 @@ import { Modal, Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addSongToQueue } from '../../redux/actions';
 import { Redirect } from 'react-router';
-const { confirm } = Modal;
 import { ListItem, Artist, Song } from '../../assests/globalStyles'
 import styled from 'styled-components';
 import { Icon } from 'antd';
+const { confirm } = Modal;
 
 const StyledArtist = styled(Artist)`
 color: var(--fourth-color);
