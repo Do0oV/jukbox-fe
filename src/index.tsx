@@ -25,7 +25,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(allReducers, preloadedStore, composeEnhancers(applyMiddleware(api, socket, resetFlag)));
 
 if (store.getState().user.accessToken) {
-  store.dispatch(connectSocket(store.getState().user.userProfile.email));
+  store.dispatch(connectSocket(store.getState().user.accessToken));
 }
 
 store.subscribe(() => {

@@ -3,7 +3,7 @@ import './SearchResListItem.css';
 import { CurrentSong } from '../../types';
 import { Modal, Button } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { addSongToQueue, getUserProfile } from '../../redux/actions';
+import { addSongToQueue } from '../../redux/actions';
 import { Redirect } from 'react-router';
 const { confirm } = Modal;
 
