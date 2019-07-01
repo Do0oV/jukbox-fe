@@ -8,7 +8,9 @@ export interface UserStatsProps {
 
 export interface VenuePlayerProps {
   currentSong: CurrentSong,
-  startSession:any
+  tooglePlay:any,
+  playing:boolean,
+  position: number
 }
 
 class User {

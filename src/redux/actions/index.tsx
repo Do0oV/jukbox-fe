@@ -1,4 +1,4 @@
-export const getUserProfile = () => ({ 
+export const getUserProfile = () => ({
   type: 'GET_USER_PROFILE',
   method: 'GET',
   endpoint: '/me',
@@ -9,10 +9,24 @@ export const isLocked = (bool:boolean) => ({
   data: bool
 });
 
+export const isPLaying = (bool:boolean) => ({
+  type: 'TOOGLE_PLAY',
+  data: bool
+});
+
 export const lockNextRequest = () => ({
   type: 'SEND_NEXT_SONG',
   method: 'GET',
   endpoint: '/next',
+});
+
+export const transferPlayerPlayback = (deviceId: string) => ({
+  type: 'TRANSFER_PLAY',
+  method: 'GET',
+  endpoint: `/transferplayback/${deviceId}`,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export const playSong = (deviceId: string) => ({
@@ -21,7 +35,7 @@ export const playSong = (deviceId: string) => ({
   endpoint: `/playdevice/${deviceId}`
 });
 
-export const searchSongs = (searchTerm: string) => ({ 
+export const searchSongs = (searchTerm: string) => ({
   type: 'SEARCH_SONGS',
   method: 'GET',
   endpoint: `/search?q=${searchTerm}`,
@@ -65,7 +79,7 @@ export const updateSongQueue = () => {
 };
 
 export const addSongToQueue = (songId: string, userEmail: string) => {
-  return { 
+  return {
     type: 'ADD_SONG_TO_QUEUE',
     socket: {
       command: 'updateSongQueue',
@@ -96,7 +110,7 @@ export const connectSocket = (userEmail: string) => {
 };
 
 export const updateSongDiamonds = (songId: string, userEmail: string) => {
-  return { 
+  return {
     type: 'ADD_SONG_DIAMONDS',
     socket: {
       command: 'updateSongQueue',
