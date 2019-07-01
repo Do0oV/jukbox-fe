@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
 import { connectSocket } from '../../redux/actions/';
+import { Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
 
@@ -25,6 +26,7 @@ const Dashboard: React.FC = () => {
       <h1>Dashboard</h1>
       <StyledUserStats userStats={userProfile} />
       <StyledSongQueue />
+      <Link to="/search">Go to Search</Link>
     </div>
   );
 }
