@@ -36,5 +36,6 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
     </div>
   );
 }
+{/* <Redirect to="/addsongconfirmmodal" /> */}
 
 export default SearchResListItem;

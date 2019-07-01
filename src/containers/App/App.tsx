@@ -10,6 +10,7 @@ import Search from './../Search/Search';
 import TokenLogic from './../TokenLogic/TokenLogic';
 import UserTokenLogic from './../userTokenLogic/userTokenLogic';
 import NotFound from '../../components/NotFound/NotFound';
+import AddSongConfirmModal from '../../components/AddSongConfirmModal/AddSongConfirmModal';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/player' component={Player} />
         <Route path='/search' component={Search} />
+        <Route path='/addsongconfirmmodal' component={AddSongConfirmModal} />
         <Route component={NotFound} />
         <Route path='/' component={SplashScreen} />
       </Switch>

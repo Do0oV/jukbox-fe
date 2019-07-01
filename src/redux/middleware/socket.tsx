@@ -21,7 +21,11 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
         console.log('CONNECTED TO SOCKET AT ', url);
         message && socket.emit('message', message);
         socket.on('message', (message: socketServerResponse) => {
+<<<<<<< HEAD
           console.log('Connected user to venue Codeworks');
+=======
+          console.log('connected you to venue codeworks');
+>>>>>>> c5a672a86d1e2e002d2aadabf505e40990e34b40
           dispatch({
             type: `UPDATED_LIST`,
             playlist: message.data.updatedPlaylist
