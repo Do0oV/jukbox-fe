@@ -67,6 +67,17 @@ export const Button = styled.button`
   }
 `;
 
+export const ListItem = styled.div`
+  border: solid #b1b8c4 1px;
+  border-radius: 10px;
+  width: 80%;
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const MutedButton = styled(Button)`
   font-size: 10px;
   color: var(--fourth-color);
