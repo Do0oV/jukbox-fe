@@ -61,21 +61,21 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
   }
 
   return (
-      <ListItem className="ListItem">
-        {addedSongtoQueue && <Redirect to="/dashboard" />}
-        <img height="60px" width="60px" src={song.album_cover[0]} />
-        <Container>
-          <StyledSong>{song.title}</StyledSong>
-          <StyledArtist>{song.artist}</StyledArtist>
-        </Container>
-        {/* {
-          userProfile.tickets > 0
-        ? <div > */}
-        <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
-        {/* </div>
+    <ListItem className="ListItem">
+      {addedSongtoQueue && <Redirect to="/dashboard" />}
+      <img height="60px" width="60px" src={song.album_cover[0]} />
+      <Container>
+        <StyledSong>{song.title}</StyledSong>
+        <StyledArtist>{song.artist}</StyledArtist>
+      </Container>
+      {
+        userProfile.tickets > 0
+          ? <div >
+            <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
+          </div>
           : null
-        } */}
-      </ListItem>
+      }
+    </ListItem>
   )
 }
 
