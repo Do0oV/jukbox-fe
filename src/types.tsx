@@ -25,7 +25,8 @@ class User {
 export interface socketServerResponse {
   route: string,
   data: {
-    updatedPlaylist: Array<SongQueue>
+    updatedPlaylist: Array<SongQueue>,
+    tickets: number
   }
 };
 

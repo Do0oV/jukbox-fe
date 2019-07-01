@@ -39,7 +39,7 @@ opacity: .5;
 const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
 
   const songId = song.song_id;
-  const userProfile = useSelector((state: any) => state.user.userProfile);
+  const tickets = useSelector((state: any) => state.user.tickets);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const dispatch = useDispatch();
   const [addedSongtoQueue, setAddedSongToQueue] = useState(false);
@@ -59,7 +59,7 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
       {addedSongtoQueue && <Redirect to="/dashboard"/>}
       { song.title } by { song.artist } ({ song.album })
       {
-        userProfile.tickets > 0
+        tickets > 0
           ? <div onClick={() => showConfirm(song)}>
               <Button>+</Button>
             </div>
