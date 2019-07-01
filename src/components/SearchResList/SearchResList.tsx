@@ -1,11 +1,16 @@
 import React from 'react';
 import './SearchResList.css';
-import SearchResListItem from '../SearchResListItem/SearchResListItem'
+import { CurrentSong } from '../../types';
+import SearchResListItem from '../SearchResListItem/SearchResListItem';
 
-const SearchResList: React.FC = () => {
+const SearchResList: React.FC<{ songs: Array<CurrentSong> }> = ({ songs }) => {
   return (
-    <SearchResListItem>
-    </SearchResListItem>
+    <div className="SearchResList h2">
+      {(songs && songs.length)
+        ? songs.map((song: CurrentSong, id: number) => <SearchResListItem key={id} song={song} />)
+        : null
+      }
+    </div>
   );
 }
 

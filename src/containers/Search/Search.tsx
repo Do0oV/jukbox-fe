@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Search.css';
-import { searchSongs, addSongToQueue } from '../../redux/actions/'
+import { searchSongs } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
-import SearchResList from '../../components/SearchResList/SearchResList'
+import SearchResList from '../../components/SearchResList/SearchResList';
+import { getUserProfile } from '../../redux/actions/';
 
 const Search: React.FC = () => {
 
-  const searchResults = useSelector((state: any) => state.searchResults.songs)
-  const userEmail = useSelector((state: any) => state.user.userProfile.email);
+  const searchResults = useSelector((state: any) => state.searchResults.songs);
   const dispatch = useDispatch();
 
-  const handleChange = (event: any) => {
-    dispatch(searchSongs(event.currentTarget.value));
-  }
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [])
 
-  const handleOnClick = (song: any) => {
-    const songId = song.song_id;
-    dispatch(addSongToQueue(songId, userEmail));
-  }
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    dispatch(searchSongs(event.currentTarget.value));
+  };
 
   return (
     <div className="Search">
       <form>
         <input type="text" onChange={handleChange} />
       </form>
-      <h2>
-        {(searchResults.songs && searchResults.songs.length)
-          ? searchResults.songs
-            .map((el: any, index: number) => <li key={index} value={el} onClick={() => handleOnClick(el)}>{el.title}</li>)
-          : null
-        }
-      </h2>
-      <SearchResList />
+      { searchResults ? <SearchResList songs={searchResults} /> : null }
     </div>
   );
 }

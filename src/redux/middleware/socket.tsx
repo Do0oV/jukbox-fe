@@ -15,12 +15,10 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
       socket = client.connect(url);
 
       socket.on('connect', () => {
-        console.log('CONNECTED TO SOCKET AT ', url);
-        socket.emit('message', message);
+        message && socket.emit('message', message);
         socket.on('message', (message: socketServerResponse) => {
-          console.log('Connected user to venue Codeworks');
           dispatch({
-            type: `UPDATED_LIST`,
+            type: `SOCKET_RECEIVED`,
             playlist: message.data.updatedPlaylist
           });
         });
@@ -33,7 +31,7 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
         });
       });
       
-    } else if (command === 'updateSongQueue') {
+    } else {
       socket.emit('message', message);
     }
 

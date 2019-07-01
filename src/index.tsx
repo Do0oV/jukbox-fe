@@ -10,6 +10,7 @@ import allReducers from './redux/reducers'
 import { api } from './redux/middleware/api'
 import { socket } from './redux/middleware/socket';
 import { resetFlag } from './redux/middleware/resetFlag';
+import {connectSocket} from './redux/actions';
 
 declare global {
   interface Window {
@@ -17,8 +18,19 @@ declare global {
   }
 }
 
+const preloadedStoreRAW = localStorage.getItem('state');
+const preloadedStore = preloadedStoreRAW ? JSON.parse(preloadedStoreRAW) : undefined;
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, composeEnhancers(applyMiddleware(api, socket, resetFlag)));
+const store = createStore(allReducers, preloadedStore, composeEnhancers(applyMiddleware(api, socket, resetFlag)));
+
+if (store.getState().user.accessToken) {
+  store.dispatch(connectSocket(store.getState().user.accessToken));
+}
+
+store.subscribe(() => {
+  localStorage.setItem('state', JSON.stringify(store.getState()))
+});
 
 ReactDOM.render(
   <Provider store={store}>

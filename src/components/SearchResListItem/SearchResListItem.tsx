@@ -1,21 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchResListItem.css';
+import { CurrentSong } from '../../types';
+import { Modal, Button } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { addSongToQueue } from '../../redux/actions';
+import { Redirect } from 'react-router';
+const { confirm } = Modal;
 import { ListItem, Artist, Song } from '../../assests/globalStyles'
 import styled from 'styled-components';
 import { Icon } from 'antd';
-
-const StyledIcon = styled(Icon)`
-margin-right: 35px;
-svg {
-  fill: white;
-  height: 3em;
-  width: 3em;
-}
-opacity: .5;
-
-&:hover {
-  opacity: .8;
-}`;
 
 const StyledArtist = styled(Artist)`
 color: var(--fourth-color);
@@ -30,17 +23,49 @@ const StyledSong = styled(Song)`
   margin-left: 35px;
 }`;
 
-const SearchResListItem: React.FC = () => {
+const StyledIcon = styled(Icon)`
+margin-right: 35px;
+svg {
+  fill: white;
+  height: 3em;
+  width: 3em;
+}
+opacity: .5;
+
+&:hover {
+  opacity: .8;
+}`;
+
+const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
+
+  const songId = song.song_id;
+  const userProfile = useSelector((state: any) => state.user.userProfile);
+  const userAccessToken = useSelector((state: any) => state.user.accessToken);
+  const dispatch = useDispatch();
+  const [addedSongtoQueue, setAddedSongToQueue] = useState(false);
+
+  function showConfirm(song: CurrentSong) {
+    confirm({
+      title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
+      onOk() {
+        dispatch((addSongToQueue(songId, userAccessToken)));
+        setAddedSongToQueue(true);
+      }
+    });
+  }
 
   return (
-    <ListItem className="ListItem">
-      <div style={{ marginLeft: 12 }}>
-        <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-      </div>
-      <StyledSong>Cut To The Feeling</StyledSong>
-      <StyledArtist>Carly Rae Jepsen</StyledArtist>
-      <StyledIcon type="plus-circle" />
-    </ListItem>
+    <div className="SearchResList">
+      {addedSongtoQueue && <Redirect to="/dashboard"/>}
+      { song.title } by { song.artist } ({ song.album })
+      {
+        userProfile.tickets > 0
+          ? <div onClick={() => showConfirm(song)}>
+              <Button>+</Button>
+            </div>
+          : null
+      }
+    </div>
   );
 }
 

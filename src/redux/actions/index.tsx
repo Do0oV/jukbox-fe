@@ -78,7 +78,7 @@ export const updateSongQueue = () => {
   };
 };
 
-export const addSongToQueue = (songId: string, userEmail: string) => {
+export const addSongToQueue = (songId: string, userAccessToken: string) => {
   return {
     type: 'ADD_SONG_TO_QUEUE',
     socket: {
@@ -87,14 +87,14 @@ export const addSongToQueue = (songId: string, userEmail: string) => {
         route: 'addSong',
         data: {
           songId,
-          userEmail
+          userAccessToken
         }
       }
     }
   };
 };
 
-export const connectSocket = (userEmail: string) => {
+export const connectSocket = (userAccessToken: string) => {
   return {
     type: 'MAKE_CONNECTION',
     socket: {
@@ -102,15 +102,15 @@ export const connectSocket = (userEmail: string) => {
       message: {
         route: 'connectUserToVenue',
         data: {
-          userEmail
+          userAccessToken
         }
       }
     }
   };
 };
 
-export const updateSongDiamonds = (songId: string, userEmail: string) => {
-  return {
+export const updateSongDiamonds = (songId: string, userAccessToken: string) => {
+  return { 
     type: 'ADD_SONG_DIAMONDS',
     socket: {
       command: 'updateSongQueue',
@@ -118,7 +118,7 @@ export const updateSongDiamonds = (songId: string, userEmail: string) => {
         route: 'updateSongDiamonds',
         data: {
           songId,
-          userEmail
+          userAccessToken
         }
       }
     }
