@@ -2,10 +2,30 @@ import React, {useEffect} from 'react';
 import { Redirect } from 'react-router';
 import './LoginVenue.css';
 import { setAccessToken } from '../../redux/actions/';
-import { useDispatch } from 'react-redux';
+import { setLogIn } from '../../redux/actions/';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { BigLogo, CenteredContent, Button, MutedButton } from '../../assests/globalStyles';
+
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const LoginVenue: React.FC = () => {
+const SpotifyButton = styled(Button)`
+  background-color: #1DB954;
+  color: #fff;
+  min-width: 150px;
+
+  &:hover {
+    background-color: var(--primary-bg-color);
+    border: 1px solid #1DB954;
+    color: #1DB954;
+  }
+
+   @media(min-width: 800px) {
+    min-width: 225px;
+  }
+`;
+
+const LoginVenue: React.FC = (props: any) => {
 
   const dispatch = useDispatch();
 
@@ -18,6 +38,10 @@ const LoginVenue: React.FC = () => {
     }
   }
 
+  const handleMutedOnClick = () => {
+    props.history.push('/');
+  }
+
   useEffect(()=> {
     if(accessToken){
       dispatch(setAccessToken(accessToken));
@@ -25,10 +49,12 @@ const LoginVenue: React.FC = () => {
   },[])
 
   return (
-    <div className="LoginVenue">
+    <CenteredContent className="LoginVenue">
       {accessToken && <Redirect to="/player"/>}
-      <button onClick={() => adminLogIn()}>LOGIN</button>
-    </div>
+      <BigLogo>jukbox</BigLogo>
+      <SpotifyButton onClick={() => adminLogIn()}>log in with spotify</SpotifyButton>
+      <MutedButton onClick={handleMutedOnClick}>Back</MutedButton>
+    </CenteredContent>
     );
 }
 

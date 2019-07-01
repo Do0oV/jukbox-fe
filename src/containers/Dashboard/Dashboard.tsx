@@ -2,11 +2,20 @@ import React, { useEffect } from 'react';
 import './Dashboard.css';
 import { getUserProfile, updateSongQueue } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
 import { connectSocket } from '../../redux/actions/';
 import { Link } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import NowPlaying from '../../components/NowPlaying/NowPLaying';
+import { Row, Col, Avatar } from 'antd';
+import styled from 'styled-components';
+
+const PaddedContainer = styled.div`
+  padding: 10px 5px;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-color);
+`;
 
 const Dashboard: React.FC = () => {
 
@@ -23,18 +32,19 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="Dashboard">
-      <h1>Dashboard</h1>
-      <StyledUserStats userStats={userProfile} />
-      <StyledSongQueue />
+      <Header />
+      <PaddedContainer>
+        <UserStats userStats={userProfile} />
+      </PaddedContainer>
+      <PaddedContainer>
+        <NowPlaying />
+      </PaddedContainer>
+      <PaddedContainer>
+        <SongQueue />
+      </PaddedContainer>
       <Link to="/search">Go to Search</Link>
     </div>
   );
 }
-
-const StyledUserStats = styled(UserStats)`
-    width: 500px;`
-
-const StyledSongQueue = styled(SongQueue)`
-    width: 500px;`
 
 export default Dashboard;

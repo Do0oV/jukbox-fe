@@ -3,7 +3,7 @@ import './Search.css';
 import { searchSongs } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
 import SearchResList from '../../components/SearchResList/SearchResList';
-import { getUserProfile } from '../../redux/actions/'
+import { getUserProfile } from '../../redux/actions/';
 
 const Search: React.FC = () => {
 

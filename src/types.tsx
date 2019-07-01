@@ -6,10 +6,13 @@ export interface UserStatsProps {
   userStats: User
 };
 
-export interface VenuePLayerProps {
+export interface VenuePlayerProps {
   currentSong: CurrentSong,
   startSession:any
-};
+  tooglePlay:any,
+  playing:boolean,
+  position: number
+}
 
 class User {
   constructor (

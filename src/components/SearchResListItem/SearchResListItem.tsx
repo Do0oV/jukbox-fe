@@ -6,6 +6,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addSongToQueue } from '../../redux/actions';
 import { Redirect } from 'react-router';
 const { confirm } = Modal;
+import { ListItem, Artist, Song } from '../../assests/globalStyles'
+import styled from 'styled-components';
+import { Icon } from 'antd';
+
+const StyledArtist = styled(Artist)`
+color: var(--fourth-color);
+@media(max-width: 625px) {
+  font-size: 10px;
+  margin-right: 15px;
+}`;
+
+const StyledSong = styled(Song)`
+@media(max-width: 625px) {
+  font-size: 10px;
+  margin-left: 35px;
+}`;
+
+const StyledIcon = styled(Icon)`
+margin-right: 35px;
+svg {
+  fill: white;
+  height: 3em;
+  width: 3em;
+}
+opacity: .5;
+
+&:hover {
+  opacity: .8;
+}`;
 
 const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
 

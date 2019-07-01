@@ -4,9 +4,8 @@ const initialState = {
   currentSong: {},
   isLocked: false,
   position: 0,
-  isPLaying: false,
-  deviceId: '',
-  nextSongLocked: false,
+  isPlaying: false,
+  deviceId: ''
 }
 
 const Player: Reducer.Reducer = (state = initialState, action: any) => {
@@ -16,13 +15,12 @@ const Player: Reducer.Reducer = (state = initialState, action: any) => {
       return state;
     case 'PLAY_SONG_SUCCESS':
       return {
-        ...state,
-        isPlaying: true,
+        ...state
       };
     case 'PLAY_SONG_FAILURE':
       return {
         ...state,
-        error: 'cannot lock the song'
+        error: 'cannot play the song'
       };
     case 'SET_DEVICE_ID':
       return {
@@ -56,12 +54,17 @@ const Player: Reducer.Reducer = (state = initialState, action: any) => {
     case 'SEND_NEXT_SONG_SUCCESS':
       return {
         ...state,
-        nextSongLocked: true,
+        isLocked: true,
       };
     case 'SEND_NEXT_SONG_FAILURE':
       return {
         ...state,
         error: 'cannot lock the song'
+      }
+    case 'TOOGLE_PLAY':
+      return {
+        ...state,
+        isPlaying: action.data
       }
     default:
       return state;
