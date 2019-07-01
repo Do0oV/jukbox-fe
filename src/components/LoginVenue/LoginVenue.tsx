@@ -28,8 +28,7 @@ const SpotifyButton = styled(Button)`
 const LoginVenue: React.FC = (props: any) => {
 
   const dispatch = useDispatch();
-
-  const accessToken:string = localStorage.getItem('access_token') || '';
+  const accessToken = localStorage.getItem('access_token') || '';
 
   const adminLogIn = () => {
     // redirect to BE URL need to be changed

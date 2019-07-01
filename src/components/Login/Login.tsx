@@ -25,8 +25,7 @@ const GoogleButton = styled(Button)`
 const Login: React.FC = (props: any) => {
 
   const dispatch = useDispatch();
-
-  const accessToken:string = localStorage.getItem('access_token') || '';
+  const accessToken = localStorage.getItem('access_token') || '';
 
   const handleOnClick = () => {
     // redirect to BE URL need to be changed

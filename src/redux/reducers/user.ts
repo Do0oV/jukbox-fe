@@ -4,12 +4,12 @@ const initialState = {
   userProfile: {
     name: '',
     email: '',
-    tickets: '',
     diamonds: '',
   },
   loading: false,
   accessToken: '',
   mySong: '',
+  tickets: ''
 }
 
 const user: Reducer.Reducer = (state = initialState, action: any) => {
@@ -34,6 +34,11 @@ const user: Reducer.Reducer = (state = initialState, action: any) => {
       return {
         ...state,
         error: 'cannot retreive user data'
+      };
+    case 'TICKETS_RECEIVED':
+      return {
+        ...state,
+        tickets: action.tickets
       };
     case 'SET_ACCESS_TOKEN':
       return {
