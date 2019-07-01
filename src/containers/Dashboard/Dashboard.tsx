@@ -18,6 +18,7 @@ const PaddedContainer = styled.div`
 const Dashboard: React.FC = () => {
 
   const userProfile = useSelector((state: any) => state.user.userProfile);
+  const playlist = useSelector((state: any) => state.playlist);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const dispatch = useDispatch();
 
