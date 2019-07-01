@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import Button from 'antd/es/button';
-import { Icon } from 'antd';
-import { SmallLogo} from '../../assests/globalStyles';
+import { Icon, Input } from 'antd';
+import { SmallLogo } from '../../assests/globalStyles';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom'
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
@@ -49,13 +50,25 @@ const SearchIcon = styled(Icon)`
 `;
 
 const Header: React.FC = () => {
+
+  const [searchFlag, setSearchFlag] = useState(false);
+
+  const handleOnSearch = () => {
+    setSearchFlag(true)
+  }
+
+  const renderRedirect = () => {
+    if (searchFlag) return <Redirect to='/search' />
+  }
+
   return (
     <Container className="Header">
-       <SmallLogo>JUKBOX</SmallLogo>
-       <SubContainer>
-         <SearchIcon type="search" style={{color: 'var(--secondary-color)'}}/>
-         <Logout>LOGOUT</Logout>
-       </SubContainer>
+      <SmallLogo>JUKBOX</SmallLogo>
+      <SubContainer>
+        {renderRedirect()}
+        <SearchIcon type="search" style={{ color: 'var(--secondary-color)' }} onClick={handleOnSearch} />
+        <Logout>LOGOUT</Logout>
+      </SubContainer>
     </Container>
   );
 }

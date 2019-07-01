@@ -1,14 +1,11 @@
 import React from 'react';
 import './SongQueue.css';
 import styled from 'styled-components';
-
-const Container = styled.div`
-  padding: 10px 20px;
-`;
+import SongQueueItem from '../SongQueueItem/SongQueueItem'
 
 const SongQueue: React.FC = () => {
   return (
-    <Container className="SongQueue" />
+    <SongQueueItem />
   );
 }
 

@@ -21,14 +21,18 @@ const StyledArtist = styled(Artist)`
 color: var(--fourth-color);
 @media(max-width: 625px) {
   font-size: 10px;
-  margin-right: 15px;
 }`;
 
 const StyledSong = styled(Song)`
 @media(max-width: 625px) {
   font-size: 10px;
-  margin-left: 35px;
 }`;
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+padding-right: 200px
+`
 
 const SearchResListItem: React.FC = () => {
 
@@ -37,9 +41,11 @@ const SearchResListItem: React.FC = () => {
       <div style={{ marginLeft: 12 }}>
         <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
       </div>
-      <StyledSong>Cut To The Feeling</StyledSong>
-      <StyledArtist>Carly Rae Jepsen</StyledArtist>
-      <StyledIcon type="plus-circle" />
+      <Container>
+        <StyledSong>Cut To The Feeling</StyledSong>
+        <StyledArtist>Carly Rae Jepsen</StyledArtist>
+      </Container>
+        <StyledIcon type="plus-circle" />
     </ListItem>
   );
 }
