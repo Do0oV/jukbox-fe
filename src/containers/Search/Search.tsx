@@ -39,7 +39,7 @@ const SearchContainer: React.FC = () => {
   return (
     <Container>
       <div>
-        <StyledSearchBar placeholder="search songs" onChange={handleChange} style={{ width: 500 }}enterButton />
+        <StyledSearchBar placeholder="search songs" onChange={handleChange} enterButton />
       </div>
       {(searchResults.songs && searchResults.songs.length)
         ? searchResults.songs

@@ -5,20 +5,22 @@ import styled from 'styled-components';
 import { Icon } from 'antd';
 
 const DiamondIcon = styled(Icon)`
-margin-left: 45px;
 font-size: 40px;
-color: var(--fourth-color);
-opacity: .5;
+color: var(--second-color);
+svg {
+  fill: var(--secondary-color);
+}
 
 &:hover {
   opacity: .8;
 }`;
 
 const StarIcon = styled(Icon)`
-margin-right: 35px;
 font-size: 40px;
 color: var(--second-color);
-opacity: .5;
+svg {
+  fill: var(--secondary-color);
+}
 
 &:hover {
   opacity: .8;
@@ -38,7 +40,6 @@ const StyledSong = styled(Song)`
 const Container = styled.div`
 display: flex;
 flex-direction: column;
-padding-right: 60px
 `
 
 const SongQueueItem: React.FC = () => {
@@ -53,7 +54,7 @@ const SongQueueItem: React.FC = () => {
         <StyledArtist>Carly Rae Jepsen</StyledArtist>
       </Container>
       <DiamondIcon type="sketch-circle" theme="filled" />
-      <StarIcon type="star" theme="filled" />
+      <StarIcon type="star" theme="outlined" />
     </ListItem>
   );
 }

@@ -7,11 +7,10 @@ import { Icon } from 'antd';
 const StyledIcon = styled(Icon)`
 margin-right: 35px;
 svg {
-  fill: white;
-  height: 3em;
-  width: 3em;
+  fill: var(--secondary-color);
+  height: 2.5em;
+  width: 2.5em;
 }
-opacity: .5;
 
 &:hover {
   opacity: .8;
@@ -19,11 +18,13 @@ opacity: .5;
 
 const StyledArtist = styled(Artist)`
 color: var(--fourth-color);
+transition: 0.5s;
 @media(max-width: 625px) {
   font-size: 10px;
 }`;
 
 const StyledSong = styled(Song)`
+transition: 0.5s;
 @media(max-width: 625px) {
   font-size: 10px;
 }`;
@@ -31,22 +32,33 @@ const StyledSong = styled(Song)`
 const Container = styled.div`
 display: flex;
 flex-direction: column;
-padding-right: 200px
 `
-
 const SearchResListItem: React.FC = () => {
 
   return (
-    <ListItem className="ListItem">
-      <div style={{ marginLeft: 12 }}>
-        <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-      </div>
-      <Container>
-        <StyledSong>Cut To The Feeling</StyledSong>
-        <StyledArtist>Carly Rae Jepsen</StyledArtist>
-      </Container>
+    <>
+      <ListItem className="ListItem">
+        <div style={{ marginLeft: 12 }}>
+          <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
+        </div>
+        <Container>
+          <StyledSong>Cut To The Feeling</StyledSong>
+          <StyledArtist>Carly Rae Jepsen</StyledArtist>
+        </Container>
         <StyledIcon type="plus-circle" />
-    </ListItem>
+      </ListItem>
+
+      <ListItem className="ListItem">
+        <div style={{ marginLeft: 12 }}>
+          <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
+        </div>
+        <Container>
+          <StyledSong>Cut To The Feeling</StyledSong>
+          <StyledArtist>Carly Rae Jepsen</StyledArtist>
+        </Container>
+        <StyledIcon type="plus-circle" />
+      </ListItem>
+    </>
   );
 }
 
