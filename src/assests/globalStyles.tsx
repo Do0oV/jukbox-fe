@@ -68,7 +68,6 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  // border: solid #b1b8c4 1px;
   border-radius: 10px;
   width: 90%;
   height: 8vh;
