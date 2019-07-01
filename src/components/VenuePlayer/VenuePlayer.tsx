@@ -6,7 +6,6 @@ import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
 import moment from 'moment';
 import 'moment-duration-format';
 
-
 const ArtistPlayer = styled(Artist)`
   color: var(--fourth-color);
   font-size: 16px;
@@ -52,30 +51,38 @@ const AlbumCover = styled.img`
   height: 150px;
 
   @media(min-width: 800px) {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 `;
 const TimerCount = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   letter-spacing: 2px;
   font-size: 14px;
-  color: var(--secondary-color);
+  color: var(--fourth-color);
+
+  @media(min-width: 800px) {
+    font-size: 18px;
+  }
 `;
 
 
 const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playing, position}) => {
-    let current = moment.duration(position).format("*mm:ss");
-    let end = moment.duration(currentSong.duration).format("*mm:ss");
+    let current = moment.duration(position).format("*m:ss");
+    let end = moment.duration(currentSong.duration).format("*m:ss");
   return (
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
       <>
-        <img src={currentSong.album_cover[0]} />
+        <img src={currentSong.album_cover} />
         <SongPlayer>{currentSong.title}</SongPlayer>
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
         <Progress percent={position * 100 / currentSong.duration} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
         <TimerCount>
-          {current}{end}
+          <div>{current}</div>
+          <div>{end}</div>
         </TimerCount>
         <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
       </>}
