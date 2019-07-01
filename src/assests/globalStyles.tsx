@@ -68,14 +68,13 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  border-radius: 10px;
-  width: 90%;
+  margin: 6px auto 0 auto;
+  width: 95vw;
   height: 8vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
 `;
 
 export const MutedButton = styled(Button)`

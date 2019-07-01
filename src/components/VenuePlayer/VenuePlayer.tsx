@@ -3,6 +3,8 @@ import { VenuePlayerProps } from '../../types';
 import styled from 'styled-components';
 import { Progress, Icon } from 'antd';
 import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
+import moment from 'moment';
+import 'moment-duration-format';
 
 
 const ArtistPlayer = styled(Artist)`
@@ -19,7 +21,7 @@ const SongPlayer = styled(Song)`
 `;
 
 const PlayIcon = styled(Icon)`
-  font-size: 120px;
+  font-size: 80px;
   margin: 70px;
   svg {
     color: var(--fourth-color);
@@ -30,15 +32,29 @@ const PlayIcon = styled(Icon)`
     opacity: .8;
   }
 `;
+const TimerCount = styled.div`
+  letter-spacing: 2px;
+  font-size: 14px;
+  color: var(--secondary-color);
+`;
 
-const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, startSession}) => {
+
+const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playing, position}) => {
+    let current = moment.duration(position).format("*mm:ss");
+    let end = moment.duration(currentSong.duration).format("*mm:ss");
   return (
     <CenteredContent className="VenuePlayer">
-        <img src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-        <SongPlayer>Cut To The Feeling</SongPlayer>
-        <ArtistPlayer>Carly Rae Jepsen</ArtistPlayer>
-        <Progress percent={45} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
-        <PlayIcon type="play-circle" theme="filled"/>
+    {currentSong.title &&
+      <>
+        <img src={currentSong.album_cover[0]} />
+        <SongPlayer>{currentSong.title}</SongPlayer>
+        <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
+        <Progress percent={position * 100 / currentSong.duration} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
+        <TimerCount>
+          {current}{end}
+        </TimerCount>
+        <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
+      </>}
     </CenteredContent>
   );
 }

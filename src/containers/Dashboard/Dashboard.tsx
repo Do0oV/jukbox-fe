@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import './Dashboard.css';
-import { getUserProfile, updateSongQueue } from '../../redux/actions/'
+import { getUserProfile } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
 import { connectSocket } from '../../redux/actions/';
 import Header from '../../components/Header/Header';
 import NowPlaying from '../../components/NowPlaying/NowPLaying';
-import { Row, Col, Avatar } from 'antd';
 import styled from 'styled-components';
 
 const PaddedContainer = styled.div`
@@ -18,13 +17,15 @@ const PaddedContainer = styled.div`
 
 const Dashboard: React.FC = () => {
 
-  const userProfile = useSelector((state: any) => state.user.userProfile)
+  const userProfile = useSelector((state: any) => state.user.userProfile);
+  const userAccessToken = useSelector((state: any) => state.user.accessToken);
+  const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserProfile());
-    dispatch(connectSocket(userProfile.email));
-    dispatch(updateSongQueue());
+    dispatch(connectSocket(userAccessToken));
+    playlist && console.log('Playlist: ', playlist);
   }, [])
 
   return (

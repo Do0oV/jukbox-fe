@@ -2,7 +2,7 @@ import Reducer from 'redux';
 
 const initialState = {
   songs: [],  
-  loading: false,
+  loading: false
 }
 
 const searchResults: Reducer.Reducer = (state = initialState, action: any) => {
@@ -21,7 +21,7 @@ const searchResults: Reducer.Reducer = (state = initialState, action: any) => {
     case 'SEARCH_SONGS_FAILURE':
       return {
         ...state,
-        error: 'cannot retreive serach data'
+        error: 'cannot retreive search data'
       };
     default:
       return state;

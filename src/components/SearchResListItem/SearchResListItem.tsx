@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchResListItem.css';
+import { CurrentSong } from '../../types';
+import { Modal } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { addSongToQueue } from '../../redux/actions';
+import { Redirect } from 'react-router';
 import { ListItem, Artist, Song } from '../../assests/globalStyles'
 import styled from 'styled-components';
 import { Icon } from 'antd';
+const { confirm } = Modal;
 
 const StyledIcon = styled(Icon)`
-margin-right: 35px;
+margin-right: 15px;
 svg {
   fill: var(--secondary-color);
   height: 2.5em;
@@ -26,40 +32,51 @@ transition: 0.5s;
 const StyledSong = styled(Song)`
 transition: 0.5s;
 @media(max-width: 625px) {
-  font-size: 10px;
+  font-size: 8px;
 }`;
 
 const Container = styled.div`
+margin-left: 10px
+align-self: center;
+flex-basis: 100%;
 display: flex;
 flex-direction: column;
 `
-const SearchResListItem: React.FC = () => {
+const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
+
+  const songId = song.song_id;
+  const userProfile = useSelector((state: any) => state.user.userProfile);
+  const userAccessToken = useSelector((state: any) => state.user.accessToken);
+  const dispatch = useDispatch();
+  const [addedSongtoQueue, setAddedSongToQueue] = useState(false);
+
+  function showConfirm(song: CurrentSong) {
+    confirm({
+      title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
+      onOk() {
+        dispatch((addSongToQueue(songId, userAccessToken)));
+        setAddedSongToQueue(true);
+      }
+    });
+  }
 
   return (
-    <>
       <ListItem className="ListItem">
-        <div style={{ marginLeft: 12 }}>
-          <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-        </div>
+        {addedSongtoQueue && <Redirect to="/dashboard" />}
+        <img height="60px" width="60px" src={song.album_cover[0]} />
         <Container>
-          <StyledSong>Cut To The Feeling</StyledSong>
-          <StyledArtist>Carly Rae Jepsen</StyledArtist>
+          <StyledSong>{song.title}</StyledSong>
+          <StyledArtist>{song.artist}</StyledArtist>
         </Container>
-        <StyledIcon type="plus-circle" />
+        {/* {
+          userProfile.tickets > 0
+        ? <div > */}
+        <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
+        {/* </div>
+          : null
+        } */}
       </ListItem>
-
-      <ListItem className="ListItem">
-        <div style={{ marginLeft: 12 }}>
-          <img height="60px" width="60px" src='https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2' />
-        </div>
-        <Container>
-          <StyledSong>Cut To The Feeling</StyledSong>
-          <StyledArtist>Carly Rae Jepsen</StyledArtist>
-        </Container>
-        <StyledIcon type="plus-circle" />
-      </ListItem>
-    </>
-  );
+  )
 }
 
 export default SearchResListItem;

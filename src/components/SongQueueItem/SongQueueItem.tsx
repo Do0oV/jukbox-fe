@@ -60,3 +60,13 @@ const SongQueueItem: React.FC = () => {
 }
 
 export default SongQueueItem;
+
+<ListItem className="ListItem">
+  <img height="60px" width="60px" src={song.album_cover[0]} />
+  <Container>
+    <StyledSong>{song.title}</StyledSong>
+    <StyledArtist>{song.artist}</StyledArtist>
+  </Container>
+  <DiamondIcon type="sketch-circle" theme="filled" />
+  <StarIcon type="star" theme="outlined" />
+</ListItem>
