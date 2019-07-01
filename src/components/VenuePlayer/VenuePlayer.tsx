@@ -46,7 +46,7 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
       <>
-        <img src={currentSong.album_cover} />
+        <img src={currentSong.album_cover[0]} />
         <SongPlayer>{currentSong.title}</SongPlayer>
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
         <Progress percent={position * 100 / currentSong.duration} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
