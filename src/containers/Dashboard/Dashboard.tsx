@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
         <NowPlaying />
       </PaddedContainer>
       <PaddedContainer>
-        <SongQueue />
+        <SongQueue songs={playlist}/>
       </PaddedContainer>
     </div>
   );
