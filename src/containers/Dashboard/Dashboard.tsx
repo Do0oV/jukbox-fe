@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import './Dashboard.css';
-import { getUserProfile, updateSongQueue } from '../../redux/actions/'
+import { getUserProfile } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
 import UserStats from '../../components/UserStats/UserStats'
 import SongQueue from '../../components/SongQueue/SongQueue';
 import { connectSocket } from '../../redux/actions/';
-import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import NowPlaying from '../../components/NowPlaying/NowPLaying';
-import { Row, Col, Avatar } from 'antd';
 import styled from 'styled-components';
 
 const PaddedContainer = styled.div`
@@ -38,11 +36,11 @@ const Dashboard: React.FC = () => {
         <NowPlaying />
       </PaddedContainer>
       <PaddedContainer>
-        <SongQueue />
+        <SongQueue songs={playlist}/>
       </PaddedContainer>
-      <Link to="/search">Go to Search</Link>
     </div>
   );
 }
 
 export default Dashboard;
+ 

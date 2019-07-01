@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchResListItem.css';
 import { CurrentSong } from '../../types';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { addSongToQueue } from '../../redux/actions';
 import { Redirect } from 'react-router';
@@ -10,32 +10,38 @@ import styled from 'styled-components';
 import { Icon } from 'antd';
 const { confirm } = Modal;
 
-const StyledArtist = styled(Artist)`
-color: var(--fourth-color);
-@media(max-width: 625px) {
-  font-size: 10px;
-  margin-right: 15px;
-}`;
-
-const StyledSong = styled(Song)`
-@media(max-width: 625px) {
-  font-size: 10px;
-  margin-left: 35px;
-}`;
-
 const StyledIcon = styled(Icon)`
-margin-right: 35px;
+margin-right: 15px;
 svg {
-  fill: white;
-  height: 3em;
-  width: 3em;
+  fill: var(--secondary-color);
+  height: 2.5em;
+  width: 2.5em;
 }
-opacity: .5;
 
 &:hover {
   opacity: .8;
 }`;
 
+const StyledArtist = styled(Artist)`
+color: var(--fourth-color);
+transition: 0.5s;
+@media(max-width: 625px) {
+  font-size: 10px;
+}`;
+
+const StyledSong = styled(Song)`
+transition: 0.5s;
+@media(max-width: 625px) {
+  font-size: 8px;
+}`;
+
+const Container = styled.div`
+margin-left: 10px
+align-self: center;
+flex-basis: 100%;
+display: flex;
+flex-direction: column;
+`
 const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
 
   const songId = song.song_id;
@@ -55,18 +61,22 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
   }
 
   return (
-    <div className="SearchResList">
-      {addedSongtoQueue && <Redirect to="/dashboard"/>}
-      { song.title } by { song.artist } ({ song.album })
+    <ListItem className="ListItem">
+      {addedSongtoQueue && <Redirect to="/dashboard" />}
+      <img height="60px" width="60px" src={song.album_cover[0]} />
+      <Container>
+        <StyledSong>{song.title}</StyledSong>
+        <StyledArtist>{song.artist}</StyledArtist>
+      </Container>
       {
         tickets > 0
-          ? <div onClick={() => showConfirm(song)}>
-              <Button>+</Button>
-            </div>
+          ? <div >
+            <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
+          </div>
           : null
       }
-    </div>
-  );
+    </ListItem>
+  )
 }
 
 export default SearchResListItem;

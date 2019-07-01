@@ -1,14 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import './SongQueue.css';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import SongQueueItem from '../SongQueueItem/SongQueueItem'
+import { CurrentSong } from '../../types';
 
-const Container = styled.div`
-  padding: 10px 20px;
-`;
+const ListContainer = styled.div`
+height: 87vh;
+overflow: hidden;
+overflow-y: scroll;
+`
+const SongQueue: React.FC<{ songs: Array<CurrentSong> }> = ({ songs }) => {
 
-const SongQueue: React.FC = () => {
   return (
-    <Container className="SongQueue" />
+    <ListContainer>
+      {(songs && songs.length)
+        ? songs.map((song: CurrentSong, id: number) => <SongQueueItem key={id} song={song} />)
+        : null
+      }
+    </ListContainer>
   );
 }
 

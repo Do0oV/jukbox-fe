@@ -2,10 +2,27 @@ import React, { useEffect } from 'react';
 import './Search.css';
 import { searchSongs } from '../../redux/actions/'
 import { useSelector, useDispatch } from 'react-redux';
-import SearchResList from '../../components/SearchResList/SearchResList';
+import SearchResList from '../../components/SearchResList/SearchResList'
+import { Input } from 'antd';
+import styled from 'styled-components';
 import { getUserProfile } from '../../redux/actions/';
 
-const Search: React.FC = () => {
+const { Search } = Input;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledSearchBar = styled(Search)`
+  padding: 30px;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-color);
+`;
+
+
+const SearchContainer: React.FC = () => {
 
   const searchResults = useSelector((state: any) => state.searchResults.songs);
   const dispatch = useDispatch();
@@ -15,17 +32,16 @@ const Search: React.FC = () => {
   }, [])
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    console.log(event.currentTarget.value)
     dispatch(searchSongs(event.currentTarget.value));
   };
 
   return (
-    <div className="Search">
-      <form>
-        <input type="text" onChange={handleChange} />
-      </form>
-      { searchResults ? <SearchResList songs={searchResults} /> : null }
-    </div>
+    <Container>
+      <StyledSearchBar placeholder="search songs" onChange={handleChange} enterButton />
+      {searchResults ? <SearchResList songs={searchResults} /> : null}
+    </Container>
   );
 }
 
-export default Search;
+export default SearchContainer;
