@@ -4,30 +4,21 @@ import client from 'socket.io-client';
 import { socketServerResponse } from '../../types';
 
 export const socket: Middleware<any, any, any> = ({ dispatch }) => {
-  console.log('initialized socket');
   let socket: SocketIOClient.Socket;
   
   return next => action => {
     if (!action.socket) return next(action);
     
-    console.log('socket action', action.socket);
     const { command, message } = action.socket;
     if (command === 'connect') {
       const url =`${WS_BASE_URL}/codeworks`;
-      console.log('assigning socket');
       socket = client.connect(url);
 
       socket.on('connect', () => {
-        console.log('CONNECTED TO SOCKET AT ', url);
         message && socket.emit('message', message);
         socket.on('message', (message: socketServerResponse) => {
-<<<<<<< HEAD
-          console.log('Connected user to venue Codeworks');
-=======
-          console.log('connected you to venue codeworks');
->>>>>>> c5a672a86d1e2e002d2aadabf505e40990e34b40
           dispatch({
-            type: `UPDATED_LIST`,
+            type: `SOCKET_RECEIVED`,
             playlist: message.data.updatedPlaylist
           });
         });
@@ -41,7 +32,6 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
       });
       
     } else {
-      console.log('Sending message…', message);
       socket.emit('message', message);
     }
 
