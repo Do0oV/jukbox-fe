@@ -139,8 +139,8 @@ const Player: React.FC = (props:any) => {
     <div className="Player">
     <Header />
     <CenteredContent>
-    <Switch onChange={startSession} />
     <VenueInfos />
+    <Switch onChange={startSession} checkedChildren='Stop Session' unCheckedChildren='Start Session' />
     {session &&
       <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay} playing={isPlaying} position={position}/>}
       </CenteredContent>

@@ -6,7 +6,7 @@ import { Avatar } from 'antd';
 
 const NameSpace = styled(AccountName)`
   font-size: 14px;
-  margin: 0 0 40px 0;
+  margin: 0 0 10px 0;
 
   @media(min-width: 800px) {
     font-size: 20px;

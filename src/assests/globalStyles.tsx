@@ -60,7 +60,7 @@ export const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
   font-size: 10px;
-  transition: 0.5s;
+  transition: 0.5s ease;
 
   @media(min-width: 800px) {
     font-size: 14px;
@@ -91,10 +91,13 @@ export const MutedButton = styled(Button)`
   margin-top: 15px;
   background-color: var(--primary-bg-color);
   min-width: 150px;
-
+  positive: relative;
+  display: inline-block;
+  cursor: pointer;
   &:hover {
     border: 1px solid var(--fourth-color);
   }
+
 `;
 
 export const AccountName = styled.div`
