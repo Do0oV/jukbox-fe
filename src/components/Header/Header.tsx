@@ -70,6 +70,7 @@ const SearchIcon = styled(Icon)`
 const Header: React.FC = () => {
 
   const [searchFlag, setSearchFlag] = useState(false);
+  const [logOut, setLogOut] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -78,8 +79,17 @@ const Header: React.FC = () => {
     dispatch(cleanUpSearchState())
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('access_token');
+    setLogOut(true);
+  }
+
   const renderRedirect = () => {
     if (searchFlag) return <Redirect to='/search' />
+  }
+
+  const renderRedirectLogOut = () => {
+    if (logOut) return <Redirect to='/' />
   }
 
   return (
@@ -87,8 +97,9 @@ const Header: React.FC = () => {
       <SmallLogo>JUKBOX</SmallLogo>
       <SubContainer>
         {renderRedirect()}
+        {renderRedirectLogOut()};
         <SearchIcon type="search" style={{ color: 'var(--secondary-color)' }} onClick={handleOnSearch} />
-        <Logout>LOGOUT</Logout>
+        <Logout onClick={handleLogOut}>LOGOUT</Logout>
       </SubContainer>
     </Container>
   );
