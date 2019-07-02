@@ -22,7 +22,6 @@ const Dashboard: React.FC = () => {
   const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
   const currentSong = playlist.find((song: any) => song.currentlyplaying);
-  console.log(currentSong);
 
   useEffect(() => {
     dispatch(getUserProfile());
