@@ -4,7 +4,6 @@ import { ListItem, Artist, Song } from '../../assests/globalStyles'
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import { SongQueue, CurrentSong } from '../../types';
-import { connectSocket } from '../../redux/actions';
 
 const DiamondIcon = styled(Icon)`
 font-size: 40px;
