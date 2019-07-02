@@ -124,3 +124,9 @@ export const updateSongDiamonds = (songId: string, userAccessToken: string) => {
     }
   };
 };
+
+export const cleanUpSearchState = () => {
+  return {
+    type: 'EMPTY_SEARCH_RESULT_STATE',
+  }
+}

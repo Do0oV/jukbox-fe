@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Header.css';
-import Button from 'antd/es/button';
-import { Icon, Input } from 'antd';
+import { Icon } from 'antd';
 import { SmallLogo } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { cleanUpSearchState } from '../../redux/actions/';
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
@@ -70,8 +71,11 @@ const Header: React.FC = () => {
 
   const [searchFlag, setSearchFlag] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleOnSearch = () => {
     setSearchFlag(true)
+    dispatch(cleanUpSearchState())
   }
 
   const renderRedirect = () => {
