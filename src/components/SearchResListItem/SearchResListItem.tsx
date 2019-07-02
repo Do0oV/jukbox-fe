@@ -44,7 +44,6 @@ flex-direction: column;
 `
 const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
 
-  const songId = song.song_id;
   const tickets = useSelector((state: any) => state.user.tickets);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const dispatch = useDispatch();
@@ -54,7 +53,8 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
     confirm({
       title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
       onOk() {
-        dispatch((addSongToQueue(songId, userAccessToken)));
+        const stringifiedSong = JSON.stringify(song);
+        dispatch((addSongToQueue(stringifiedSong, userAccessToken)));
         setAddedSongToQueue(true);
       }
     });

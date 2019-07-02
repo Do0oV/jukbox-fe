@@ -19,6 +19,7 @@ const Dashboard: React.FC = () => {
 
   const userProfile = useSelector((state: any) => state.user.userProfile);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
+  const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const Dashboard: React.FC = () => {
         <NowPlaying />
       </PaddedContainer>
       <PaddedContainer>
-        <SongQueue songs={playlist}/>
+        <SongQueue songQueueItems={playlist}/>
       </PaddedContainer>
     </div>
   );
