@@ -11,7 +11,6 @@ import { Icon } from 'antd';
 const { confirm } = Modal;
 
 const StyledIcon = styled(Icon)`
-margin-right: 15px;
 svg {
   fill: var(--secondary-color);
   height: 2.5em;
@@ -68,13 +67,13 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
         <StyledSong>{song.title}</StyledSong>
         <StyledArtist>{song.artist}</StyledArtist>
       </Container>
-      {
-        tickets > 0
+      {/* {
+        tickets > 0 */}
           ? <div >
             <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
           </div>
-          : null
-      }
+      //     : null
+      // }
     </ListItem>
   )
 }
