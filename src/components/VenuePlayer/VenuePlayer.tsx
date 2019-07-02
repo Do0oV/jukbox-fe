@@ -30,7 +30,7 @@ const SongPlayer = styled(Song)`
 `;
 
 const PlayIcon = styled(Icon)`
-  font-size: 85px;
+  font-size: 65px;
   margin: 40px;
   svg {
     color: var(--fourth-color);
