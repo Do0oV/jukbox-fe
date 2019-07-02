@@ -21,6 +21,8 @@ const Dashboard: React.FC = () => {
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
+  const currentSong = playlist.find((song: any) => song.currentlyplaying);
+  console.log(currentSong);
 
   useEffect(() => {
     dispatch(getUserProfile());
@@ -34,7 +36,7 @@ const Dashboard: React.FC = () => {
         <UserStats userStats={userProfile} />
       </PaddedContainer>
       <PaddedContainer>
-        <NowPlaying />
+        <NowPlaying currentSong={currentSong}/>
       </PaddedContainer>
       <PaddedContainer>
         <SongQueue songQueueItems={playlist}/>
