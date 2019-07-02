@@ -4,7 +4,7 @@ const initialState = {
   currentSong: {},
   isLocked: false,
   position: 0,
-  isPlaying: false,
+  isPlaying: true,
   deviceId: ''
 }
 
@@ -15,7 +15,8 @@ const Player: Reducer.Reducer = (state = initialState, action: any) => {
       return state;
     case 'PLAY_SONG_SUCCESS':
       return {
-        ...state
+        ...state,
+        isPlaying: true,
       };
     case 'PLAY_SONG_FAILURE':
       return {
