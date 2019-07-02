@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
         <UserStats userStats={userProfile} />
       </PaddedContainer>
       <PaddedContainer>
-        <NowPlaying />
+        <NowPlaying currentSong={currentSong}/>
       </PaddedContainer>
       <PaddedContainer>
         <SongQueue songQueueItems={playlist} />

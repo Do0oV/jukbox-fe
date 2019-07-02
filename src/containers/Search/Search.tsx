@@ -18,8 +18,8 @@ const Container = styled.div`
 `
 
 const StyledBackIcon = styled(Icon)`
-font-size: 40px;
-padding: 2px 0px 0px 20px;
+font-size: 35px;
+padding: 4px 0px 0px 20px;
   svg {
     fill: var(--secondary-color);
   }

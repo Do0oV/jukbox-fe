@@ -23,6 +23,10 @@ const searchResults: Reducer.Reducer = (state = initialState, action: any) => {
         ...state,
         error: 'cannot retreive search data'
       };
+      case 'EMPTY_SEARCH_RESULT_STATE':
+        return {
+          songs: [] 
+        };
     default:
       return state;
   }
