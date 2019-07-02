@@ -13,8 +13,8 @@ const { confirm } = Modal;
 const StyledIcon = styled(Icon)`
 svg {
   fill: var(--secondary-color);
-  height: 2.5em;
-  width: 2.5em;
+  height: 2em;
+  width: 2em;
 }
 
 &:hover {
