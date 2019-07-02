@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './UserStats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
@@ -7,6 +7,7 @@ import { CenteredContent, AccountName } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { WindowInterface } from '../../types';
 import { buyDiamonds } from '../../redux/actions/index'
+// import store from '../../index'
 
 const Container = styled(CenteredContent)`
   @media(min-width: 800px) {
@@ -73,34 +74,46 @@ const StyledAvatar = styled(Avatar)`
   color: var(--tertiary-color);
 `;
 
-const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => {
+
 
   const Stripe = (window as WindowInterface).Stripe;
-  const stripe = Stripe('whsec_kQpAul8d4NFcYPMcJNnT9zgPlCsC9nez')
+  const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5')
   const tickets = useSelector((state: any) => state.user.tickets);
   const userTickets = tickets > 0 ? tickets : 0;
   const dispatch = useDispatch()
+  // const stripeSessionID = useSelector((state: any) => state.user.stripeSessionID) 
+  // const stripeSessionID = store.getState().user
 
   const handleOnDiamondClick = () => {
-    dispatch(buyDiamonds())
+    dispatch(buyDiamonds());
+    // stripe.redirectToCheckout({
+    //   sessionId: stripeSessionID
+    // }).then(function (result: any) {
+    //   console.log(result);
+    // });
   }
 
   return (
     <Row className="UserStats" type="flex" justify="space-around" align="middle">
       <Col>
         <IconContainer>
-          <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)',
-              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
+          <Badge showZero count={userTickets} style={{
+            backgroundColor: 'var(--tertiary-color)',
+            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold'
+          }}>
             <TicketIcon type="book" theme="filled" />
           </Badge>
-          <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
-              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
-            <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick}/>
+          <Badge showZero count={userStats.diamonds} style={{
+            backgroundColor: 'var(--secondary-color)',
+            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold'
+          }}>
+            <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
           </Badge>
         </IconContainer>
       </Col>
       <CntrCol>
-        <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
+        <StyledAvatar size={70} icon="user" style={{ backgroundColor: 'var(--primary-color)' }}>Bob</StyledAvatar>
         <UserName>{userStats.name}</UserName>
       </CntrCol>
     </Row>

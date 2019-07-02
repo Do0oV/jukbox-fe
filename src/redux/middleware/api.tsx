@@ -1,13 +1,12 @@
 import { BASE_URL, STRIPE_BASE_URL } from '../../config'
 import { Middleware } from 'redux';
+import { WindowInterface } from '../../types';
 
 export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
 
   if (!action.method) return next(action);
 
-  let SERVER_BASE_URL = action.type === 'BUY_DIAMONDS' ? STRIPE_BASE_URL : BASE_URL;
-
-  console.log(SERVER_BASE_URL)
+  const SERVER_BASE_URL = action.type === 'BUY_DIAMONDS' ? STRIPE_BASE_URL : BASE_URL;
 
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
@@ -28,16 +27,24 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
   });
   fetch(
     SERVER_BASE_URL + action.endpoint, {
-    method: action.method,
-    body: action.body ? JSON.stringify(action.body) : undefined,
-    headers: headers
-  })
+      method: action.method,
+      body: action.body ? JSON.stringify(action.body) : undefined,
+      headers: headers
+    })
     .then(response => response.status === 204 ? 'No Content' : response.json())
     .then(data => {
       dispatch({
         type: `${action.type}_SUCCESS`,
         data
       })
+      if (action.type === 'BUY_DIAMONDS') {
+        const Stripe = (window as WindowInterface).Stripe;
+        const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5');
+        stripe.redirectToCheckout({
+          sessionId: data
+        }).then(function (result: any) {
+        });
+      }
     })
     .catch(error => {
       dispatch({

@@ -10,7 +10,8 @@ const initialState = {
   accessToken: '',
   mySong: '',
   // tickets: '',
-  stripeSessionID: ''
+  stripeSessionID: '',
+  isCheckout: false,
 }
 
 const user: Reducer.Reducer = (state = initialState, action: any) => {
@@ -70,8 +71,8 @@ const user: Reducer.Reducer = (state = initialState, action: any) => {
       case 'BUY_DIAMONDS_SUCCESS':
         return {
           ...state,
-          stripeSessionID: action.data.body
-        }
+          stripeSessionID: action.data,
+        };
     default:
       return state;
   }

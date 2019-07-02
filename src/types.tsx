@@ -3,7 +3,8 @@ export interface LoginProps {
 };
 
 export interface UserStatsProps {
-  userStats: User
+  userStats: User,
+  stripeSessionID: any 
 };
 
 export interface NowPlayingProps {
