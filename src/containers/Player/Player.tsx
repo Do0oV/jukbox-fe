@@ -62,7 +62,7 @@ const Player: React.FC = (props:any) => {
         dispatch(transferPlayerPlayback(data.device_id));
         setTimeout(() => {
           dispatch(playSong(deviceId));
-        }, 2000);
+        }, 3000);
       });
     };
   };
@@ -110,7 +110,7 @@ const Player: React.FC = (props:any) => {
       dispatch(lockNextRequest());
       setTimeout(() => {
         dispatch(playSong(deviceId));
-      }, 16000);
+      }, (currentSong.duration - position + 1000));
     }
   }
 
