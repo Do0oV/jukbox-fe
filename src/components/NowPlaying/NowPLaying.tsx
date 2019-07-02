@@ -3,10 +3,19 @@ import './NowPlaying.css';
 import { Row, Col, Progress } from 'antd';
 import styled from 'styled-components';
 import { NowPlayingProps } from '../../types';
+import { ListItem } from '../../assests/globalStyles';
 
-const RowHeader = styled(Row)`
+const Container = styled.div`
   background-color: var(--secondary-bg-color);
-  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+`;
+
+const SubContainer = styled(ListItem)`
+  margin: 10px 0;
+  height: 100%;
 `;
 
 const Song = styled.div`
@@ -53,16 +62,19 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ currentSong }) => {
       };
 
   return (
-    <RowHeader type="flex" justify="space-around" className="NowPlaying" align="middle">
-     <Col>
-       {currentSong !== undefined && <Album src={songData.album_cover[0]}/> }
-     </Col>
-     <RightCol>
-       <Now>{currentSong !== undefined ? 'Now Playing' : 'Time to Pick a Song!'}</Now>
-       <Song>{songData.title}</Song>
-       <Artist>{songData.artist}</Artist>
-     </RightCol>
-    </RowHeader>
+    <>
+      {currentSong && 
+      <Container>
+        <SubContainer>
+           <Album src={songData.album_cover[0]}/>
+         <RightCol>
+           <Now>Now Playing</Now>
+           <Song>{songData.title}</Song>
+           <Artist>{songData.artist}</Artist>
+         </RightCol>
+        </SubContainer>
+      </Container>}
+    </>
   );
 }
 

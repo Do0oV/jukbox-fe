@@ -9,11 +9,10 @@ overflow: hidden;
 overflow-y: scroll;
 `
 const SongQueue: React.FC<{ songQueueItems: any }> = ({ songQueueItems }) => {
-
   return (
     <ListContainer>
       {(songQueueItems && songQueueItems.length)
-        ? songQueueItems.map((songQueueItem: any, id: number) => <SongQueueItem key={id} songQueueItem={songQueueItem} />)
+        ? songQueueItems.slice(1).map((songQueueItem: any, id: number) => <SongQueueItem key={id} songQueueItem={songQueueItem} />)
         : null
       }
     </ListContainer>

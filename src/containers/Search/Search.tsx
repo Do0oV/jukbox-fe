@@ -27,6 +27,7 @@ padding: 4px 0px 0px 20px;
 
 const StyledSearchBar = styled(Search)`
   padding: 8px 20px;
+  
   background-color: var(--primary-bg-color);
   color: var(--primary-color);
 `;
@@ -65,7 +66,7 @@ const SearchContainer: React.FC = () => {
       {renderRedirect()}
       {redirectToLogIn()}
       <StyledBackIcon type="rollback" onClick={handleGoBack}/>
-      <StyledSearchBar placeholder="search songs" onChange={handleChange} style={{ width: "85%" }} enterButton />
+      <StyledSearchBar allowClear placeholder="Search Songs" onChange={handleChange} style={{ width: "85%" }} enterButton />
       {searchResults ? <SearchResList songs={searchResults} /> : null}
     </Container>
   );
