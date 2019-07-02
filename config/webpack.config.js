@@ -465,7 +465,9 @@ module.exports = function(webpackEnv) {
               {loader: "css-loader"},
               {loader: "less-loader",
                 options: {
-                  modifyVars: themeVariables
+                  modifyVars: {
+                    "@primary-color": "#F7DD72",
+                  },
                 }
               }
               ]
