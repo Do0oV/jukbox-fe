@@ -8,11 +8,15 @@ import { Redirect } from 'react-router-dom'
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
-  padding: 10px 20px;
+  padding: 10px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+
+  @media(min-width: 800px) {
+    padding: 20px 50px;
+  }
 `;
 
 const SubContainer = styled.div`
@@ -24,14 +28,21 @@ const SubContainer = styled.div`
 
 const Logout = styled.button`
   background-color: transparent;
+  border: none;
   color: var(--fourth-color);
-  border-radius: 10px;
+  border: 1px solid transparent;
   font-size: 12px;
-  border: 1px solid #3e3e3e;
+  padding: 5px;
+  transition: .5s;
 
   &:hover {
-    color: var(--primary-bg-color);
-    background-color: var(--fourth-color);
+    border: 1px solid white;
+    border-radius: 30px;
+  }
+
+  @media(min-width: 800px) {
+    font-size: 16px;
+    padding: 18px;
   }
 `;
 
@@ -39,13 +50,19 @@ const SearchIcon = styled(Icon)`
   font-size: 24px;
   font-weight: bold;
   margin-right: 20px;
-  padding: 5px;
+  padding: 10px;
   border: 1px solid transparent;
+  transition: .5s;
 
   &:hover {
     border: 1px solid var(--secondary-color);
     color: var(--primary-bg-color);
     border-radius: 50px;
+  }
+
+  @media(min-width: 800px) {
+    font-size: 28px;
+    padding: 20px;
   }
 `;
 

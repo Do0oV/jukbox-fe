@@ -2,42 +2,68 @@ import React from 'react';
 import './UserStats.css';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
+import { CenteredContent, AccountName } from '../../assests/globalStyles';
 import styled from 'styled-components';
 
+const Container = styled(CenteredContent)`
+  @media(min-width: 800px) {
+    width: 90vw;
+    margin: 0 auto;
+  }
+`;
+
 const DiamondIcon = styled(Icon)`
-  font-size: 40px;
-  color: var(--fourth-color);
+  font-size: 50px;
+  svg {
+    color: var(--fourth-color);
+  }
+
+  svg:hover {
+    opacity: .7;
+  }
+
+  @media(min-width: 800px) {
+    font-size: 60px;
+  }
 `;
 
 const TicketIcon = styled(Icon)`
-  .anticon {
+  font-size: 50px;
+  transform: rotate(90deg);
+  svg {
     color: var(--fourth-color);
   }
-  font-size: 40px;
-  transform: rotate(90deg);
-`;
 
-const StyledBadge = styled(Badge)`
-  margin: 10px;
+  svg:hover {
+    opacity: .7;
+  }
+
+  @media(min-width: 800px) {
+    font-size: 60px;
+  }
 `;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 150px;
+
+  @media(min-width: 800px) {
+    width: 250px;;
+  }
 `;
 
 const CntrCol = styled(Col)`
   text-align: center;
 `;
 
-const UserName = styled.div`
-  position: relative;
-  top: -15px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: var(--primary-bg-color);
-  color: var(--fourth-color);
+const UserName = styled(AccountName)`
+  font-size: 14px;
+
+  @media(min-width: 800px) {
+    font-size: 20px;
+    padding: 5px 25px;
+  }
 `;
 
 const StyledAvatar = styled(Avatar)`
@@ -45,21 +71,24 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+  const userTickets = userStats.tickets > 0 ? userStats.tickets : 0;
   return (
     <Row className="UserStats" type="flex" justify="space-around" align="middle">
       <Col>
         <IconContainer>
-          <Badge count={1} style={{backgroundColor:'var(--tertiary-color)'}}>
+          <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)', 
+              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <TicketIcon type="book" theme="filled" />
           </Badge>
-          <Badge count={5} style={{backgroundColor:'var(--secondary-color)'}}>
+          <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)', 
+              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <DiamondIcon type="sketch-circle" theme="filled" />
           </Badge>
         </IconContainer>
       </Col>
       <CntrCol>
-        <StyledAvatar size={70} icon="user">Bob</StyledAvatar>
-        <UserName>Bob</UserName>
+        <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
+        <UserName>{userStats.name}</UserName>
       </CntrCol>
     </Row>
   );
