@@ -32,7 +32,6 @@ const SearchContainer: React.FC = () => {
   }, [])
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(event.currentTarget.value)
     dispatch(searchSongs(event.currentTarget.value));
   };
 

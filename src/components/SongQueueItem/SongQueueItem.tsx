@@ -3,7 +3,8 @@ import './SongQueueItem.css';
 import { ListItem, Artist, Song } from '../../assests/globalStyles'
 import styled from 'styled-components';
 import { Icon } from 'antd';
-import { CurrentSong } from '../../types';
+import { SongQueue, CurrentSong } from '../../types';
+import { connectSocket } from '../../redux/actions';
 
 const DiamondIcon = styled(Icon)`
 font-size: 40px;
@@ -43,7 +44,9 @@ display: flex;
 flex-direction: column;
 `
 
-const SongQueueItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
+const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }) => {
+
+  const song: CurrentSong = JSON.parse(songQueueItem.song);
 
   return (
     <ListItem className="ListItem">
