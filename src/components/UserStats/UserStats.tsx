@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserStats.css';
+import { useSelector } from 'react-redux';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
 import { CenteredContent, AccountName } from '../../assests/globalStyles';
@@ -71,16 +72,17 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
-  const userTickets = userStats.tickets > 0 ? userStats.tickets : 0;
+  const tickets = useSelector((state: any) => state.user.tickets);
+  const userTickets = tickets > 0 ? tickets : 0;
   return (
     <Row className="UserStats" type="flex" justify="space-around" align="middle">
       <Col>
         <IconContainer>
-          <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)', 
+          <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)',
               color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <TicketIcon type="book" theme="filled" />
           </Badge>
-          <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)', 
+          <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
               color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <DiamondIcon type="sketch-circle" theme="filled" />
           </Badge>

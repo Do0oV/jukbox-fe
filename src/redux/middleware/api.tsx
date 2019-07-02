@@ -27,7 +27,7 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
     body: action.body ? JSON.stringify(action.body) : undefined,
     headers: headers
   })
-    .then(response => response.json())
+    .then(response => response.status === 204 ? 'No Content' : response.json())
     .then(data => {
       dispatch({
         type: `${action.type}_SUCCESS`,

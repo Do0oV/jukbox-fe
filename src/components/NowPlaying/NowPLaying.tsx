@@ -44,15 +44,21 @@ const Album = styled.img`
 `;
 
 const NowPlaying: React.FC<NowPlayingProps> = ({ currentSong }) => {
-  const songData = JSON.parse(currentSong.song);
+  const songData = currentSong !== undefined
+    ? JSON.parse(currentSong.song)
+    : {
+        'album_cover': [''],
+        'title': '',
+        'artist': ''
+      };
 
   return (
     <RowHeader type="flex" justify="space-around" className="NowPlaying" align="middle">
      <Col>
-       <Album src={songData.album_cover[0]}/>
+       {currentSong !== undefined && <Album src={songData.album_cover[0]}/> }
      </Col>
      <RightCol>
-       <Now>Now Playing</Now>
+       <Now>{currentSong !== undefined ? 'Now Playing' : 'Time to Pick a Song!'}</Now>
        <Song>{songData.title}</Song>
        <Artist>{songData.artist}</Artist>
      </RightCol>
