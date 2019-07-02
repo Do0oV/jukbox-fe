@@ -2,6 +2,7 @@ import React from 'react';
 import './NowPlaying.css';
 import { Row, Col, Progress } from 'antd';
 import styled from 'styled-components';
+import { NowPlayingProps } from '../../types';
 
 const RowHeader = styled(Row)`
   background-color: var(--secondary-bg-color);
@@ -11,19 +12,23 @@ const RowHeader = styled(Row)`
 const Song = styled.div`
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
+  line-height: 1.6em;
   color: var(--secondary-color);
 `;
 
 const Artist = styled.div`
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 1.6em;
+  font-weight: bold;
   color: var(--primary-bg-color);
 `;
 
 const Now = styled.h2`
   margin: 0;
+  line-height: 2em;
   font-size: 22px;
   color: var(--fourth-color);
   font-style: italic;
@@ -38,17 +43,18 @@ const Album = styled.img`
   width: 85px;
 `;
 
-const NowPlaying: React.FC = () => {
+const NowPlaying: React.FC<NowPlayingProps> = ({ currentSong }) => {
+  const songData = JSON.parse(currentSong.song);
+
   return (
     <RowHeader type="flex" justify="space-around" className="NowPlaying" align="middle">
      <Col>
-       <Album src="https://i.scdn.co/image/107819f5dc557d5d0a4b216781c6ec1b2f3c5ab2" />
+       <Album src={songData.album_cover[0]}/>
      </Col>
      <RightCol>
        <Now>Now Playing</Now>
-       <Song>Cut To The Feeling</Song>
-       <Artist>Carly Rae Jepsen</Artist>
-       <Progress percent={45} strokeWidth={2} showInfo={false} size="small" strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
+       <Song>{songData.title}</Song>
+       <Artist>{songData.artist}</Artist>
      </RightCol>
     </RowHeader>
   );

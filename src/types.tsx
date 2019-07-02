@@ -6,6 +6,10 @@ export interface UserStatsProps {
   userStats: User
 };
 
+export interface NowPlayingProps {
+  currentSong: NowPlayingSong
+};
+
 export interface VenuePlayerProps {
   currentSong: CurrentSong,
   tooglePlay:any,
@@ -52,4 +56,17 @@ export class CurrentSong {
     public album_cover: string,
     public duration: number
     ) {}
+};
+
+export class NowPlayingSong {
+  constructor (
+    public currentlyPlaying: boolean,
+    public diamonds: number,
+    public lockedIn: boolean,
+    public song: string,
+    public submission_time: string,
+    public user_id: string,
+    public venue_id: string,
+    private id?: number
+  ) {}
 };
