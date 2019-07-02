@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
   }, [])
 
   const redirectToLogIn = () => {
-    if (!loggedIn) return <Redirect to='/login' />
+    if (!loggedIn) return <Redirect to='/' />
   }
 
   return (

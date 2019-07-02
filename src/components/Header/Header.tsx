@@ -89,7 +89,7 @@ const Header: React.FC = () => {
   }
 
   const renderRedirectLogOut = () => {
-    if (logOut) return <Redirect to='/login' />
+    if (logOut) return <Redirect to='/' />
   }
 
   return (
