@@ -21,10 +21,12 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
             type: `PLAYLIST_RECEIVED`,
             playlist: message.data.updatedPlaylist
           });
-          dispatch({
-            type: `TICKETS_RECEIVED`,
-            tickets: message.data.tickets
-          });
+          if (message.data.tickets) {
+            dispatch({
+              type: `TICKETS_RECEIVED`,
+              tickets: message.data.tickets
+            });
+          }
         });
       });
   

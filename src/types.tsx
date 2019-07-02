@@ -30,7 +30,7 @@ export interface socketServerResponse {
   route: string,
   data: {
     updatedPlaylist: Array<SongQueue>,
-    tickets: number
+    tickets?: number
   }
 };
 
