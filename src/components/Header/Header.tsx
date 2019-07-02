@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
-  padding: 10px 20px;
+  padding: 10px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
