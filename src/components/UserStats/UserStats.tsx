@@ -13,9 +13,13 @@ const Container = styled(CenteredContent)`
 `;
 
 const DiamondIcon = styled(Icon)`
-  font-size: 40px;
+  font-size: 50px;
   svg {
     color: var(--fourth-color);
+  }
+
+  svg:hover {
+    opacity: .7;
   }
 
   @media(min-width: 800px) {
@@ -24,10 +28,14 @@ const DiamondIcon = styled(Icon)`
 `;
 
 const TicketIcon = styled(Icon)`
-  font-size: 40px;
+  font-size: 50px;
   transform: rotate(90deg);
   svg {
     color: var(--fourth-color);
+  }
+
+  svg:hover {
+    opacity: .7;
   }
 
   @media(min-width: 800px) {
@@ -35,18 +43,14 @@ const TicketIcon = styled(Icon)`
   }
 `;
 
-const StyledBadge = styled(Badge)`
-  font-size: 20px;
-
-  @media(min-width: 800px) {
-    font-size: 40px;
-  }
-`;
-
 const IconContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 150px;
+
+  @media(min-width: 800px) {
+    width: 250px;;
+  }
 `;
 
 const CntrCol = styled(Col)`
@@ -55,7 +59,6 @@ const CntrCol = styled(Col)`
 
 const UserName = styled(AccountName)`
   font-size: 14px;
-  margin: 0 0 40px 0;
 
   @media(min-width: 800px) {
     font-size: 20px;
@@ -68,21 +71,24 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+  const userTickets = userStats.tickets > 0 ? userStats.tickets : 0;
   return (
     <Row className="UserStats" type="flex" justify="space-around" align="middle">
       <Col>
         <IconContainer>
-          <Badge count={1} style={{backgroundColor:'var(--tertiary-color)'}}>
+          <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)', 
+              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <TicketIcon type="book" theme="filled" />
           </Badge>
-          <Badge count={5} style={{backgroundColor:'var(--secondary-color)', height: '20px'}}>
+          <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)', 
+              color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
             <DiamondIcon type="sketch-circle" theme="filled" />
           </Badge>
         </IconContainer>
       </Col>
       <CntrCol>
         <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
-        <UserName>Bob</UserName>
+        <UserName>{userStats.name}</UserName>
       </CntrCol>
     </Row>
   );

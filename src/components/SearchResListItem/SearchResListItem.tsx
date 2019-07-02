@@ -54,7 +54,7 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
     confirm({
       title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
       onOk() {
-        dispatch((addSongToQueue(songId, userAccessToken)));
+        dispatch((addSongToQueue(JSON.stringify(song), userAccessToken)));
         setAddedSongToQueue(true);
       }
     });

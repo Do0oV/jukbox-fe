@@ -60,7 +60,7 @@ export const Button = styled.button`
   border: 1px solid transparent;
   text-transform: uppercase;
   font-size: 10px;
-  transition: 0.5s ease;
+  transition: 0.5s;
 
   @media(min-width: 800px) {
     font-size: 14px;
@@ -94,8 +94,10 @@ export const MutedButton = styled(Button)`
   positive: relative;
   display: inline-block;
   cursor: pointer;
+  border-radius: 0;
   &:hover {
     border: 1px solid var(--fourth-color);
+    border-radius: 30px;
   }
 
 `;
