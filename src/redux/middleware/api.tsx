@@ -1,9 +1,13 @@
-import { BASE_URL } from '../../config'
+import { BASE_URL, STRIPE_BASE_URL } from '../../config'
 import { Middleware } from 'redux';
 
 export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
 
   if (!action.method) return next(action);
+
+  let SERVER_BASE_URL = action.type === 'BUY_DIAMONDS' ? STRIPE_BASE_URL : BASE_URL;
+
+  console.log(SERVER_BASE_URL)
 
   const defaultHeaders: HeadersInit = {
     'Content-Type': 'application/json',
@@ -22,7 +26,8 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
   next({
     type: `${action.type}_PENDING`
   });
-  fetch(BASE_URL + action.endpoint, {
+  fetch(
+    SERVER_BASE_URL + action.endpoint, {
     method: action.method,
     body: action.body ? JSON.stringify(action.body) : undefined,
     headers: headers

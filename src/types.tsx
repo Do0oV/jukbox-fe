@@ -70,3 +70,8 @@ export class NowPlayingSong {
     private id?: number
   ) {}
 };
+
+export interface WindowInterface extends Window {
+  Spotify: any;
+  Stripe: any;
+};

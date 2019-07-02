@@ -9,7 +9,8 @@ const initialState = {
   loading: false,
   accessToken: '',
   mySong: '',
-  tickets: ''
+  // tickets: '',
+  stripeSessionID: ''
 }
 
 const user: Reducer.Reducer = (state = initialState, action: any) => {
@@ -66,6 +67,11 @@ const user: Reducer.Reducer = (state = initialState, action: any) => {
         ...state,
         error: 'cannot add song to queue'
       };
+      case 'BUY_DIAMONDS_SUCCESS':
+        return {
+          ...state,
+          stripeSessionID: action.data.body
+        }
     default:
       return state;
   }

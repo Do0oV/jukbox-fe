@@ -1,10 +1,12 @@
 import React from 'react';
 import './UserStats.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
 import { CenteredContent, AccountName } from '../../assests/globalStyles';
 import styled from 'styled-components';
+import { WindowInterface } from '../../types';
+import { buyDiamonds } from '../../redux/actions/index'
 
 const Container = styled(CenteredContent)`
   @media(min-width: 800px) {
@@ -72,8 +74,17 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+
+  const Stripe = (window as WindowInterface).Stripe;
+  const stripe = Stripe('whsec_kQpAul8d4NFcYPMcJNnT9zgPlCsC9nez')
   const tickets = useSelector((state: any) => state.user.tickets);
   const userTickets = tickets > 0 ? tickets : 0;
+  const dispatch = useDispatch()
+
+  const handleOnDiamondClick = () => {
+    dispatch(buyDiamonds())
+  }
+
   return (
     <Row className="UserStats" type="flex" justify="space-around" align="middle">
       <Col>
@@ -84,7 +95,7 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
           </Badge>
           <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
               color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
-            <DiamondIcon type="sketch-circle" theme="filled" />
+            <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick}/>
           </Badge>
         </IconContainer>
       </Col>
