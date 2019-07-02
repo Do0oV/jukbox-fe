@@ -8,6 +8,7 @@ import { connectSocket } from '../../redux/actions/';
 import Header from '../../components/Header/Header';
 import NowPlaying from '../../components/NowPlaying/NowPLaying';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom'
 
 const PaddedContainer = styled.div`
   padding: 10px 5px;
@@ -18,18 +19,23 @@ const PaddedContainer = styled.div`
 const Dashboard: React.FC = () => {
 
   const userProfile = useSelector((state: any) => state.user.userProfile);
-  const playlist = useSelector((state: any) => state.playlist);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
+  const loggedIn = localStorage.getItem('access_token') && true;
 
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(connectSocket(userAccessToken));
   }, [])
 
+  const redirectToLogIn = () => {
+    if (!loggedIn) return <Redirect to='/login' />
+  }
+
   return (
     <div className="Dashboard">
+      {redirectToLogIn()}
       <Header />
       <PaddedContainer>
         <UserStats userStats={userProfile} />
@@ -38,11 +44,10 @@ const Dashboard: React.FC = () => {
         <NowPlaying />
       </PaddedContainer>
       <PaddedContainer>
-        <SongQueue songQueueItems={playlist}/>
+        <SongQueue songQueueItems={playlist} />
       </PaddedContainer>
     </div>
   );
 }
 
 export default Dashboard;
- 

@@ -35,6 +35,8 @@ const SearchContainer: React.FC = () => {
 
   const [goBackFlag, setGoBackFlag] = useState(false);
 
+  const loggedIn = localStorage.getItem('access_token') && true;
+
   const handleGoBack = () => {
     setGoBackFlag(true)
   }
@@ -54,9 +56,14 @@ const SearchContainer: React.FC = () => {
     if (goBackFlag) return <Redirect to='/dashboard' />
   }
 
+  const redirectToLogIn = () => {
+    if (!loggedIn) return <Redirect to='/login' />
+  }
+
   return (
     <Container>
       {renderRedirect()}
+      {redirectToLogIn()}
       <StyledBackIcon type="rollback" onClick={handleGoBack}/>
       <StyledSearchBar placeholder="search songs" onChange={handleChange} style={{ width: "85%" }} enterButton />
       {searchResults ? <SearchResList songs={searchResults} /> : null}
