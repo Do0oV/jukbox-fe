@@ -18,8 +18,8 @@ const Container = styled.div`
 `
 
 const StyledBackIcon = styled(Icon)`
-font-size: 35px;
-padding: 4px 0px 0px 20px;
+font-size: 30px;
+padding: 10px 0px 0px 20px;
   svg {
     fill: var(--secondary-color);
   }
@@ -65,7 +65,7 @@ const SearchContainer: React.FC = () => {
     <Container>
       {renderRedirect()}
       {redirectToLogIn()}
-      <StyledBackIcon type="rollback" onClick={handleGoBack}/>
+      <StyledBackIcon type="close-circle" theme="filled" onClick={handleGoBack}/>
       <StyledSearchBar allowClear placeholder="Search Songs" onChange={handleChange} style={{ width: "85%" }} enterButton />
       {searchResults ? <SearchResList songs={searchResults} /> : null}
     </Container>

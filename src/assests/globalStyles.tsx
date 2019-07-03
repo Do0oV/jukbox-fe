@@ -78,8 +78,7 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  margin: 20px auto;
-  width: 80vw;
+  margin: 10px 10px;
   height: 8vh;
   display: flex;
   flex-direction: row;
@@ -105,6 +104,7 @@ export const MutedButton = styled(Button)`
 `;
 
 export const AccountName = styled.div`
+  font-weight: 700;
   letter-spacing: 1px;
   color: var(--fourth-color);
   background-color: rgb(31, 30, 33);

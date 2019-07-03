@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import './Header.css';
-import { Icon } from 'antd';
+import { Icon, Button } from 'antd';
 import { SmallLogo } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { cleanUpSearchState } from '../../redux/actions/';
+// import { Button } from 'antd/lib/radio';
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
-  padding: 10px 40px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,20 +22,22 @@ const Container = styled.div`
 `;
 
 const SubContainer = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 `;
 
 const Logout = styled.button`
-  background-color: transparent;
-  border: none;
-  color: var(--fourth-color);
-  border: 1px solid transparent;
+  width: 30%;
+  background-color: black;
+  border: 1px solid #abbdd9;
+  border-radius: 6px
+  color: #fff;
   font-size: 12px;
   padding: 5px;
   transition: .5s;
+  margin-left: 10px;
 
   &:hover {
     border: 1px solid white;
@@ -46,26 +49,29 @@ const Logout = styled.button`
     padding: 18px;
   }
 `;
+const Search = styled(Logout)`
 
-const SearchIcon = styled(Icon)`
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 20px;
-  padding: 10px;
-  border: 1px solid transparent;
-  transition: .5s;
-
-  &:hover {
-    border: 1px solid var(--secondary-color);
-    color: var(--primary-bg-color);
-    border-radius: 50px;
-  }
-
-  @media(min-width: 800px) {
-    font-size: 28px;
-    padding: 20px;
-  }
 `;
+
+// const SearchIcon = styled(Icon)`
+//   font-size: 24px;
+//   font-weight: bold;
+//   margin-right: 20px;
+//   padding: 10px;
+//   border: 1px solid transparent;
+//   transition: .5s;
+
+//   &:hover {
+//     border: 1px solid var(--secondary-color);
+//     color: var(--primary-bg-color);
+//     border-radius: 50px;
+//   }
+
+//   @media(min-width: 800px) {
+//     font-size: 28px;
+//     padding: 20px;
+//   }
+// `;
 
 const Header: React.FC = () => {
 
@@ -97,9 +103,9 @@ const Header: React.FC = () => {
       <SmallLogo>JUKBOX</SmallLogo>
       <SubContainer>
         {renderRedirect()}
-        {renderRedirectLogOut()};
-        <SearchIcon type="search" style={{ color: 'var(--secondary-color)' }} onClick={handleOnSearch} />
-        <Logout onClick={handleLogOut}>LOGOUT</Logout>
+        {renderRedirectLogOut()}
+        <Search onClick={handleOnSearch}>Search</Search>
+        <Logout onClick={handleLogOut}>Logout</Logout>
       </SubContainer>
     </Container>
   );

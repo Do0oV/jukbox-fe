@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
 import { CenteredContent, AccountName, ListItem } from '../../assests/globalStyles';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { WindowInterface } from '../../types';
 import { buyDiamonds } from '../../redux/actions/index'
 
@@ -16,13 +16,13 @@ const Container = styled.div`
 `;
 
 const SubContainer = styled(ListItem)`
-  margin: 10px 0;
-  height: 100%;
-  justify-content: space-around;
+  // margin: 10px 0;
+  // height: 100%;
+  // justify-content: space-around;
 `;
 
 const DiamondIcon = styled(Icon)`
-  font-size: 50px;
+  font-size: 40px;
   svg {
     color: var(--fourth-color);
   }
@@ -37,8 +37,8 @@ const DiamondIcon = styled(Icon)`
 `;
 
 const TicketIcon = styled(Icon)`
-  font-size: 50px;
-  transform: rotate(90deg);
+  font-size: 40px;
+  // transform: rotate(90deg);
   svg {
     color: var(--fourth-color);
   }
@@ -60,6 +60,7 @@ const IconContainer = styled.div`
 
 const CntrCol = styled(Col)`
   text-align: center;
+  padding-left: 10px;
 `;
 
 const UserName = styled(AccountName)`
@@ -92,15 +93,15 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => 
     <Container>
       <SubContainer>
         <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
-          <TicketIcon type="book" theme="filled" />
+            color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold' }}>
+          <TicketIcon type="plus-circle" theme="filled" />
         </Badge>
         <CntrCol>
-          <StyledAvatar size={80} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
+          <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
           <UserName>{userStats.name}</UserName>
         </CntrCol>
         <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
+            color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold' }}>
           <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
         </Badge>
         </SubContainer>
