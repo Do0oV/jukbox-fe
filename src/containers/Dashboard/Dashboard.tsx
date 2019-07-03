@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
 
 const PaddedContainer = styled.div`
-  padding: 10px 5px;
+  // padding: 10px 5px;
   background-color: var(--primary-bg-color);
   color: var(--primary-color);
 `;

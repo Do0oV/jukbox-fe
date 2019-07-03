@@ -1,30 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import './UserStats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
-import { Row, Col, Avatar, Icon, Badge } from 'antd';
-import { CenteredContent, AccountName, ListItem } from '../../assests/globalStyles';
+import { Col, Avatar, Icon, Badge } from 'antd';
+import { AccountName, ListItem } from '../../assests/globalStyles';
 import styled from 'styled-components/macro';
-import { WindowInterface } from '../../types';
 import { buyDiamonds } from '../../redux/actions/index'
+import { cleanUpSearchState } from '../../redux/actions/';
+import { Redirect } from 'react-router-dom'
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 15px 0;
 `;
 
 const SubContainer = styled(ListItem)`
-  // margin: 10px 0;
-  // height: 100%;
-  // justify-content: space-around;
+width: 100%;
+  justify-content: space-around;
 `;
 
 const DiamondIcon = styled(Icon)`
   font-size: 40px;
   svg {
-    color: var(--fourth-color);
+    color: #5ab1bb;
   }
 
   svg:hover {
@@ -38,23 +37,11 @@ const DiamondIcon = styled(Icon)`
 
 const TicketIcon = styled(Icon)`
   font-size: 40px;
-  // transform: rotate(90deg);
-  svg {
-    color: var(--fourth-color);
+    color: #5ab1bb;
   }
 
   @media(min-width: 800px) {
     font-size: 60px;
-  }
-`;
-
-const IconContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 150px;
-
-  @media(min-width: 800px) {
-    width: 250px;;
   }
 `;
 
@@ -73,38 +60,51 @@ const UserName = styled(AccountName)`
 `;
 
 const StyledAvatar = styled(Avatar)`
-  color: var(--tertiary-color);
+  color: #f7dd72;
 `;
 
-const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => {
+const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
 
-
-  const Stripe = (window as WindowInterface).Stripe;
-  const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5')
   const tickets = useSelector((state: any) => state.user.tickets);
   const userTickets = tickets > 0 ? tickets : 0;
   const dispatch = useDispatch()
+
+  const [searchFlag, setSearchFlag] = useState(false);
 
   const handleOnDiamondClick = () => {
     dispatch(buyDiamonds());
   }
 
+  const handleOnClickTicket = () => {
+    setSearchFlag(true)
+    dispatch(cleanUpSearchState())
+  }
+
+  const renderRedirect = () => {
+    if (searchFlag) return <Redirect to='/search' />
+  }
+
   return (
     <Container>
       <SubContainer>
-        <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold' }}>
-          <TicketIcon type="plus-circle" theme="filled" />
+        {renderRedirect()}
+        <Badge showZero count={userTickets} style={{
+          backgroundColor: '#f7dd72',
+          color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold'
+        }}>
+          <TicketIcon type="plus-circle" theme="filled" onClick={handleOnClickTicket} />
         </Badge>
         <CntrCol>
-          <StyledAvatar size={70} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
+          <StyledAvatar size={70} icon="user" style={{ backgroundColor: '#f7dd72' }}>Bob</StyledAvatar>
           <UserName>{userStats.name}</UserName>
         </CntrCol>
-        <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold' }}>
+        <Badge showZero count={userStats.diamonds} style={{
+          backgroundColor: 'var(--secondary-color)',
+          color: 'var(--primary-bg-color)', fontSize: '11px', fontWeight: 'bold'
+        }}>
           <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
         </Badge>
-        </SubContainer>
+      </SubContainer>
     </Container>
   );
 }

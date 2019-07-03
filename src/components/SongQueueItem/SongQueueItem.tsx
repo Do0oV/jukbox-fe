@@ -80,7 +80,7 @@ const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }
     <div style={userEmail === songUserEmail ? style : {}}>
       <ListItem className="ListItem" >
         <RowContainer>
-          <img height="60px" width="60px" src={song.album_cover[0]} />
+          <img height="70px" width="70px" src={song.album_cover[0]} />
           <ColContainer>
             <StyledSong>{song.title}</StyledSong>
             <StyledArtist>{song.artist}</StyledArtist>

@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import './Header.css';
-import { Icon, Button } from 'antd';
 import { SmallLogo } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { cleanUpSearchState } from '../../redux/actions/';
-// import { Button } from 'antd/lib/radio';
 
 const Container = styled.div`
   background-color: var(--primary-bg-color);
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,13 +27,13 @@ const SubContainer = styled.div`
 const Logout = styled.button`
   width: 30%;
   background-color: black;
-  border: 1px solid #abbdd9;
+  border: 2px solid #f7dd72;
   border-radius: 6px
-  color: #fff;
+  color: #f7dd72;
   font-size: 12px;
   padding: 5px;
   transition: .5s;
-  margin-left: 10px;
+  margin-right: 10px;
 
   &:hover {
     border: 1px solid white;
@@ -49,49 +45,14 @@ const Logout = styled.button`
     padding: 18px;
   }
 `;
-const Search = styled(Logout)`
-
-`;
-
-// const SearchIcon = styled(Icon)`
-//   font-size: 24px;
-//   font-weight: bold;
-//   margin-right: 20px;
-//   padding: 10px;
-//   border: 1px solid transparent;
-//   transition: .5s;
-
-//   &:hover {
-//     border: 1px solid var(--secondary-color);
-//     color: var(--primary-bg-color);
-//     border-radius: 50px;
-//   }
-
-//   @media(min-width: 800px) {
-//     font-size: 28px;
-//     padding: 20px;
-//   }
-// `;
 
 const Header: React.FC = () => {
 
-  const [searchFlag, setSearchFlag] = useState(false);
   const [logOut, setLogOut] = useState(false)
-
-  const dispatch = useDispatch();
-
-  const handleOnSearch = () => {
-    setSearchFlag(true)
-    dispatch(cleanUpSearchState())
-  }
 
   const handleLogOut = () => {
     localStorage.removeItem('access_token');
     setLogOut(true);
-  }
-
-  const renderRedirect = () => {
-    if (searchFlag) return <Redirect to='/search' />
   }
 
   const renderRedirectLogOut = () => {
@@ -102,9 +63,7 @@ const Header: React.FC = () => {
     <Container className="Header">
       <SmallLogo>JUKBOX</SmallLogo>
       <SubContainer>
-        {renderRedirect()}
         {renderRedirectLogOut()}
-        <Search onClick={handleOnSearch}>Search</Search>
         <Logout onClick={handleLogOut}>Logout</Logout>
       </SubContainer>
     </Container>
