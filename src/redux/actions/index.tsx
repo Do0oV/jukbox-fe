@@ -109,7 +109,7 @@ export const connectSocket = (userAccessToken: string) => {
   };
 };
 
-export const updateSongDiamonds = (songId: string, userAccessToken: string) => {
+export const updateSongDiamonds = (songId: number, userAccessToken: string) => {
   return {
     type: 'ADD_SONG_DIAMONDS',
     socket: {
@@ -128,5 +128,13 @@ export const updateSongDiamonds = (songId: string, userAccessToken: string) => {
 export const cleanUpSearchState = () => {
   return {
     type: 'EMPTY_SEARCH_RESULT_STATE',
+  }
+}
+
+export const buyDiamonds = () => {
+  return {
+    type: 'BUY_DIAMONDS',
+    method: 'POST',
+    endpoint: '',
   }
 }

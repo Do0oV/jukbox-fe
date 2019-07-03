@@ -25,7 +25,9 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
+      window.Stripe = Stripe;
       window.onSpotifyWebPlaybackSDKReady = () => {
         window.Spotify = Spotify;
       }

@@ -3,7 +3,8 @@ export interface LoginProps {
 };
 
 export interface UserStatsProps {
-  userStats: User
+  userStats: User,
+  stripeSessionID: any 
 };
 
 export interface NowPlayingProps {
@@ -43,7 +44,7 @@ export class SongQueue {
     public lockedIn: boolean,
     public user_id: string,
     public venue_id: string,
-    private id?: number
+    public id?: number
   ) {}
 };
 
@@ -69,4 +70,9 @@ export class NowPlayingSong {
     public venue_id: string,
     private id?: number
   ) {}
+};
+
+export interface WindowInterface extends Window {
+  Spotify: any;
+  Stripe: any;
 };

@@ -19,7 +19,6 @@ const UserButton = styled(Button)`
 `;
 
 const SplashScreen: React.FC = (props: any) => {
-  console.log(props);
 
   const handleUserOnClick = () => {
     props.history.push('/login');

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './UserStats.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
 import { CenteredContent, AccountName, ListItem } from '../../assests/globalStyles';
 import styled from 'styled-components';
+import { WindowInterface } from '../../types';
+import { buyDiamonds } from '../../redux/actions/index'
 
 const Container = styled.div`
   width: 100%;
@@ -73,9 +75,19 @@ const StyledAvatar = styled(Avatar)`
   color: var(--tertiary-color);
 `;
 
-const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
+const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => {
+
+
+  const Stripe = (window as WindowInterface).Stripe;
+  const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5')
   const tickets = useSelector((state: any) => state.user.tickets);
   const userTickets = tickets > 0 ? tickets : 0;
+  const dispatch = useDispatch()
+
+  const handleOnDiamondClick = () => {
+    dispatch(buyDiamonds());
+  }
+
   return (
     <Container>
       <SubContainer>
@@ -89,7 +101,7 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
         </CntrCol>
         <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
             color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
-          <DiamondIcon type="sketch-circle" theme="filled" />
+          <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
         </Badge>
         </SubContainer>
     </Container>
