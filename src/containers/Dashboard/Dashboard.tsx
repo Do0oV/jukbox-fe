@@ -23,8 +23,12 @@ console.log(stripeSessionID)
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
-  const currentSong = playlist.find((song: any) => song.currentlyplaying);
   const loggedIn = localStorage.getItem('access_token') && true;
+  let currentSong;
+  
+  if (playlist !== undefined) {
+    currentSong = playlist.find((song: any) => song.currentlyplaying);
+  }
 
   useEffect(() => {
     dispatch(getUserProfile());

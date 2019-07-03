@@ -3,16 +3,22 @@ import './UserStats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
 import { Row, Col, Avatar, Icon, Badge } from 'antd';
-import { CenteredContent, AccountName } from '../../assests/globalStyles';
+import { CenteredContent, AccountName, ListItem } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { WindowInterface } from '../../types';
 import { buyDiamonds } from '../../redux/actions/index'
 
-const Container = styled(CenteredContent)`
-  @media(min-width: 800px) {
-    width: 90vw;
-    margin: 0 auto;
-  }
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+`;
+
+const SubContainer = styled(ListItem)`
+  margin: 10px 0;
+  height: 100%;
+  justify-content: space-around;
 `;
 
 const DiamondIcon = styled(Icon)`
@@ -35,10 +41,6 @@ const TicketIcon = styled(Icon)`
   transform: rotate(90deg);
   svg {
     color: var(--fourth-color);
-  }
-
-  svg:hover {
-    opacity: .7;
   }
 
   @media(min-width: 800px) {
@@ -87,28 +89,22 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => 
   }
 
   return (
-    <Row className="UserStats" type="flex" justify="space-around" align="middle">
-      <Col>
-        <IconContainer>
-          <Badge showZero count={userTickets} style={{
-            backgroundColor: 'var(--tertiary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold'
-          }}>
-            <TicketIcon type="book" theme="filled" />
-          </Badge>
-          <Badge showZero count={userStats.diamonds} style={{
-            backgroundColor: 'var(--secondary-color)',
-            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold'
-          }}>
-            <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
-          </Badge>
-        </IconContainer>
-      </Col>
-      <CntrCol>
-        <StyledAvatar size={70} icon="user" style={{ backgroundColor: 'var(--primary-color)' }}>Bob</StyledAvatar>
-        <UserName>{userStats.name}</UserName>
-      </CntrCol>
-    </Row>
+    <Container>
+      <SubContainer>
+        <Badge showZero count={userTickets} style={{backgroundColor:'var(--tertiary-color)',
+            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
+          <TicketIcon type="book" theme="filled" />
+        </Badge>
+        <CntrCol>
+          <StyledAvatar size={80} icon="user" style={{backgroundColor: 'var(--primary-color)'}}>Bob</StyledAvatar>
+          <UserName>{userStats.name}</UserName>
+        </CntrCol>
+        <Badge showZero count={userStats.diamonds} style={{backgroundColor:'var(--secondary-color)',
+            color: 'var(--primary-bg-color)', fontSize: '15px', fontWeight: 'bold' }}>
+          <DiamondIcon type="sketch-circle" theme="filled" onClick={handleOnDiamondClick} />
+        </Badge>
+        </SubContainer>
+    </Container>
   );
 }
 

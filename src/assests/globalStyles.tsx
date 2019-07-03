@@ -42,14 +42,16 @@ export const Song = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: var(--secondary-color);
-  text-align: center;
+  text-align: left;
+  margin: 0 20px;
 `;
 
 export const Artist = styled.div`
   text-transform: uppercase;
   font-size: 14px;
   color: var(--primary-bg-color);
-  text-align: center;
+  text-align: left;
+  margin: 0 20px;
 `;
 
 export const Button = styled.button`
@@ -76,8 +78,8 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  margin: 6px auto 0 auto;
-  width: 95vw;
+  margin: 20px auto;
+  width: 80vw;
   height: 8vh;
   display: flex;
   flex-direction: row;

@@ -67,13 +67,13 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
         <StyledSong>{song.title}</StyledSong>
         <StyledArtist>{song.artist}</StyledArtist>
       </Container>
-      {/* {
-        tickets > 0 */}
+      { 
+        tickets > 0 
           ? <div >
             <StyledIcon type="plus-circle" onClick={() => showConfirm(song)} />
           </div>
-      //     : null
-      // }
+           : null
+      }
     </ListItem>
   )
 }
