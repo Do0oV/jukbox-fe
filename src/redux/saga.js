@@ -1,11 +1,11 @@
-import { put, takeEvery, all, call } from 'redux-saga/effects';
+import { put, takeEvery, all } from 'redux-saga/effects';
 import {playSong} from './actions';
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
-
 // Our worker Saga: will perform the async task
 export function* play(action) {
+  yield delay(1000);
   yield put(playSong('hello'));
 }
 

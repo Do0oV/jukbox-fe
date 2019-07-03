@@ -12,7 +12,7 @@ export interface NowPlayingProps {
 
 export interface VenuePlayerProps {
   currentSong: CurrentSong,
-  tooglePlay:any,
+  togglePlay:any,
   playing:boolean,
   position: number
 }
