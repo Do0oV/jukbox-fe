@@ -59,9 +59,9 @@ const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }
   const userEmail = useSelector((state: any) => state.user.userProfile.email)
   const accessToken = useSelector((state: any) => state.user.accessToken)
   
-  const showConfirm = () => {
+  const showConfirm = (song: CurrentSong) => {
     confirm({
-      title: `Do you want to spend 5 diamonds to promote this song?`,
+      title: `Do you want to spend 5 diamonds to promote ${song.title} by ${song.artist}?`,
       onOk() {
         songQueueItem.id && dispatch(updateSongDiamonds(songQueueItem.id, accessToken))
         dispatch(getUserProfile());
@@ -80,7 +80,7 @@ const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }
       </RowContainer>
       <RowContainer>
         {userEmail === songUserEmail && <StarIcon type="star" theme="outlined" />}
-        <DiamondIcon type="sketch-circle" theme="filled" onClick={showConfirm}/>
+        <DiamondIcon type="sketch-circle" theme="filled" onClick={() => showConfirm(song)}/>
       </RowContainer>
     </ListItem>
   );
