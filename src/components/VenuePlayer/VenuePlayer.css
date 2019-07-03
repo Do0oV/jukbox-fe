@@ -1,0 +1,41 @@
+.ant-progress {
+  position: relative;
+  bottom: 90%;
+  width: 100% !important;
+}
+
+.ant-progress-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ant-progress-circle-path {
+  stroke: var(--fourth-color) !important;
+}
+
+.ant-progress-circle-trail {
+  stroke: transparent !important;
+}
+
+.img-container {
+  height: 250px;
+  width: 250px;
+  margin-top: 50px;
+}
+
+@media (min-width: 800px) {
+  .img-container {
+    height: 350px;
+    width: 350px;
+  }
+}
+
+img {
+  position: relative;
+  top: 5%;
+  left: 5%;
+  border-radius: 50%;
+  height: 90%;
+  width: 90%;
+}
+

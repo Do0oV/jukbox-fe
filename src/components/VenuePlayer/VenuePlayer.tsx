@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Progress, Icon } from 'antd';
 import { CenteredContent, Song, Artist } from '../../assests/globalStyles';
 import moment from 'moment';
+import './VenuePlayer.css';
 import 'moment-duration-format';
 
 const ArtistPlayer = styled(Artist)`
@@ -47,15 +48,6 @@ const PlayIcon = styled(Icon)`
 `;
 
 const AlbumCover = styled.img`
-  width: 220px;
-  height: 202px;
-  margin-top: 50px;
-
-  @media(min-width: 800px) {
-    margin-top: 30px;
-    width: 250px;
-    height: 250px;
-  }
 `;
 const TimerCount = styled.div`
   width: 100%;
@@ -77,10 +69,13 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playi
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
       <>
-        <AlbumCover src={currentSong.album_cover} />
+        <div className='img-container'>
+          <img src={currentSong.album_cover} />
+          <Progress type='circle' percent={position * 100 / currentSong.duration} strokeWidth={1.5} 
+          showInfo={false}></Progress>
+        </div>
         <SongPlayer>{currentSong.title}</SongPlayer>
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
-        <Progress percent={position * 100 / currentSong.duration} strokeWidth={4} showInfo={false} strokeColor={'var(--tertiary-color)'}>Progress Bar</Progress>
         <TimerCount>
           <div>{current}</div>
           <div>{end}</div>
