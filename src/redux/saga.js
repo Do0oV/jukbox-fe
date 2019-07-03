@@ -1,6 +1,7 @@
 import { put, takeEvery, all } from 'redux-saga/effects';
 import {playSong , buyDiamonds} from './actions';
 
+const STRIPE_PUBLIC_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
 // Our worker Saga: will perform the async task
@@ -18,7 +19,7 @@ export function* watchPlayAsync(deviceId) {
 export function* buildStripe(action) {
 
   const Stripe = window.Stripe;
-  const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5');
+  const stripe = Stripe(STRIPE_PUBLIC_KEY);
   stripe.redirectToCheckout({
     sessionId: action.data
   })
