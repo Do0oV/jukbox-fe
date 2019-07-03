@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
   accessToken: '',
   mySong: '',
-  // tickets: '',
+  tickets: '',
   stripeSessionID: '',
   isCheckout: false,
 }

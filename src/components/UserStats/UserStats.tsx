@@ -7,7 +7,6 @@ import { CenteredContent, AccountName } from '../../assests/globalStyles';
 import styled from 'styled-components';
 import { WindowInterface } from '../../types';
 import { buyDiamonds } from '../../redux/actions/index'
-// import store from '../../index'
 
 const Container = styled(CenteredContent)`
   @media(min-width: 800px) {
@@ -82,16 +81,9 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats, stripeSessionID }) => 
   const tickets = useSelector((state: any) => state.user.tickets);
   const userTickets = tickets > 0 ? tickets : 0;
   const dispatch = useDispatch()
-  // const stripeSessionID = useSelector((state: any) => state.user.stripeSessionID) 
-  // const stripeSessionID = store.getState().user
 
   const handleOnDiamondClick = () => {
     dispatch(buyDiamonds());
-    // stripe.redirectToCheckout({
-    //   sessionId: stripeSessionID
-    // }).then(function (result: any) {
-    //   console.log(result);
-    // });
   }
 
   return (
