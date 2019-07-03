@@ -70,7 +70,7 @@ const TimerCount = styled.div`
   }
 `;
 
-const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playing, position}) => {
+const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playing, position}) => {
     let current = moment.duration(position).format("*m:ss");
     let end = moment.duration(currentSong.duration).format("*m:ss");
   return (
@@ -85,7 +85,7 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, tooglePlay, playi
           <div>{current}</div>
           <div>{end}</div>
         </TimerCount>
-        <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={tooglePlay}/>
+        <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={togglePlay}/>
       </>}
     </CenteredContent>
   );

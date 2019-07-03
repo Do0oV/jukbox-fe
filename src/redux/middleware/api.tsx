@@ -1,8 +1,11 @@
-import { BASE_URL, STRIPE_BASE_URL } from '../../config'
 import { Middleware } from 'redux';
 import { WindowInterface } from '../../types';
 
-export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (next: any) => (action: any) => {
+const BASE_URL = process.env.REACT_APP_API_URL;
+const STRIPE_BASE_URL = process.env.REACT_APP_STRIPE_BASE_URL;
+
+export const api: Middleware<any, any, any> = ({ dispatch, getState }:
+ any) => (next: any) => (action: any) => {
 
   if (!action.method) return next(action);
 
@@ -36,15 +39,7 @@ export const api: Middleware<any, any, any> = ({ dispatch, getState }: any) => (
       dispatch({
         type: `${action.type}_SUCCESS`,
         data
-      })
-      if (action.type === 'BUY_DIAMONDS') {
-        const Stripe = (window as WindowInterface).Stripe;
-        const stripe = Stripe('pk_test_IDBjg4XAVMalpMSZPWu6Kvmq00flHs90K5');
-        stripe.redirectToCheckout({
-          sessionId: data
-        }).then(function (result: any) {
-        });
-      }
+      });
     })
     .catch(error => {
       dispatch({

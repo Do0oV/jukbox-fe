@@ -60,9 +60,6 @@ const Player: React.FC = (props:any) => {
         const device_id = window.localStorage.getItem('_spharmony_device_id') || '';
         dispatch(setDeviceId(data.device_id));
         dispatch(transferPlayerPlayback(data.device_id));
-        setTimeout(() => {
-          dispatch(playSong(deviceId));
-        }, 3000);
       });
     };
   };
@@ -97,10 +94,11 @@ const Player: React.FC = (props:any) => {
   // action to start || stop session
   const startSession = () => {
     setSession(prev => {
-      prev &&isPlaying && tooglePlay();
+      prev && isPlaying && togglePlay();
       return !prev;
     });
     createPlayer();
+
   };
 
   // if flag to lock next song is false keep looking to send request to BE
@@ -115,7 +113,7 @@ const Player: React.FC = (props:any) => {
   }
 
   // player controls
-  const tooglePlay = () => {
+  const togglePlay = () => {
     Venue.player.togglePlay().then(() => {
       dispatch(isPLaying(!isPlaying));
     });
@@ -145,7 +143,7 @@ const Player: React.FC = (props:any) => {
     <VenueInfos />
     <Switch onChange={startSession} checkedChildren='Stop Session' unCheckedChildren='Start Session' />
     {session &&
-      <VenuePlayer currentSong={currentSong} tooglePlay={tooglePlay} playing={isPlaying} position={position}/>}
+      <VenuePlayer currentSong={currentSong} togglePlay={togglePlay} playing={isPlaying} position={position}/>}
       </CenteredContent>
       </div>
       );

@@ -110,7 +110,7 @@ export const connectSocket = (userAccessToken: string) => {
 };
 
 export const updateSongDiamonds = (songId: number, userAccessToken: string) => {
-  return { 
+  return {
     type: 'ADD_SONG_DIAMONDS',
     socket: {
       command: 'updateSongQueue',

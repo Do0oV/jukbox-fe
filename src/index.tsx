@@ -12,6 +12,10 @@ import { Provider } from 'react-redux';
 import { resetFlag } from './redux/middleware/resetFlag';
 import {connectSocket} from './redux/actions';
 
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './redux/saga';
+const sagaMiddleware = createSagaMiddleware();
+
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any;
@@ -22,7 +26,9 @@ const preloadedStoreRAW = localStorage.getItem('state');
 const preloadedStore = preloadedStoreRAW ? JSON.parse(preloadedStoreRAW) : undefined;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, preloadedStore, composeEnhancers(applyMiddleware(api, socket, resetFlag)));
+const store = createStore(allReducers, preloadedStore, composeEnhancers(applyMiddleware(sagaMiddleware, api, socket, resetFlag)));
+
+sagaMiddleware.run(rootSaga);
 
 if (store.getState().user.accessToken) {
   store.dispatch(connectSocket(store.getState().user.accessToken));
