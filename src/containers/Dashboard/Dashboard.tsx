@@ -20,15 +20,16 @@ const Dashboard: React.FC = () => {
   const userProfile = useSelector((state: any) => state.user.userProfile);
   const stripeSessionID = useSelector((state: any) => state.user.stripeSessionID);
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
-  const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
   const loggedIn = localStorage.getItem('access_token') && true;
+  let playlist = useSelector((state: any) => state.playlist.playlist);
   let currentSong;
   
   if (playlist !== undefined) {
     currentSong = playlist.find((song: any) => song.currentlyplaying);
+    playlist = playlist.filter((song: any) => !song.currentlyplaying);
   }
-
+  
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(connectSocket(userAccessToken));
