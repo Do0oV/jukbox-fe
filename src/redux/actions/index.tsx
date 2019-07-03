@@ -130,3 +130,11 @@ export const cleanUpSearchState = () => {
     type: 'EMPTY_SEARCH_RESULT_STATE',
   }
 }
+
+export const buyDiamonds = () => {
+  return {
+    type: 'BUY_DIAMONDS',
+    method: 'POST',
+    endpoint: '',
+  }
+}
