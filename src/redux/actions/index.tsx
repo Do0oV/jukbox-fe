@@ -109,7 +109,7 @@ export const connectSocket = (userAccessToken: string) => {
   };
 };
 
-export const updateSongDiamonds = (songId: string, userAccessToken: string) => {
+export const updateSongDiamonds = (songId: number, userAccessToken: string) => {
   return { 
     type: 'ADD_SONG_DIAMONDS',
     socket: {

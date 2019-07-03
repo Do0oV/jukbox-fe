@@ -29,7 +29,7 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
           }
         });
       });
-  
+      
       socket.on('error', (error: Error) => {
         dispatch({
           type: `SOCKET_ERROR`,
