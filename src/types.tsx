@@ -44,7 +44,7 @@ export class SongQueue {
     public lockedIn: boolean,
     public user_id: string,
     public venue_id: string,
-    private id?: number
+    public id?: number
   ) {}
 };
 
