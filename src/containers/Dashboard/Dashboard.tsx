@@ -19,7 +19,6 @@ const PaddedContainer = styled.div`
 const Dashboard: React.FC = () => {
   const userProfile = useSelector((state: any) => state.user.userProfile);
   const stripeSessionID = useSelector((state: any) => state.user.stripeSessionID);
-console.log(stripeSessionID)
   const userAccessToken = useSelector((state: any) => state.user.accessToken);
   const playlist = useSelector((state: any) => state.playlist.playlist);
   const dispatch = useDispatch();
