@@ -1,6 +1,8 @@
-import { BASE_URL, STRIPE_BASE_URL } from '../../config'
 import { Middleware } from 'redux';
 import { WindowInterface } from '../../types';
+
+const BASE_URL = process.env.REACT_APP_API_URL;
+const STRIPE_BASE_URL = process.env.REACT_APP_STRIPE_BASE_URL;
 
 export const api: Middleware<any, any, any> = ({ dispatch, getState }:
  any) => (next: any) => (action: any) => {
