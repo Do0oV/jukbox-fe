@@ -60,9 +60,6 @@ const Player: React.FC = (props:any) => {
         const device_id = window.localStorage.getItem('_spharmony_device_id') || '';
         dispatch(setDeviceId(data.device_id));
         dispatch(transferPlayerPlayback(data.device_id));
-        setTimeout(() => {
-          dispatch(playSong(deviceId));
-        }, 3000);
       });
     };
   };
