@@ -25,7 +25,7 @@ const SubContainer = styled.div`
 `;
 
 const Logout = styled.button`
-  width: 30%;
+  width: 75px;
   background-color: black;
   border: 2px solid #f7dd72;
   border-radius: 6px
@@ -36,13 +36,12 @@ const Logout = styled.button`
   margin-right: 10px;
 
   &:hover {
-    border: 1px solid white;
-    border-radius: 30px;
+    border-radius: 25px;
   }
 
   @media(min-width: 800px) {
+    width: 100px;
     font-size: 16px;
-    padding: 18px;
   }
 `;
 

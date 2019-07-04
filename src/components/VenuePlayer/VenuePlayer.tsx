@@ -7,11 +7,13 @@ import moment from 'moment';
 import './VenuePlayer.css';
 import 'moment-duration-format';
 
+
 const ArtistPlayer = styled(Artist)`
   color: var(--fourth-color);
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 4px;
   margin: 10px 0 20px 0;
+  text-align: center;
 
   @media(min-width: 800px) {
     font-size: 22px;
@@ -19,9 +21,10 @@ const ArtistPlayer = styled(Artist)`
 `;
 
 const SongPlayer = styled(Song)`
-  font-size: 24px;
+  font-size: 17px;
   letter-spacing: 4px;
   margin: 25px 0 0 0;
+  text-align: center;
 
   @media(min-width: 800px) {
     font-size: 28px;
@@ -47,10 +50,19 @@ const PlayIcon = styled(Icon)`
   }
 `;
 
+const AlbumCover = styled.img`
+  position: relative;
+  top: 5%;
+  left: 5%;
+  border-radius: 50%;
+  height: 90%;
+  width: 90%;
+`;
+
 const TimerCount = styled.div`
   width: 100%;
   display: flex;
-  margin: 10px 0;
+  margin: 30px 0 20px 0;
   justify-content: center;
   letter-spacing: 2px;
   font-size: 14px;
@@ -61,6 +73,11 @@ const TimerCount = styled.div`
   }
 `;
 
+const adjustLength = function(text: string) {
+  return text.length > 30 ? text.slice(0,30) + '...' : text;
+}
+
+
 const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playing, position}) => {
     let current = moment.duration(position).format("*m:ss");
     let end = moment.duration(currentSong.duration).format("*m:ss");
@@ -68,19 +85,19 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playi
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
       <>
-        <TimerCount>
+        <TimerCount className='timer'>
           <div>{current}</div>
           <div>{' / '}</div>
           <div>{end}</div>
         </TimerCount>
         <div className='img-container'>
-          <img src={currentSong.album_cover} />
+          <AlbumCover src={currentSong.album_cover} className='albumPlayer'/>
           <Progress type='circle' percent={position * 100 / currentSong.duration} strokeWidth={1.5} 
-          showInfo={false}></Progress>
+          showInfo={false} className='progressp'></Progress>
         </div>
-        <SongPlayer>{currentSong.title}</SongPlayer>
-        <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
-        <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={togglePlay}/>
+          <SongPlayer className='songPlayer'>{adjustLength(currentSong.title)}</SongPlayer>
+          <ArtistPlayer className='artistPlayer'>{adjustLength(currentSong.artist)}</ArtistPlayer>
+        <PlayIcon className='playIcon' type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={togglePlay}/>
       </>}
     </CenteredContent>
   );

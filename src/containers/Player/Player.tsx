@@ -137,15 +137,18 @@ const Player: React.FC = (props:any) => {
 
   return (
     <div className="Player">
-    <Header />
-    <CenteredContent>
-    <VenueInfos />
-    <Switch onChange={startSession} checkedChildren='/Codeworks' unCheckedChildren='/Codeworks' />
-    {session &&
-      <VenuePlayer currentSong={currentSong} togglePlay={togglePlay} playing={isPlaying} position={position}/>}
+      <Header />
+      <CenteredContent>
+        <div className={session ? 'top' : 'middle'}>
+          <VenueInfos />
+          <Switch onChange={startSession} checkedChildren='/Codeworks' unCheckedChildren='/Codeworks' />
+        </div>
+        <div className={session ? 'show' : 'hide'}>
+          <VenuePlayer currentSong={currentSong} togglePlay={togglePlay} playing={isPlaying} position={position}/>
+        </div>
       </CenteredContent>
-      </div>
-      );
+    </div>
+  );
 }
 
 export default Player;
