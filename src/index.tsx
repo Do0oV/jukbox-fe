@@ -26,7 +26,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(allReducers, careTaker.loadState(), composeEnhancers(applyMiddleware(sagaMiddleware, api, socket, resetFlag)));
 
-careTaker.setStore(store);
+careTaker.persist(store);
 if (store.getState().user.accessToken) {
   store.dispatch(connectSocket(store.getState().user.accessToken));
 }

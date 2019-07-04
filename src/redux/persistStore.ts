@@ -3,7 +3,7 @@ import { throttle } from 'helpful-decorators';
 export default class CareTaker {
 
   constructor (private store?: any) {
-    if (store) this.setStore(store);
+    if (store) this.persist(store);
   }
 
   public loadState(): any {
@@ -17,7 +17,7 @@ export default class CareTaker {
     return localStorage.getItem('state');
   }
 
-  public setStore(store: any): void {
+  public persist(store: any): void {
     this.store = store;
     this.store.subscribe(this.save);
   }
