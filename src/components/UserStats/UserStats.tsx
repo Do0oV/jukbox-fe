@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import './UserStats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatsProps } from '../../types';
-import { Col, Avatar, Icon, Badge } from 'antd';
+import { Col, Icon, Badge } from 'antd';
 import { AccountName, ListItem } from '../../assests/globalStyles';
 import styled from 'styled-components/macro';
 import { buyDiamonds } from '../../redux/actions/index'
 import { cleanUpSearchState } from '../../redux/actions/';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Avatar from 'avataaars';
 
 const Container = styled.div`
   width: 100%;
@@ -95,7 +96,21 @@ const UserStats: React.FC<UserStatsProps> = ({ userStats }) => {
           <TicketIcon type="plus-circle" theme="filled" onClick={handleOnClickTicket} />
         </Badge>
         <CntrCol>
-          <StyledAvatar size={70} icon="user" style={{ backgroundColor: '#f7dd72' }}>Bob</StyledAvatar>
+          <Avatar
+            style={{width: '100px', height: '100px'}}
+            avatarStyle='Circle'
+            topType='WinterHat4'
+            accessoriesType='Kurt'
+            hairColor='PastelPink'
+            facialHairType='BeardMedium'
+            facialHairColor='Brown'
+            clotheType='BlazerSweater'
+            clotheColor='White'
+            eyeType='Dizzy'
+            eyebrowType='AngryNatural'
+            mouthType='Twinkle'
+            skinColor='Brown'
+          />
           <UserName>{userStats.name}</UserName>
         </CntrCol>
         <Badge showZero count={userStats.diamonds} style={{
