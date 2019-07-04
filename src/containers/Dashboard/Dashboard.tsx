@@ -37,8 +37,10 @@ const Dashboard: React.FC = () => {
   }
 
   useEffect(() => {
+    const accessToken = localStorage.getItem('access_token') as string;
     dispatch(getUserProfile());
-    dispatch(connectSocket(userAccessToken));
+    console.log('CONNECTING FROM DASHBOARD');
+    dispatch(connectSocket(accessToken));
   }, [])
 
   const redirectToLogIn = () => {

@@ -27,8 +27,13 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(allReducers, careTaker.loadState(), composeEnhancers(applyMiddleware(sagaMiddleware, api, socket, resetFlag)));
 
 careTaker.persist(store);
-if (store.getState().user.accessToken) {
-  store.dispatch(connectSocket(store.getState().user.accessToken));
+// if (store.getState().user.accessToken) {
+//   console.log('CONNECTING FROM INDEX')
+//   store.dispatch(connectSocket(store.getState().user.accessToken));
+// }
+const accessToken = localStorage.getItem('access_token');
+if(accessToken) {
+  store.dispatch(connectSocket(accessToken));
 }
 
 sagaMiddleware.run(rootSaga);
