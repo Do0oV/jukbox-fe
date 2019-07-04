@@ -11,6 +11,7 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
     const { command, message } = action.socket;
     if (command === 'connect') {
       const url =`${WS_BASE_URL}/codeworks`;
+      console.warn('CONNECTING')
       socket = client.connect(url);
 
       socket.on('connect', () => {
@@ -36,7 +37,9 @@ export const socket: Middleware<any, any, any> = ({ dispatch }) => {
         });
       });
 
-    } else {
+    } 
+
+    if (message) {
       socket.emit('message', message);
     }
 

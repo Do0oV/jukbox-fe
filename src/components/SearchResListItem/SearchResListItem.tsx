@@ -52,7 +52,8 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
       title: `Do you Want to add ${song.title} by ${song.artist} to the queue?`,
       onOk() {
         const stringifiedSong = JSON.stringify(song);
-        dispatch((addSongToQueue(stringifiedSong, userAccessToken)));
+        const accessToken = localStorage.getItem('access_token') as string;
+        dispatch((addSongToQueue(stringifiedSong, accessToken)));
         setAddedSongToQueue(true);
       }
     });

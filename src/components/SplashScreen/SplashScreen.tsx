@@ -3,8 +3,6 @@ import './SplashScreen.css';
 import styled from 'styled-components';
 import { BigLogo, CenteredContent, Button, MutedButton } from '../../assests/globalStyles';
 
-const apiUrl = 'localhost:3000';
-
 const UserButton = styled(Button)`
   background-color: var(--secondary-color);
   color: var(--primary-bg-color);
