@@ -27,7 +27,6 @@ padding: 10px 0px 0px 20px;
 
 const StyledSearchBar = styled(Search)`
   padding: 8px 20px;
-  
   background-color: var(--primary-bg-color);
   color: var(--primary-color);
 `;

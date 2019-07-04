@@ -11,9 +11,13 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
 
 const PaddedContainer = styled.div`
-  // padding: 10px 5px;
   background-color: var(--primary-bg-color);
   color: var(--primary-color);
+`;
+
+const Container = styled.div`
+  display: inline;  
+  position: fixed;
 `;
 
 const Dashboard: React.FC = () => {
@@ -24,12 +28,12 @@ const Dashboard: React.FC = () => {
   const loggedIn = localStorage.getItem('access_token') && true;
   let playlist = useSelector((state: any) => state.playlist.playlist);
   let currentSong;
-  
+
   if (playlist !== undefined) {
     currentSong = playlist.find((song: any) => song.currentlyplaying);
     playlist = playlist.filter((song: any) => !song.currentlyplaying);
   }
-  
+
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(connectSocket(userAccessToken));
@@ -43,15 +47,17 @@ const Dashboard: React.FC = () => {
     <div className="Dashboard">
       {redirectToLogIn()}
       <Header />
-      <PaddedContainer>
-        <UserStats userStats={userProfile} stripeSessionID={stripeSessionID} />
-      </PaddedContainer>
-      <PaddedContainer>
-        <NowPlaying currentSong={currentSong}/>
-      </PaddedContainer>
-      <PaddedContainer>
-        <SongQueue songQueueItems={playlist} />
-      </PaddedContainer>
+      <Container>
+        <PaddedContainer>
+          <UserStats userStats={userProfile} stripeSessionID={stripeSessionID} />
+        </PaddedContainer>
+        <PaddedContainer>
+          <NowPlaying currentSong={currentSong} />
+        </PaddedContainer>
+        <PaddedContainer>
+          <SongQueue songQueueItems={playlist} />
+        </PaddedContainer>
+      </Container>
     </div>
   );
 }

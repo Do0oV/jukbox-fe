@@ -5,6 +5,7 @@ import SearchResListItem from '../SearchResListItem/SearchResListItem';
 import styled from 'styled-components/macro';
 
 const ListContainer = styled.div`
+  margin-top: 20px;
   height: 87vh;
   overflow: hidden;
   overflow-y: scroll;

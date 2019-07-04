@@ -6,7 +6,6 @@ import { Icon, Modal } from 'antd';
 import { SongQueue, CurrentSong } from '../../types';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSongDiamonds, getUserProfile } from '../../redux/actions'
-import { any } from 'prop-types';
 const { confirm } = Modal;
 
 const DiamondIcon = styled(Icon)`
@@ -20,24 +19,18 @@ svg {
   opacity: .8;
 }`;
 
-const StarIcon = styled(Icon)`
-font-size: 35px;
-padding: 0 5px;
-svg {
-  fill: var(--secondary-color);
-}
-}`;
-
 const StyledArtist = styled(Artist)`
 color: var(--fourth-color);
-font-weight: normal;
-font-size: 12px;
-`;
+transition: 0.5s;
+@media(max-width: 625px) {
+  font-size: 10px;
+}`;
 
 const StyledSong = styled(Song)`
-font-size: 12px;
-font-weight: 700;
-`;
+transition: 0.5s;
+@media(max-width: 625px) {
+  font-size: 8px;
+}`;
 
 const ColContainer = styled.div`
 display: flex;
