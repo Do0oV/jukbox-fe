@@ -1,0 +1,66 @@
+.ant-progress {
+  position: relative;
+  bottom: 90%;
+  width: 100% !important;
+}
+
+.ant-progress-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ant-progress-circle-path {
+  stroke: var(--fourth-color) !important;
+}
+
+.ant-progress-circle-trail {
+  stroke: transparent !important;
+}
+
+.img-container {
+  height: 230px;
+  width: 230px;
+}
+
+@media (min-width: 800px) {
+  .img-container {
+    height: 320px;
+    width: 320px;
+  }
+}
+
+.top {
+  position: relative;
+  top: 0;
+  transition: top ease-out .5s;
+}
+
+.middle {
+  position: relative;
+  top: 250px;
+  transition: top ease-in .5s; 
+}
+
+
+.show {
+  animation: fade 2s;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.VenuePlayer {
+  width: 60vw;
+}
+
+
