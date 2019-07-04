@@ -50,16 +50,22 @@ const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }
 
   const song: CurrentSong = JSON.parse(songQueueItem.song);
   const songUserEmail = songQueueItem.user_id;
-  const userEmail = useSelector((state: any) => state.user.userProfile.email)
-  const accessToken = useSelector((state: any) => state.user.accessToken)
+  const userEmail = useSelector((state: any) => state.user.userProfile.email);
+  const accessToken = useSelector((state: any) => state.user.accessToken);
+  const userDiamonds = useSelector((state: any) => state.user.userProfile.diamonds);
 
-  const showConfirm = (song: CurrentSong) => {
-    confirm({
+  const showConfirm = (song: CurrentSong, diamonds: number) => {
+    diamonds >= 5 
+    ? confirm({
       title: `Do you want to spend 5 diamonds to promote ${song.title} by ${song.artist}?`,
       onOk() {
         songQueueItem.id && dispatch(updateSongDiamonds(songQueueItem.id, accessToken))
         dispatch(getUserProfile());
       }
+    })
+    : confirm({
+      title: `You need at least 5 diamonds to promote a song.`,
+      onOk() {}
     });
   }
 
@@ -80,7 +86,7 @@ const SongQueueItem: React.FC<{ songQueueItem: SongQueue }> = ({ songQueueItem }
           </ColContainer>
         </RowContainer>
         <RowContainer>
-          <DiamondIcon type="sketch-circle" theme="filled" onClick={() => showConfirm(song)} />
+          <DiamondIcon type="sketch-circle" theme="filled" onClick={() => showConfirm(song, userDiamonds)} />
         </RowContainer>
       </ListItem>
     </div>
