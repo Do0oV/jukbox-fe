@@ -6,15 +6,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { resetFlag } from './redux/middleware/resetFlag';
 import {connectSocket} from './redux/actions';
-
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './redux/saga';
-const sagaMiddleware = createSagaMiddleware();
+import CareTaker from './redux/persistStore';
 
 declare global {
   interface Window {
@@ -22,21 +20,19 @@ declare global {
   }
 }
 
-const preloadedStoreRAW = localStorage.getItem('state');
-const preloadedStore = preloadedStoreRAW ? JSON.parse(preloadedStoreRAW) : undefined;
-
+const careTaker = new CareTaker();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducers, preloadedStore, composeEnhancers(applyMiddleware(sagaMiddleware, api, socket, resetFlag)));
+const sagaMiddleware = createSagaMiddleware();
 
-sagaMiddleware.run(rootSaga);
+const store = createStore(allReducers, careTaker.loadState(), composeEnhancers(applyMiddleware(sagaMiddleware, api, socket, resetFlag)));
 
+careTaker.persist(store);
 if (store.getState().user.accessToken) {
   store.dispatch(connectSocket(store.getState().user.accessToken));
 }
 
-store.subscribe(() => {
-  localStorage.setItem('state', JSON.stringify(store.getState()))
-});
+sagaMiddleware.run(rootSaga);
+
 
 ReactDOM.render(
   <Provider store={store}>
