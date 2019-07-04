@@ -140,7 +140,7 @@ const Player: React.FC = (props:any) => {
     <Header />
     <CenteredContent>
     <VenueInfos />
-    <Switch onChange={startSession} checkedChildren='Stop Session' unCheckedChildren='Start Session' />
+    <Switch onChange={startSession} checkedChildren='/Codeworks' unCheckedChildren='/Codeworks' />
     {session &&
       <VenuePlayer currentSong={currentSong} togglePlay={togglePlay} playing={isPlaying} position={position}/>}
       </CenteredContent>

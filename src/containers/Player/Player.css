@@ -1,0 +1,39 @@
+.ant-switch {
+  letter-spacing: 2px;
+  color: var(--fourth-color);
+  background-color: rgb(31, 30, 33);
+  position: relative;
+  top: -10px;
+  height: 30px;
+  padding: 0 10px;
+}
+
+.ant-switch-inner {
+  font-size: 14px;
+}
+
+.ant-switch-checked {
+  background-color: var(--fourth-color);
+}
+
+.ant-switch-checked span {
+  color: var(--primary-bg-color);
+}
+
+button.ant-switch::after {
+  top: 5px;
+  margin: 0 3px;
+}
+
+button.ant-switch.ant-switch-checked::after {
+  top: 5px;
+  margin: 0 -3px;
+}
+
+
+@media(min-width: 800px) {
+  font-size: 20px;
+  padding: 5px 25px;
+}
+
+

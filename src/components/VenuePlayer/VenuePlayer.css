@@ -20,7 +20,6 @@
 .img-container {
   height: 250px;
   width: 250px;
-  margin-top: 50px;
 }
 
 @media (min-width: 800px) {

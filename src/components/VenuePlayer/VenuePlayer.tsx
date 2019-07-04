@@ -21,7 +21,7 @@ const ArtistPlayer = styled(Artist)`
 const SongPlayer = styled(Song)`
   font-size: 24px;
   letter-spacing: 4px;
-  margin: 40px 0 0 0;
+  margin: 25px 0 0 0;
 
   @media(min-width: 800px) {
     font-size: 28px;
@@ -32,7 +32,7 @@ const SongPlayer = styled(Song)`
 
 const PlayIcon = styled(Icon)`
   font-size: 65px;
-  margin: 40px;
+  margin: 20px;
   svg {
     color: var(--fourth-color);
   }
@@ -47,12 +47,11 @@ const PlayIcon = styled(Icon)`
   }
 `;
 
-const AlbumCover = styled.img`
-`;
 const TimerCount = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  margin: 10px 0;
+  justify-content: center;
   letter-spacing: 2px;
   font-size: 14px;
   color: var(--fourth-color);
@@ -69,6 +68,11 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playi
     <CenteredContent className="VenuePlayer">
     {currentSong.title &&
       <>
+        <TimerCount>
+          <div>{current}</div>
+          <div>{' / '}</div>
+          <div>{end}</div>
+        </TimerCount>
         <div className='img-container'>
           <img src={currentSong.album_cover} />
           <Progress type='circle' percent={position * 100 / currentSong.duration} strokeWidth={1.5} 
@@ -76,10 +80,6 @@ const VenuePlayer: React.FC<VenuePlayerProps> = ({currentSong, togglePlay, playi
         </div>
         <SongPlayer>{currentSong.title}</SongPlayer>
         <ArtistPlayer>{currentSong.artist}</ArtistPlayer>
-        <TimerCount>
-          <div>{current}</div>
-          <div>{end}</div>
-        </TimerCount>
         <PlayIcon type={playing ? "pause-circle" : "play-circle"} theme="filled" onClick={togglePlay}/>
       </>}
     </CenteredContent>
