@@ -35,7 +35,6 @@ transition: 0.5s;
 }`;
 
 const Container = styled.div`
-margin-left: 10px
 align-self: center;
 flex-basis: 100%;
 display: flex;
@@ -62,7 +61,7 @@ const SearchResListItem: React.FC<{ song: CurrentSong }> = ({ song }) => {
   return (
     <ListItem className="ListItem">
       {addedSongtoQueue && <Redirect to="/dashboard" />}
-      <img height="60px" width="60px" src={song.album_cover[0]} />
+      <img height="70px" width="70px" src={song.album_cover[0]} />
       <Container>
         <StyledSong>{song.title}</StyledSong>
         <StyledArtist>{song.artist}</StyledArtist>

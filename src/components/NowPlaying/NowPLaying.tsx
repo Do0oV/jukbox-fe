@@ -1,21 +1,36 @@
 import React from 'react';
 import './NowPlaying.css';
-import { Row, Col, Progress } from 'antd';
-import styled from 'styled-components';
+import { Col } from 'antd';
+import styled from 'styled-components/macro';
 import { NowPlayingProps } from '../../types';
 import { ListItem } from '../../assests/globalStyles';
 
 const Container = styled.div`
-  background-color: var(--secondary-bg-color);
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 15px 0;
+  position: relative;
+  overflow: hidden;
+  margin: 5px 0;
+  background-color: #555;
+`;
+
+const BackgroundImage: any = styled.div`
+  background-image: ${(props: any) => `url('${props.image}')`};
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0.8;
 `;
 
 const SubContainer = styled(ListItem)`
-  margin: 10px 0;
   height: 100%;
+  position: abslotue;
+  margin: 20px 0;
+  padding: 0px 20px;
 `;
 
 const Song = styled.div`
@@ -32,7 +47,7 @@ const Artist = styled.div`
   font-size: 18px;
   line-height: 1.6em;
   font-weight: bold;
-  color: var(--primary-bg-color);
+  color: #fff;  
 `;
 
 const Now = styled.h2`
@@ -45,12 +60,15 @@ const Now = styled.h2`
 
 const RightCol = styled(Col)`
   text-align: right;
+  text-shadow: 0 0 15px #000A;
 `;
 
 const Album = styled.img`
-  height: 85px;
-  width: 85px;
+  height: 105px;
+  width: 105px;
+  z-index: 1;
 `;
+
 
 const NowPlaying: React.FC<NowPlayingProps> = ({ currentSong }) => {
   const songData = currentSong !== undefined
@@ -64,16 +82,18 @@ const NowPlaying: React.FC<NowPlayingProps> = ({ currentSong }) => {
   return (
     <>
       {currentSong && 
-      <Container>
-        <SubContainer>
-           <Album src={songData.album_cover[0]}/>
-         <RightCol>
-           <Now>Now Playing</Now>
-           <Song>{songData.title}</Song>
-           <Artist>{songData.artist}</Artist>
-         </RightCol>
-        </SubContainer>
-      </Container>}
+          <Container >  
+            <BackgroundImage image={songData.album_cover[0]}/>
+            <SubContainer> 
+              <Album src={songData.album_cover[0]}/>
+              <RightCol>
+                <Now>Now Playing</Now>
+                <Song>{songData.title}</Song>
+                <Artist>{songData.artist}</Artist>
+              </RightCol>
+            </SubContainer>      
+          </Container>
+      }
     </>
   );
 }

@@ -78,9 +78,7 @@ export const Button = styled.button`
 `;
 
 export const ListItem = styled.div`
-  margin: 20px auto;
-  width: 80vw;
-  height: 8vh;
+  margin: 3px 10px 0 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -101,10 +99,10 @@ export const MutedButton = styled(Button)`
     border: 1px solid var(--fourth-color);
     border-radius: 30px;
   }
-
 `;
 
 export const AccountName = styled.div`
+  font-weight: 700;
   letter-spacing: 1px;
   color: var(--fourth-color);
   background-color: rgb(31, 30, 33);
