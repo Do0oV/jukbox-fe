@@ -31,6 +31,7 @@ const SubContainer = styled(ListItem)`
   position: abslotue;
   margin: 20px 0;
   padding: 0px 20px;
+  width: 100%;
 `;
 
 const Song = styled.div`

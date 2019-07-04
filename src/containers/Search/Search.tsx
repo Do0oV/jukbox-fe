@@ -49,7 +49,8 @@ const SearchContainer: React.FC = () => {
   }, [])
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    dispatch(searchSongs(event.currentTarget.value));
+    const searchText = event.currentTarget.value;
+    searchText.length && dispatch(searchSongs(searchText));
   };
 
   const renderRedirect = () => {
