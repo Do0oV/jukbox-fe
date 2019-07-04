@@ -18,6 +18,8 @@ const PaddedContainer = styled.div`
 const Container = styled.div`
   display: inline;  
   position: fixed;
+  width: 100vw;
+  overflow: scroll;
 `;
 
 const Dashboard: React.FC = () => {
